@@ -1,6 +1,7 @@
 import React from 'react'
 import { Tab, Tabs, Typography, Card } from '@material-ui/core'
 import QuestionForm from './QuestionForm'
+import { CurrentQuestionContextProvider } from '../context/CurrentQuestionContext'
 
 function TabPanel(props: any) {
   const { title, children, value, index, ...other } = props
@@ -15,7 +16,12 @@ function TabPanel(props: any) {
     >
       {value === index && (
         <div>
-          <Typography variant="h6">{title}</Typography>
+          <Typography
+            variant="h6"
+            className={index === 0 ? 'QuestionTitle' : ''}
+          >
+            {title}
+          </Typography>
           {children}
         </div>
       )}
@@ -31,7 +37,7 @@ export default () => {
   }
 
   return (
-    <div>
+    <CurrentQuestionContextProvider>
       <Tabs value={value} onChange={handleChange} centered>
         <Tab label="Question" />
         <Tab label="Options" />
@@ -44,6 +50,6 @@ export default () => {
         <TabPanel value={value} index={1} title="Options"></TabPanel>
         <TabPanel value={value} index={2} title="Verification"></TabPanel>
       </Card>
-    </div>
+    </CurrentQuestionContextProvider>
   )
 }

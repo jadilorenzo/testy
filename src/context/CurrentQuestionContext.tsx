@@ -3,10 +3,11 @@ import { Question } from '../types'
 
 const defaultValue: Question = {
   question: '',
-  answer: ''
+  answer: '',
+  options: []
 }
 
-export const CurrentQuestionContext = createContext<(Question | Function)[]>([
+export const CurrentQuestionContext = createContext<any[]>([
   defaultValue,
   () => {}
 ])

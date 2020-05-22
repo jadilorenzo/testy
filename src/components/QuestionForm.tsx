@@ -1,13 +1,16 @@
 import React from 'react'
 import MultiOptionQuestionForm from './MultiOptionQuestionForm'
 import EssayQuestionForm from './EssayQuestionForm'
+import MultiSelectQuestionForm from './MultiSelectQuestionForm'
 
 export default (props: { type: string }) => {
   switch (props.type) {
     case 'multiple-choice':
       return <MultiOptionQuestionForm />
-    case 'multi-select':
+    case 'essay':
       return <EssayQuestionForm />
+    case 'multi-select':
+      return <MultiSelectQuestionForm />
     default:
       return null
   }

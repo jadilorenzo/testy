@@ -18,7 +18,7 @@ function TabPanel(props: any) {
         <div>
           <Typography
             variant="h6"
-            className={index === 0 ? 'QuestionTitle' : ''}
+            className={title === 'Question' ? 'QuestionTitle' : ''}
           >
             {title}
           </Typography>

@@ -45,7 +45,7 @@ export default () => {
       </Tabs>
       <Card className="QuestionForm">
         <TabPanel value={value} index={0} title="Question">
-          <QuestionForm type="multiple-choice" />
+          <QuestionForm type="multi-select" />
         </TabPanel>
         <TabPanel value={value} index={1} title="Options"></TabPanel>
         <TabPanel value={value} index={2} title="Verification"></TabPanel>

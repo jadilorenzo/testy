@@ -1,25 +1,16 @@
 import React from 'react'
-import { TextField, Radio } from '@material-ui/core'
+import MultiOptionQuestionForm from './MultiOptionQuestionForm'
+import EssayQuestionForm from './EssayQuestionForm'
+import MultiSelectQuestionForm from './MultiSelectQuestionForm'
 
 export default (props: { type: string }) => {
   switch (props.type) {
     case 'multiple-choice':
-      return (
-        <div>
-          <Radio disabled />
-          <TextField />
-          <br />
-          <Radio disabled />
-          <TextField />
-          <br />
-          <Radio disabled />
-          <TextField />
-          <br />
-          <Radio disabled />
-          <TextField />
-          <br />
-        </div>
-      )
+      return <MultiOptionQuestionForm />
+    case 'essay':
+      return <EssayQuestionForm />
+    case 'multi-select':
+      return <MultiSelectQuestionForm />
     default:
       return null
   }

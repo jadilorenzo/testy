@@ -9,7 +9,7 @@ export default (props: { type: string }) => {
       return <MultiOptionQuestionForm />
     case 'essay':
       return <EssayQuestionForm />
-    case 'multi-select':
+    case 'multi-answer':
       return <MultiSelectQuestionForm />
     default:
       return null

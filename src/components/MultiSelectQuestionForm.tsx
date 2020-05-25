@@ -8,6 +8,7 @@ export default () => {
   const [question, setQuestion] = useContext(CurrentQuestionContext)
 
   const handleTitleChange = (e: any) => {
+    e.persist()
     setQuestion((q: Question) => ({
       ...q,
       question: e.target.value
@@ -17,17 +18,17 @@ export default () => {
   const handleOptionChange = (e: any, num: number) => {
     let options = question.options
     options[num] = e.target.value
+    e.persist()
     setQuestion((q: Question) => ({ ...q, options }))
   }
 
   const handleAnswerChange = (e: any) => {
+    e.persist()
     setQuestion((q: Question) => ({
       ...q,
       answer: e.target.value
     }))
   }
-
-  console.log(question.options)
 
   return (
     <div className="QuestionFormContainer">

@@ -25,3 +25,14 @@
 .FormGroups > * {
   margin-bottom: 1em;
 }
+
+.TestGroup {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 1em;
+}
+
+.TestGroup > * {
+  width: 25%;
+}

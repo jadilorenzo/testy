@@ -3,6 +3,7 @@ import { Tab, Tabs, Typography, Card, Container } from '@material-ui/core'
 import { Settings, Assignment, Check } from '@material-ui/icons'
 import QuestionForm from './QuestionForm'
 import OptionsForm from './OptionsForm'
+import Verification from './Verification'
 import { CurrentQuestionContextProvider } from '../context/CurrentQuestionContext'
 import { OptionsContextProvider } from '../context/OptionsContext'
 
@@ -56,7 +57,9 @@ export default () => {
               <TabPanel value={value} index={0} title="Options">
                 <OptionsForm />
               </TabPanel>
-              <TabPanel value={value} index={2} title="Verification"></TabPanel>
+              <TabPanel value={value} index={2} title="Verification">
+                <Verification />
+              </TabPanel>
             </Container>
           </Card>
         </CurrentQuestionContextProvider>

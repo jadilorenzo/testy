@@ -30,7 +30,9 @@ const OptionsForm = () => {
           onChange={handleChange}
         >
           <MenuItem value={'multiple-choice'}>Multiple Options</MenuItem>
-          <MenuItem value={'multi-answer'}>Multiple Select</MenuItem>
+          <MenuItem disabled value={'multi-answer'}>
+            Multiple Select
+          </MenuItem>
           <MenuItem value={'essay'}>Free Answer</MenuItem>
         </Select>
       </FormGroup>

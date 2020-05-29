@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
-import { TextField, Checkbox, Chip } from '@material-ui/core'
+import { TextField, Checkbox, FormHelperText } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { Question } from '../types'
 
 export default () => {
+  throw new Error('Not implemented correctly yet!')
+
   const [question, setQuestion] = useContext(CurrentQuestionContext)
 
   const handleTitleChange = (e: any) => {
@@ -77,23 +79,18 @@ export default () => {
         options={question.options}
         multiple
         id="tags-standard"
-        renderTags={(value: string[], getTagProps) =>
-          value.map((option: string, index: number) => (
-            <Chip
-              variant="outlined"
-              label={option}
-              {...getTagProps({ index })}
-            />
-          ))
-        }
         renderInput={params => (
-          <TextField
-            {...params}
-            value={question.answer}
-            onChange={handleAnswerChange}
-            label="Answer"
-            variant="outlined"
-          />
+          <>
+            <TextField
+              {...params}
+              onChange={handleAnswerChange}
+              label="Answer"
+              variant="outlined"
+            />
+            <FormHelperText>
+              Separate values by a ", " for multiple options.
+            </FormHelperText>
+          </>
         )}
       />
     </div>

@@ -8,25 +8,39 @@ export default () => {
   const [question, setQuestion] = useContext(CurrentQuestionContext)
 
   const handleTitleChange = (e: any) => {
-    e.persist()
+    if (e !== null) {
+      e.persist()
+    } else {
+      e = { target: { value: '' } }
+    }
+
     setQuestion((q: Question) => ({
       ...q,
-      question: e.target.value
+      question: e.target.value || ''
     }))
   }
 
   const handleOptionChange = (e: any, num: number) => {
+    if (e !== null) {
+      e.persist()
+    } else {
+      e = { target: { value: '' } }
+    }
+
     let options = question.options
-    options[num] = e.target.value
-    e.persist()
+    options[num] = e.target.value || ''
     setQuestion((q: Question) => ({ ...q, options }))
   }
 
   const handleAnswerChange = (e: any) => {
-    e.persist()
+    if (e !== null) {
+      e.persist()
+    } else {
+      e = { target: { value: '' } }
+    }
     setQuestion((q: Question) => ({
       ...q,
-      answer: e.target.value
+      answer: e.target.value || ''
     }))
   }
 
@@ -75,14 +89,10 @@ export default () => {
       </div>
       <Autocomplete
         options={question.options}
+        inputValue={question.answer}
+        onInputChange={handleAnswerChange}
         renderInput={params => (
-          <TextField
-            {...params}
-            value={question.answer}
-            onChange={handleAnswerChange}
-            label="Answer"
-            variant="outlined"
-          />
+          <TextField {...params} label="Answer" variant="outlined" />
         )}
       />
     </div>

@@ -4,7 +4,7 @@ interface Options {
   autocheck?: true | false
 }
 const defaultValue: Options = {
-  type: 'multi-answer',
+  type: 'multiple-choice',
   autocheck: false
 }
 

@@ -1,12 +1,16 @@
 import React, { useContext } from 'react'
-import { TextField, Checkbox, FormHelperText } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab'
+import {
+  TextField,
+  Checkbox,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from '@material-ui/core'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { Question } from '../types'
 
 export default () => {
-  throw new Error('Not implemented correctly yet!')
-
   const [question, setQuestion] = useContext(CurrentQuestionContext)
 
   const handleTitleChange = (e: any) => {
@@ -28,7 +32,7 @@ export default () => {
     e.persist()
     setQuestion((q: Question) => ({
       ...q,
-      answer: e.target.value
+      answer: e.target.value.filter((x: string) => x !== '').join(', ')
     }))
   }
 
@@ -75,24 +79,25 @@ export default () => {
           onChange={(e: any) => handleOptionChange(e, 3)}
         />
       </div>
-      <Autocomplete
-        options={question.options}
-        multiple
-        id="tags-standard"
-        renderInput={params => (
-          <>
-            <TextField
-              {...params}
-              onChange={handleAnswerChange}
-              label="Answer"
-              variant="outlined"
-            />
-            <FormHelperText>
-              Separate values by a ", " for multiple options.
-            </FormHelperText>
-          </>
-        )}
-      />
+      <FormControl variant="standard" fullWidth>
+        <div className="FormGroup">
+          <InputLabel id="select">Answer</InputLabel>
+          <Select
+            onChange={handleAnswerChange}
+            className="Select"
+            labelId="select"
+            multiple
+            value={question.answer.split(', ')}
+          >
+            {question.options.map((option: string) => (
+              <MenuItem value={option}>{option}</MenuItem>
+            ))}
+            {question.options.length === 0 && (
+              <MenuItem disabled>No Options</MenuItem>
+            )}
+          </Select>
+        </div>
+      </FormControl>
     </div>
   )
 }

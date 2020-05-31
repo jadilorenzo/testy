@@ -30,15 +30,14 @@ const OptionsForm = () => {
           onChange={handleChange}
         >
           <MenuItem value={'multiple-choice'}>Multiple Options</MenuItem>
-          <MenuItem disabled value={'multi-answer'}>
-            Multiple Select
-          </MenuItem>
+          <MenuItem value={'multi-answer'}>Multiple Select</MenuItem>
           <MenuItem value={'essay'}>Free Answer</MenuItem>
         </Select>
       </FormGroup>
       <FormGroup>
         <InputLabel>Auto check</InputLabel>
         <Switch
+          color="primary"
           checked={options.autocheck}
           onClick={() => {
             setOptions({ ...options, autocheck: !options.autocheck })

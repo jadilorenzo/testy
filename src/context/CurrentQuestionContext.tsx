@@ -14,7 +14,8 @@ export const CurrentQuestionContext = createContext<any[]>([
 
 export const CurrentQuestionContextProvider = (props: any) => {
   const [question, setQuestion] = React.useState(defaultValue)
-  console.warn(question)
+
+  console.log(question)
 
   return (
     <CurrentQuestionContext.Provider value={[question, setQuestion]}>

@@ -7,15 +7,17 @@ import { AirDBProvider } from './context/AirDBContext'
 
 const App = () => {
   return (
-    <AirDBProvider table="Testy">
-      <Container>
-        <Route exact path="/add/question">
-          <TestProvider>
-            <TuiCreateTest />
-          </TestProvider>
-          App
-        </Route>
-      </Container>
+    <AirDBProvider table="Testy - Tests">
+      <AirDBProvider table="Testy - Questions">
+        <Container>
+          <Route exact path="/add/question">
+            <TestProvider>
+              <TuiCreateTest />
+            </TestProvider>
+          </Route>
+          <Route exact path="/"></Route>
+        </Container>
+      </AirDBProvider>
     </AirDBProvider>
   )
 }

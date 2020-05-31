@@ -45,17 +45,17 @@ export default () => {
       {(options: any) => (
         <CurrentQuestionContextProvider>
           <Tabs value={value} onChange={handleChange} centered>
-            <Tab label="Options" icon={<Settings />} />
-            <Tab label="Question" icon={<Assignment />} />
-            <Tab label="Verification" icon={<Check />} />
+            <Tab label="1. Options" />
+            <Tab label="2. Question" />
+            <Tab label="3. Verification" />
           </Tabs>
           <Card className="QuestionForm">
             <Container maxWidth="sm">
-              <TabPanel value={value} index={1} title="Question">
-                <QuestionForm type={options.type} />
-              </TabPanel>
               <TabPanel value={value} index={0} title="Options">
                 <OptionsForm />
+              </TabPanel>
+              <TabPanel value={value} index={1} title="Question">
+                <QuestionForm type={options.type} />
               </TabPanel>
               <TabPanel value={value} index={2} title="Verification">
                 <Verification />

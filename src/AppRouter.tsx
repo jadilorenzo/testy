@@ -1,19 +1,21 @@
 import React from 'react'
 import App from './App'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import { TuiHeader } from './components'
 import './App.css'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from './theme'
-import { TestsProvider } from './context/TestsContext'
 
 function AppRouter() {
   return (
-    <ThemeProvider theme={theme}>
-      <TestsProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
         <TuiHeader />
-        <App />
-      </TestsProvider>
-    </ThemeProvider>
+        <Switch>
+          <App />
+        </Switch>
+      </ThemeProvider>
+    </Router>
   )
 }
 

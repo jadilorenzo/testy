@@ -1,6 +1,13 @@
 import React, { useContext } from 'react'
-import { TextField, Radio } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab'
+import {
+  TextField,
+  Radio,
+  Select,
+  MenuItem,
+  InputLabel,
+  FormControl
+} from '@material-ui/core'
+// import { Autocomplete } from '@material-ui/lab'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { Question } from '../types'
 
@@ -28,16 +35,11 @@ export default () => {
     }
 
     let options = question.options
-    options[num] = e.target.value || ''
+    options[num] = e.target.value === '' ? undefined : e.target.value
     setQuestion((q: Question) => ({ ...q, options }))
   }
 
   const handleAnswerChange = (e: any) => {
-    if (e !== null) {
-      e.persist()
-    } else {
-      e = { target: { value: '' } }
-    }
     setQuestion((q: Question) => ({
       ...q,
       answer: e.target.value || ''
@@ -87,14 +89,24 @@ export default () => {
           onChange={(e: any) => handleOptionChange(e, 3)}
         />
       </div>
-      <Autocomplete
-        options={question.options}
-        inputValue={question.answer}
-        onInputChange={handleAnswerChange}
-        renderInput={params => (
-          <TextField {...params} label="Answer" variant="outlined" />
-        )}
-      />
+      <FormControl variant="standard" fullWidth>
+        <div className="FormGroup">
+          <InputLabel id="select">Answer</InputLabel>
+          <Select
+            onChange={handleAnswerChange}
+            className="Select"
+            labelId="select"
+            value={question.answer}
+          >
+            {question.options.map((option: string) => (
+              <MenuItem value={option}>{option}</MenuItem>
+            ))}
+            {question.options.length === 0 && (
+              <MenuItem disabled>No Options</MenuItem>
+            )}
+          </Select>
+        </div>
+      </FormControl>
     </div>
   )
 }

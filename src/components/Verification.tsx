@@ -1,37 +1,30 @@
 import React, { useContext, useState } from 'react'
-import { TestsContext } from '../context/TestsContext'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
-
-import { postDB } from '../context/getDB'
+import QuestionDisplay from '../components/QuestionDisplay'
+import { AirDBContext } from '../context/AirDBContext'
 import { Button } from '@material-ui/core'
 
 const Verification = () => {
-  const tests = useContext(TestsContext)
+  const db = useContext(AirDBContext)
   const [question] = useContext(CurrentQuestionContext)
 
-  const [currentTest, setCurrentTest] = useState('recg8fTWLLOM0S5pR')
+  // const [currentTest, setCurrentTest] = useState('recg8fTWLLOM0S5pR')
 
-  console.log(currentTest)
+  console.log(db.getAirDB())
 
   const handleAddQuestion = async () => {
-    const result = await postDB(currentTest, { ...question })
-    console.log(result[0].d)
+    await db
+      .postAirDB({
+        ...question,
+        options: question.options.map((x: string) => x.trim()).join(', ')
+      })
+      .then(() => (window.location.pathname = '/'))
   }
 
   return (
     <div>
-      Which test would you like to add your question to?
       <div className="TestGroup">
-        {tests
-          .filter((x: any) => Object.keys(x.fields).length > 1)
-          .map((x: any) => (
-            <Button
-              variant="outlined"
-              children={x.fields['Name']}
-              color={x.id === currentTest ? 'secondary' : 'default'}
-              onClick={() => setCurrentTest(x.id)}
-            />
-          ))}
+        <QuestionDisplay />
       </div>
       <Button onClick={handleAddQuestion} variant="contained" color="secondary">
         Add

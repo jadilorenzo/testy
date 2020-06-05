@@ -10,7 +10,6 @@ export default (props: any) => {
         width: props.size,
         height: props.size,
         top: props.size,
-        // marginTop: -0.1,
         right: -1,
         zIndex: 100
       }}
@@ -30,7 +29,6 @@ export default (props: any) => {
         width: props.size,
         height: props.size,
         top: props.size - (props.padding ? 0 : 2),
-        // left: props,
         zIndex: 100
       }}
     >
@@ -48,7 +46,6 @@ export default (props: any) => {
         position: 'relative',
         width: props.size,
         height: props.size,
-        // marginTop: -0.1,
         top: -(2.5 * props.size) - 1,
         left: props.size,
         zIndex: 100
@@ -67,7 +64,6 @@ export default (props: any) => {
         position: 'relative',
         width: props.size,
         height: props.size,
-        // marginTop: -0.1,
         top: -props.height + props.size + 1,
         left: props.size + props.width + 5,
         zIndex: 100
@@ -86,7 +82,6 @@ export default (props: any) => {
         style={{
           display: 'flex',
           position: 'relative',
-          // alignItems: 'left'
           left: props.size,
           width: '100%'
         }}

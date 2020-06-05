@@ -1,12 +1,11 @@
 import React from 'react'
-import { AppBar, Toolbar, Icon, Typography } from '@material-ui/core'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import { ClearAllSharp } from '@material-ui/icons'
 
 const Header = () => (
   <AppBar
     position="static"
     style={{
-      /* background: '#ffe87f'*/
       display: 'flex',
       alignItems: 'center'
     }}

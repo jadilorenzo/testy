@@ -7,7 +7,6 @@ export default (props: any) => {
   const [element, setElement] = React.useState<any>(null)
   const height = element ? element.clientHeight : 0
   const width = element ? element.clientWidth : 0
-  console.log(height, width)
 
   return (
     <Clip

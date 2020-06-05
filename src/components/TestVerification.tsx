@@ -8,10 +8,6 @@ export default () => {
   const db = useContext(AirDBContext)
   const [test] = useContext(TestContext)
 
-  // const [currentTest, setCurrentTest] = useState('recg8fTWLLOM0S5pR')
-
-  console.log(db.getAirDB('Testy - Tests'))
-
   const handleAddQuestion = async () => {
     await db
       .postAirDB('Testy - Tests', {

@@ -7,7 +7,6 @@ import {
   InputLabel,
   FormControl
 } from '@material-ui/core'
-// import { Autocomplete } from '@material-ui/lab'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { Question } from '../types'
 

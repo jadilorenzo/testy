@@ -3,17 +3,12 @@ import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { OptionsContext } from '../context/OptionsContext'
 import QuestionDisplay from '../components/QuestionDisplay'
 import { AirDBContext } from '../context/AirDBContext'
-// import { Button } from '@material-ui/core'
 import Button from './Button'
 
 const Verification = () => {
   const db = useContext(AirDBContext)
   const [question] = useContext(CurrentQuestionContext)
   const [options] = useContext(OptionsContext)
-
-  // const [currentTest, setCurrentTest] = useState('recg8fTWLLOM0S5pR')
-
-  console.log(db.getAirDB('Testy - Questions'))
 
   const handleAddQuestion = async () => {
     await db

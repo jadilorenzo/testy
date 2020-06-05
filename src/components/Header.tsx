@@ -1,14 +1,21 @@
 import React from 'react'
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
-import { Menu } from '@material-ui/icons'
+import { Dashboard } from '@material-ui/icons'
 
 const Header = () => (
-  <AppBar position="static">
+  <AppBar
+    position="static"
+    style={{
+      /* background: '#ffe87f'*/
+      display: 'flex',
+      alignItems: 'center'
+    }}
+  >
     <Toolbar variant="regular">
       <IconButton edge="start" color="inherit" aria-label="menu">
-        <Menu />
+        <Dashboard />
       </IconButton>
-      <Typography variant="h6" className="title">
+      <Typography variant="h5" className="title">
         Testy
       </Typography>
     </Toolbar>

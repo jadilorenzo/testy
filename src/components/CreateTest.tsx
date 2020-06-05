@@ -1,11 +1,9 @@
 import React from 'react'
-import { Tab, Tabs, Typography, Card, Container } from '@material-ui/core'
-import { Settings, Assignment, Check } from '@material-ui/icons'
-import QuestionForm from './QuestionForm'
-import OptionsForm from './OptionsForm'
-import Verification from './Verification'
-import { CurrentQuestionContextProvider } from '../context/CurrentQuestionContext'
-import { OptionsContextProvider } from '../context/OptionsContext'
+import { Tab, Tabs, Typography, Container } from '@material-ui/core'
+import TestForm from './TestForm'
+import TestVerification from './TestVerification'
+import { TestProvider } from '../context/TestContext'
+import Paper from './Paper'
 
 function TabPanel(props: any) {
   const { title, children, value, index, ...other } = props
@@ -20,10 +18,7 @@ function TabPanel(props: any) {
     >
       {value === index && (
         <div>
-          <Typography
-            variant={title !== 'Options' ? 'h5' : 'h4'}
-            className={'QuestionTitle'}
-          >
+          <Typography variant={'h5'} className={'QuestionTitle'}>
             {title}
           </Typography>
           {children}
@@ -37,33 +32,26 @@ export default () => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    console.log(event)
     setValue(newValue)
   }
 
   return (
-    <OptionsContextProvider>
-      {(options: any) => (
-        <CurrentQuestionContextProvider>
-          <Tabs value={value} onChange={handleChange} centered>
-            <Tab label="1. Options" />
-            <Tab label="2. Question" />
-            <Tab label="3. Verification" />
-          </Tabs>
-          <Card className="QuestionForm">
-            <Container maxWidth="sm">
-              <TabPanel value={value} index={0} title="Options">
-                <OptionsForm />
-              </TabPanel>
-              <TabPanel value={value} index={1} title="Question">
-                <QuestionForm type={options.type} />
-              </TabPanel>
-              <TabPanel value={value} index={2} title="Verification">
-                <Verification />
-              </TabPanel>
-            </Container>
-          </Card>
-        </CurrentQuestionContextProvider>
-      )}
-    </OptionsContextProvider>
+    <TestProvider>
+      <Tabs value={value} onChange={handleChange} centered>
+        <Tab label="1. Test" />
+        <Tab label="2. Verification" />
+      </Tabs>
+      <Container maxWidth="sm">
+        <Paper className="QuestionForm">
+          <TabPanel value={value} index={0} title="Test">
+            <TestForm />
+          </TabPanel>
+          <TabPanel value={value} index={1} title="Verification">
+            <TestVerification />
+          </TabPanel>
+        </Paper>
+      </Container>
+    </TestProvider>
   )
 }

@@ -1,6 +1,6 @@
 .title {
   display: inline-block;
-  padding-left: 0.5em;
+  padding-left: 0.2em;
 }
 
 .QuestionForm {
@@ -43,6 +43,22 @@
 }
 
 .FormGroup {
-  margin: auto;
   width: 100%;
+  margin-bottom: 1em;
+}
+
+.MuiTabs-root > * {
+  justify-content: space-around;
+}
+
+.icon-group {
+  position: relative;
+}
+
+.icon {
+  opacity: 0.5;
+}
+
+.gradient {
+  background: linear-gradient(0.6deg, #006bcd, #00558c);
 }

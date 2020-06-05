@@ -11,10 +11,8 @@ export const AirDBProvider = (props: any) => {
     'appeQvvPNhaPvYi0s'
   )
 
-  const Table = props.table
-
-  const getAirDB = async () => {
-    return await base(Table)
+  const getAirDB = async (table: string) => {
+    return await base(table)
       .select({ view: 'Grid view' })
       .all()
       .then(r => {
@@ -23,8 +21,8 @@ export const AirDBProvider = (props: any) => {
       })
   }
 
-  const postAirDB = async (newRow: any) => {
-    return base(Table).create([
+  const postAirDB = async (table: string, newRow: any) => {
+    return base(table).create([
       {
         fields: {
           ...newRow

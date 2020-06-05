@@ -5,7 +5,7 @@ export default (props: any) => {
   const svg2 = (
     <svg
       style={{
-        margin: -props.size - 0.1,
+        margin: -props.size - 0.2,
         position: 'relative',
         width: props.size,
         height: props.size,
@@ -25,7 +25,7 @@ export default (props: any) => {
   const svg1 = (
     <svg
       style={{
-        margin: -props.size - 0.1,
+        margin: -props.size - 0.2,
         position: 'relative',
         width: props.size,
         height: props.size,

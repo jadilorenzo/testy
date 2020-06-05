@@ -1,6 +1,6 @@
 import React from 'react'
-import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core'
-import { Dashboard } from '@material-ui/icons'
+import { AppBar, Toolbar, Icon, Typography } from '@material-ui/core'
+import { ClearAllSharp } from '@material-ui/icons'
 
 const Header = () => (
   <AppBar
@@ -12,10 +12,8 @@ const Header = () => (
     }}
   >
     <Toolbar variant="regular">
-      <IconButton edge="start" color="inherit" aria-label="menu">
-        <Dashboard />
-      </IconButton>
-      <Typography variant="h5" className="title">
+      <ClearAllSharp style={{ fontSize: '2.5rem' }} />
+      <Typography variant="h4" className="title">
         Testy
       </Typography>
     </Toolbar>

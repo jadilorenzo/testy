@@ -62,3 +62,6 @@
 .gradient {
   background: linear-gradient(0.6deg, #006bcd, #00558c);
 }
+body {
+  zoom: 1.25;
+}

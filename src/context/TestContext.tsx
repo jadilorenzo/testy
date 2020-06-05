@@ -3,7 +3,7 @@ import { Test } from '../types'
 
 const initialValue = {
   questions: [],
-  title: 'Initial Test',
+  title: '',
   tags: []
 }
 

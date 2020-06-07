@@ -14,8 +14,8 @@ export default (props: { test?: any }) => {
     >
       <Typography variant="h6">{thisTest.title || 'Untitled'}</Typography>
       {thisTest.tags.length > 0 ? (
-        thisTest.tags.map((x: string) => (
-          <Chip label={x} style={{ marginRight: '0.5em' }} />
+        thisTest.tags.map((x: string, index: number) => (
+          <Chip key={index} label={x} style={{ marginRight: '0.5em' }} />
         ))
       ) : (
         <em>No tags</em>

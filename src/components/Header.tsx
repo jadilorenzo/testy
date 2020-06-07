@@ -1,6 +1,7 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
-import { ClearAllSharp } from '@material-ui/icons'
+import { AppBar, Toolbar, Typography, SvgIcon } from '@material-ui/core'
+import { CategorySharp } from '@material-ui/icons'
+import svg from './test.svg'
 
 const Header = () => (
   <AppBar
@@ -11,7 +12,7 @@ const Header = () => (
     }}
   >
     <Toolbar variant="regular">
-      <ClearAllSharp style={{ fontSize: '2.5rem' }} />
+      <img src={svg} />
       <Typography variant="h4" className="title">
         Testy
       </Typography>

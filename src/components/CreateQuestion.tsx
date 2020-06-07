@@ -50,7 +50,7 @@ export default () => {
             <Tab label="2. Question" />
             <Tab label="3. Verification" />
           </Tabs>
-          <Container maxWidth="sm">
+          <Container>
             <Paper className="QuestionForm">
               <TabPanel value={value} index={0} title="Options">
                 <OptionsForm />

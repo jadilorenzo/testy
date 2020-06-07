@@ -4,9 +4,12 @@ import React, { createContext } from 'react'
 export const AirDBContext = createContext<{
   postAirDB: Function
   getAirDB: Function
-}>({ postAirDB: () => {}, getAirDB: () => {} })
+  tests: any[]
+}>({ postAirDB: () => {}, getAirDB: () => {}, tests: [] })
 
 export const AirDBProvider = (props: any) => {
+  const [tests, setTests] = React.useState([])
+
   const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
     'appeQvvPNhaPvYi0s'
   )
@@ -31,8 +34,12 @@ export const AirDBProvider = (props: any) => {
     ])
   }
 
+  React.useEffect(() => {
+    getAirDB('Testy - Tests').then((r: any) => setTests(r))
+  }, [])
+
   return (
-    <AirDBContext.Provider value={{ postAirDB, getAirDB }}>
+    <AirDBContext.Provider value={{ postAirDB, getAirDB, tests }}>
       {props.children}
     </AirDBContext.Provider>
   )

@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default (props: any) => {
-  console.log(props)
   const svg2 = (
     <svg
       style={{
@@ -48,6 +47,7 @@ export default (props: any) => {
         width: props.size,
         height: props.size,
         top: -(2.5 * props.size) - 1,
+        left: props.size / 2 - 1,
         zIndex: 100
       }}
     >
@@ -65,7 +65,7 @@ export default (props: any) => {
         width: props.size,
         height: props.size,
         top: -props.height + props.size + 1,
-        left: props.size / 2 + props.width,
+        left: props.size + props.width,
         zIndex: 100
       }}
     >
@@ -82,7 +82,7 @@ export default (props: any) => {
         style={{
           display: 'flex',
           position: 'relative',
-          // left: props.size / 2,
+          marginLeft: props.size / 2,
           width: '100%'
         }}
       >

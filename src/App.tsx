@@ -4,6 +4,7 @@ import { Container, CssBaseline } from '@material-ui/core'
 import { TestProvider } from './context/TestContext'
 import { TuiCreateQuestion, TuiCreateTest, TuiMain } from './components'
 import { AirDBProvider } from './context/AirDBContext'
+import TestsRoutes from './TestsRoutes'
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
                 <TuiCreateTest />
               </TestProvider>
             </Route>
+            <TestsRoutes />
           </Container>
         </AirDBProvider>
       </AirDBProvider>

@@ -11,7 +11,7 @@ export default (props: any) => {
   return (
     <Clip
       size={10}
-      color="#FFF"
+      color="#1559a8"
       height={height}
       width={width}
       padding
@@ -26,6 +26,7 @@ export default (props: any) => {
           borderRadius: '0',
           border: 'none'
         }}
+        color="secondary"
         disableElevation
       >
         {props.children}

@@ -23,7 +23,7 @@ export default (props: any) => {
   const svg1 = (
     <svg
       style={{
-        margin: -props.size - 0.2,
+        margin: -props.size - 0.1,
         position: 'relative',
         width: props.size,
         height: props.size,
@@ -78,22 +78,22 @@ export default (props: any) => {
 
   return (
     <>
-      <div
+      <span
         style={{
           display: 'flex',
           position: 'relative',
-          marginLeft: props.size / 2,
+          marginLeft: props.padding ? props.size / 2 : undefined,
           width: '100%'
         }}
       >
         {props.corner[0] && svg1}
         {props.children}
         {props.corner[1] && svg2}
-      </div>
-      <div>
+      </span>
+      <span>
         {props.corner[2] && svg3}
         {props.corner[3] && svg4}
-      </div>
+      </span>
     </>
   )
 }

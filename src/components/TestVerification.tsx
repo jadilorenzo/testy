@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { FormControl, FormControlLabel, Checkbox } from '@material-ui/core'
 import { TestContext } from '../context/TestContext'
 import { AirDBContext } from '../context/AirDBContext'
 import Button from './Button'
@@ -21,6 +22,16 @@ export default () => {
   return (
     <div>
       <TestDisplay />
+      <FormControl>
+        {db.questions.map((x: any) => (
+          <div>
+            <FormControlLabel
+              control={<Checkbox />}
+              label={x.fields.question}
+            />
+          </div>
+        ))}
+      </FormControl>
       <Button onClick={handleAddQuestion} variant="contained" color="primary">
         Add
       </Button>

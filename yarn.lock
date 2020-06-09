@@ -1174,6 +1174,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@bit/feathericons.react-feather.book@^1.1.6":
+  version "1.1.6"
+  resolved "https://node.bit.dev/feathericons.react-feather.book/-/feathericons.react-feather.book-1.1.6.tgz#1e47a6a61306cb3ca3ef7cdb22de809247f4b543"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"

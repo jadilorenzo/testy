@@ -49,6 +49,7 @@
 
 .MuiTabs-root > * {
   justify-content: space-around;
+
 }
 
 .icon-group {
@@ -65,4 +66,8 @@
 body {
   zoom: 1.25;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
 }

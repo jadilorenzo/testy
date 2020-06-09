@@ -12,7 +12,7 @@ export default (props: any) => {
     <div style={{ width: 'calc(100%)', margin: 'auto' }}>
       <Clip
         size={30}
-        color="#00558c"
+        color="#0a3d89"
         height={height}
         width={width}
         padding={false}

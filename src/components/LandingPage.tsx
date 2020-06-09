@@ -12,7 +12,7 @@ export default () => {
     <Container>
       <br />
       <Paper style={{ padding: '1em' }}>
-        <Typography variant="h3">Recent Tests</Typography>
+        <Typography variant="h4">Recent Tests</Typography>
         {tests.map((row: any) => (
           <Link key={row.fields.ID} to={`/test/${row.id}`}>
             <TestDisplay
@@ -26,7 +26,6 @@ export default () => {
             />
           </Link>
         ))}
-        <Typography variant="h3">Unassigned Tests</Typography>
       </Paper>
     </Container>
   )

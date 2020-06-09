@@ -7,7 +7,7 @@ const title = {
 
 const theme = createMuiTheme({
   palette: {
-    // type: 'dark',
+    type: 'dark',
     primary: {
       main: '#006bcd'
     },
@@ -29,12 +29,14 @@ const theme = createMuiTheme({
     }
   },
   overrides: {
-    MuiTab: {
-      textColorInherit: { color: '#F0F0F0' }
+    MuiChip: {
+      root: { background: '#F0F0F0', color: '#FFF' }
     }
   }
 })
 
-theme.palette.background.default = '#00558c'
+theme.palette.background.default = '#0a3d89'
+theme.palette.background.paper = '#1559a8'
+// theme.palette.background.default = '#00558c'
 
 export default theme

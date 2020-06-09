@@ -20,7 +20,12 @@ export default (props: { test: any }) => {
           props.test.tags
             .split(', ')
             .map((x: string, index: number) => (
-              <Chip key={index} label={x} style={{ marginRight: '0.5em' }} />
+              <Chip
+                variant="outlined"
+                key={index}
+                label={x}
+                style={{ marginRight: '0.5em' }}
+              />
             ))
         ) : (
           <em>No tags</em>

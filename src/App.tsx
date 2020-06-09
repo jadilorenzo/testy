@@ -1,15 +1,35 @@
 import React from 'react'
-import { Container } from '@material-ui/core'
+import { Route } from 'react-router-dom'
+import { Container, CssBaseline } from '@material-ui/core'
 import { TestProvider } from './context/TestContext'
-import { TuiCreateTest } from './components'
+import { TuiCreateQuestion, TuiCreateTest, TuiMain } from './components'
+import { AirDBProvider } from './context/AirDBContext'
+import TestsRoutes from './TestsRoutes'
+
 const App = () => {
   return (
-    <Container>
-      <TestProvider>
-        <TuiCreateTest />
-      </TestProvider>
-      App
-    </Container>
+    <>
+      <CssBaseline />
+      <AirDBProvider table="Testy - Tests">
+        <AirDBProvider table="Testy - Questions">
+          <Container>
+            <Route exact path="/">
+              <TuiMain />
+            </Route>
+
+            <Route exact path="/add/question">
+              <TuiCreateQuestion />
+            </Route>
+            <Route exact path="/add/test">
+              <TestProvider>
+                <TuiCreateTest />
+              </TestProvider>
+            </Route>
+            <TestsRoutes />
+          </Container>
+        </AirDBProvider>
+      </AirDBProvider>
+    </>
   )
 }
 

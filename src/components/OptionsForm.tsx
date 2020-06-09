@@ -37,15 +37,14 @@ const OptionsForm = () => {
       <FormGroup>
         <InputLabel>Auto check</InputLabel>
         <Switch
+          color="secondary"
           checked={options.autocheck}
           onClick={() => {
             setOptions({ ...options, autocheck: !options.autocheck })
           }}
         />
         {options.autocheck && (
-          <FormHelperText error>
-            Does not apply to essay questions.
-          </FormHelperText>
+          <FormHelperText>Does not apply to essay questions.</FormHelperText>
         )}
       </FormGroup>
     </div>

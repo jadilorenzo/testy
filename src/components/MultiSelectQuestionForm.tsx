@@ -1,6 +1,12 @@
 import React, { useContext } from 'react'
-import { TextField, Checkbox, Chip } from '@material-ui/core'
-import { Autocomplete } from '@material-ui/lab'
+import {
+  TextField,
+  Checkbox,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
+} from '@material-ui/core'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { Question } from '../types'
 
@@ -26,7 +32,7 @@ export default () => {
     e.persist()
     setQuestion((q: Question) => ({
       ...q,
-      answer: e.target.value
+      answer: e.target.value.filter((x: string) => x !== '').join(', ')
     }))
   }
 
@@ -73,29 +79,25 @@ export default () => {
           onChange={(e: any) => handleOptionChange(e, 3)}
         />
       </div>
-      <Autocomplete
-        options={question.options}
-        multiple
-        id="tags-standard"
-        renderTags={(value: string[], getTagProps) =>
-          value.map((option: string, index: number) => (
-            <Chip
-              variant="outlined"
-              label={option}
-              {...getTagProps({ index })}
-            />
-          ))
-        }
-        renderInput={params => (
-          <TextField
-            {...params}
-            value={question.answer}
+      <FormControl variant="standard" fullWidth>
+        <div className="FormGroup">
+          <InputLabel id="select">Answer</InputLabel>
+          <Select
             onChange={handleAnswerChange}
-            label="Answer"
-            variant="outlined"
-          />
-        )}
-      />
+            className="Select"
+            labelId="select"
+            multiple
+            value={question.answer.split(', ')}
+          >
+            {question.options.map((option: string) => (
+              <MenuItem value={option}>{option}</MenuItem>
+            ))}
+            {question.options.length === 0 && (
+              <MenuItem disabled>No Options</MenuItem>
+            )}
+          </Select>
+        </div>
+      </FormControl>
     </div>
   )
 }

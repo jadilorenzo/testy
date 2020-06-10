@@ -27,6 +27,7 @@ export default (props: any) => {
           border: 'none'
         }}
         color="secondary"
+        variant="contained"
         disableElevation
       >
         {props.children}

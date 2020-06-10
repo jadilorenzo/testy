@@ -4,11 +4,11 @@ import { Container, Typography, Chip } from '@material-ui/core'
 import Paper from './Paper'
 import Button from './Button'
 
-export default (props: { test: any }) => {
+export default (props: { test: any; id: string }) => {
   const [redirect, setRedirect] = React.useState(false)
 
   if (redirect) {
-    return <Redirect to="/add/question" />
+    return <Redirect to={`/add/question/to/${props.id}`} />
   }
 
   return (
@@ -31,6 +31,7 @@ export default (props: { test: any }) => {
           <em>No tags</em>
         )}
         <br /> <br />
+        <Button>Take Test</Button>
         <Button
           onClick={() => {
             setRedirect(true)
@@ -41,7 +42,6 @@ export default (props: { test: any }) => {
         >
           + Question
         </Button>
-        {props.test.questions}
       </Paper>
     </Container>
   )

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { MuiTestPage } from './components'
+import { TuiTestPage } from './components'
 import { AirDBContext } from './context/AirDBContext'
 
 export default () => {
@@ -10,7 +10,7 @@ export default () => {
     <div>
       {tests.map((row: any) => (
         <Route path={`/test/${row.id}`}>
-          <MuiTestPage test={row.fields} />
+          <TuiTestPage test={row.fields} id={row.id} />
         </Route>
       ))}
     </div>

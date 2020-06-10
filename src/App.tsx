@@ -2,7 +2,12 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { Container, CssBaseline } from '@material-ui/core'
 import { TestProvider } from './context/TestContext'
-import { TuiCreateQuestion, TuiCreateTest, TuiMain } from './components'
+import {
+  TuiCreateQuestion,
+  TuiCreateTest,
+  TuiMain,
+  TuiAddQuestionTo
+} from './components'
 import { AirDBProvider } from './context/AirDBContext'
 import TestsRoutes from './TestsRoutes'
 
@@ -24,6 +29,9 @@ const App = () => {
               <TestProvider>
                 <TuiCreateTest />
               </TestProvider>
+            </Route>
+            <Route exact path="/add/question/to/:id">
+              <TuiAddQuestionTo />
             </Route>
             <TestsRoutes />
           </Container>

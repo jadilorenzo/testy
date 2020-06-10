@@ -4,9 +4,16 @@ import React, { createContext } from 'react'
 export const AirDBContext = createContext<{
   postAirDB: Function
   getAirDB: Function
+  updateAirDB: Function
   tests: any[]
   questions: any[]
-}>({ postAirDB: () => {}, getAirDB: () => {}, tests: [], questions: [] })
+}>({
+  postAirDB: () => {},
+  updateAirDB: () => {},
+  getAirDB: () => {},
+  tests: [],
+  questions: []
+})
 
 export const AirDBProvider = (props: any) => {
   const [tests, setTests] = React.useState([])
@@ -21,7 +28,6 @@ export const AirDBProvider = (props: any) => {
       .select({ view: 'Grid view' })
       .all()
       .then(r => {
-        console.log(r)
         return r
       })
   }
@@ -36,13 +42,34 @@ export const AirDBProvider = (props: any) => {
     ])
   }
 
+  const updateAirDB = (table: string, id: string, fields: any) => {
+    return base(table).update([
+      {
+        id,
+        fields: {
+          ...fields
+        }
+      }
+    ])
+  }
+
   React.useEffect(() => {
-    getAirDB('Testy - Tests').then((r: any) => setTests(r))
-    getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
+    setInterval(() => {
+      getAirDB('Testy - Tests').then((r: any) => setTests(r))
+      getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
+    }, 300)
   }, [])
 
   return (
-    <AirDBContext.Provider value={{ postAirDB, getAirDB, tests, questions }}>
+    <AirDBContext.Provider
+      value={{
+        postAirDB,
+        getAirDB,
+        updateAirDB,
+        tests,
+        questions
+      }}
+    >
       {props.children}
     </AirDBContext.Provider>
   )

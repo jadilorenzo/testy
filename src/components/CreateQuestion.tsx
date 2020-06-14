@@ -50,7 +50,7 @@ export default () => {
             <Tab label="2. Question" />
             <Tab label="3. Verification" />
           </Tabs>
-          <Container>
+          <div>
             <Paper className="QuestionForm">
               <TabPanel value={value} index={0} title="Options">
                 <OptionsForm />
@@ -62,7 +62,7 @@ export default () => {
                 <Verification />
               </TabPanel>
             </Paper>
-          </Container>
+          </div>
         </CurrentQuestionContextProvider>
       )}
     </OptionsContextProvider>

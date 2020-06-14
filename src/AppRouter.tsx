@@ -11,7 +11,9 @@ function AppRouter() {
       <ThemeProvider theme={theme}>
         <TuiHeader />
         <Switch>
-          <App />
+          <div style={{}}>
+            <App />
+          </div>
         </Switch>
       </ThemeProvider>
     </Router>

@@ -1,30 +1,28 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Typography, Grid } from '@material-ui/core'
+import { Typography, Grid } from '@material-ui/core'
 import Paper from './Paper'
 import Button from './Button'
 import TestDisplay from './TestDisplay'
 import { AirDBContext } from '../context/AirDBContext'
 
-export default () => {
+export default (props: any) => {
   const { tests } = React.useContext(AirDBContext)
 
   return (
-    <Container>
+    <>
       <br />
-      <Paper style={{ padding: '1em' }}>
-        <Grid>
-          <span>
-            <Link to="/add/question">
-              <Button>+ Question</Button>
-            </Link>
-          </span>
-          <span>
-            <Link to="/add/question">
-              <Button>+ Test</Button>
-            </Link>
-          </span>
-        </Grid>
+
+      <Paper>
+        <span>
+          <Button onClick={() => props.setRedirect('/add/question')}>
+            + Question
+          </Button>
+        </span>
+        <br />
+        <span>
+          <Button onClick={() => props.setRedirect('/add/test')}>+ Test</Button>
+        </span>
         <Typography variant="h4">Recent Tests</Typography>
         {tests.map((row: any) => (
           <Link key={row.fields.ID} to={`/test/${row.id}`}>
@@ -39,7 +37,8 @@ export default () => {
             />
           </Link>
         ))}
+        <br />
       </Paper>
-    </Container>
+    </>
   )
 }

@@ -10,6 +10,7 @@ import {
 } from './components'
 import { AirDBProvider } from './context/AirDBContext'
 import TestsRoutes from './TestsRoutes'
+import Reroute from './Reroute'
 
 const App = () => {
   return (
@@ -17,24 +18,31 @@ const App = () => {
       <CssBaseline />
       <AirDBProvider table="Testy - Tests">
         <AirDBProvider table="Testy - Questions">
-          <Container>
-            <Route exact path="/">
-              <TuiMain />
-            </Route>
+          <div>
+            <Reroute
+              render={(setRedirect: any) => (
+                <>
+                  <Route exact path="/">
+                    <TuiMain setRedirect={setRedirect} />
+                  </Route>
 
-            <Route exact path="/add/question">
-              <TuiCreateQuestion />
-            </Route>
-            <Route exact path="/add/test">
-              <TestProvider>
-                <TuiCreateTest />
-              </TestProvider>
-            </Route>
-            <Route exact path="/add/question/to/:id">
-              <TuiAddQuestionTo />
-            </Route>
-            <TestsRoutes />
-          </Container>
+                  <Route exact path="/add/question">
+                    <TuiCreateQuestion />
+                  </Route>
+                  <Route exact path="/add/test">
+                    <TestProvider>
+                      <TuiCreateTest />
+                    </TestProvider>
+                  </Route>
+                  <Route exact path="/add/question/to/:id">
+                    <TuiAddQuestionTo />
+                  </Route>
+                  <TestsRoutes />
+                  <div style={{ height: '6rem' }} />
+                </>
+              )}
+            />
+          </div>
         </AirDBProvider>
       </AirDBProvider>
     </>

@@ -42,7 +42,7 @@ export default () => {
         <Tab label="1. Test" />
         <Tab label="2. Verification" />
       </Tabs>
-      <Container>
+      <div>
         <Paper className="QuestionForm">
           <TabPanel value={value} index={0} title="Test">
             <TestForm />
@@ -51,7 +51,7 @@ export default () => {
             <TestVerification />
           </TabPanel>
         </Paper>
-      </Container>
+      </div>
     </TestProvider>
   )
 }

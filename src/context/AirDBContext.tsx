@@ -7,16 +7,19 @@ export const AirDBContext = createContext<{
   updateAirDB: Function
   tests: any[]
   questions: any[]
+  loading: boolean
 }>({
   postAirDB: () => {},
   updateAirDB: () => {},
   getAirDB: () => {},
   tests: [],
-  questions: []
+  questions: [],
+  loading: false
 })
 
 export const AirDBProvider = (props: any) => {
   const [tests, setTests] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
   const [questions, setQuestions] = React.useState([])
 
   const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
@@ -56,7 +59,15 @@ export const AirDBProvider = (props: any) => {
   React.useEffect(() => {
     setInterval(() => {
       getAirDB('Testy - Tests').then((r: any) => setTests(r))
-      getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
+      getAirDB('Testy - Questions')
+        .then((r: any) => {
+          setQuestions(r)
+          return r
+        })
+        .then(r => {
+          setLoading(false)
+          return r
+        })
     }, 300)
   }, [])
 
@@ -67,7 +78,8 @@ export const AirDBProvider = (props: any) => {
         getAirDB,
         updateAirDB,
         tests,
-        questions
+        questions,
+        loading
       }}
     >
       {props.children}

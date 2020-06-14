@@ -32,13 +32,12 @@ export default (props: { test: any; id: string }) => {
         )}
         <br /> <br />
         <Button>Take Test</Button>
+        <br />
         <Button
           onClick={() => {
             setRedirect(true)
           }}
-          color="secondary"
-          variant="contained"
-          style={{ marginLeft: '1em' }}
+          style={{ paddingLeft: '1em' }}
         >
           + Question
         </Button>

@@ -81,8 +81,7 @@ export default (props: any) => {
       <span
         style={{
           display: 'flex',
-          position: 'relative',
-          marginLeft: props.padding ? props.size / 2 : undefined,
+          // marginLeft: props.padding ? props.size / 2 : undefined,
           width: '100%'
         }}
       >

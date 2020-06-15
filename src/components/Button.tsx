@@ -9,28 +9,22 @@ export default (props: any) => {
   const width = element ? element.clientWidth : 0
 
   return (
-    <Clip
-      size={10}
-      color="#1559a8"
-      height={height}
-      width={width}
-      padding
-      corner={[true, true, true, true]}
+    <Button
+      {...props}
+      ref={input => setElement(input)}
+      id="button"
+      className="button"
+      color="secondary"
+      variant="contained"
+      style={{
+        ...{
+          marginBottom: '0.5em'
+          // border: '1px solid black'
+        }
+      }}
+      disableElevation
     >
-      <Button
-        {...props}
-        ref={input => setElement(input)}
-        id="button"
-        className="button"
-        style={{
-          borderRadius: '0',
-          border: 'none'
-        }}
-        color="secondary"
-        disableElevation
-      >
-        {props.children}
-      </Button>
-    </Clip>
+      {props.children}
+    </Button>
   )
 }

@@ -1,16 +1,21 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { MuiTestPage } from './components'
+import { TuiTestPage } from './components'
 import { AirDBContext } from './context/AirDBContext'
 
-export default () => {
-  const { tests } = React.useContext(AirDBContext)
+export default ({ setRedirect }: any) => {
+  const { tests, questions } = React.useContext(AirDBContext)
 
   return (
     <div>
       {tests.map((row: any) => (
         <Route path={`/test/${row.id}`}>
-          <MuiTestPage test={row.fields} />
+          <TuiTestPage
+            questions={questions}
+            setRedirect={setRedirect}
+            test={row.fields}
+            id={row.id}
+          />
         </Route>
       ))}
     </div>

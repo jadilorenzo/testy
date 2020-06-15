@@ -1,18 +1,20 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const title = {
-  fontWeight: 400,
-  fontFamily: 'Electrolize'
+  fontWeight: 200,
+  fontSize: '2.5em',
+  fontFamily: 'Chakra Petch',
+  marginBottom: '0.2em'
 }
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: '#006bcd'
+      main: '#1574d2'
     },
     secondary: {
-      main: '#ff5d16'
+      main: '#81c784' // '#48bc87' //'#0b90a1' // '#ff5d16'
     }
   },
   typography: {
@@ -21,22 +23,33 @@ const theme = createMuiTheme({
     h3: title,
     h4: title,
     h5: title,
-    h6: title,
+    h6: {
+      fontWeight: 400,
+      fontFamily: 'Chakra Petch',
+      marginBottom: '0.2em'
+    },
     button: {
       fontWeight: 700,
-      fontFamily: 'Amiko',
+      fontFamily: "Amiko, local('Amico')",
       color: '#F0F0F0'
     }
   },
-  overrides: {
-    MuiChip: {
-      root: { background: '#F0F0F0', color: '#FFF' }
+  props: {
+    MuiAppBar: {
+      elevation: 0
+    },
+    MuiButton: {
+      variant: 'outlined',
+      color: 'primary',
+      disableRipple: true,
+      style: {
+        border: '1px solid black'
+      }
     }
   }
 })
-
-theme.palette.background.default = '#0a3d89'
-theme.palette.background.paper = '#1559a8'
-// theme.palette.background.default = '#00558c'
+// theme.palette.background.default = 'rgb(250, 249, 212)'
+theme.palette.background.default = '#1263c0'
+theme.palette.background.paper = '#1263c0'
 
 export default theme

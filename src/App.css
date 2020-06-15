@@ -63,11 +63,19 @@
 .gradient {
   background: linear-gradient(0.6deg, #006bcd, #00558c);
 }
-body {
+html, p {
   zoom: 1.25;
-  cursor: pointer;
+  cursor: default;
 }
 
 a {
   text-decoration: none;
+}
+
+.MuiTypography-h6:hover {
+  color: #81c784;
+}
+
+::selection {
+  background-color: #81c784;
 }

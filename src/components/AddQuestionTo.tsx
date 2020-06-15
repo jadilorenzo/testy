@@ -8,12 +8,11 @@ import {
   FormControl
 } from '@material-ui/core'
 import Button from './Button'
-import { useParams, Redirect } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { AirDBContext } from '../context/AirDBContext'
 
-export default () => {
+export default (props: any) => {
   const [questionIDs, setQuestions] = React.useState<string[]>([])
-  const [redirect, setRedirect] = React.useState<boolean>(false)
 
   const { id } = useParams()
   const { tests, questions, updateAirDB } = React.useContext(AirDBContext)
@@ -44,18 +43,15 @@ export default () => {
     updateAirDB('Testy - Tests', id, {
       questions: questionIDs.join(', ')
     }).then(() => {
-      setRedirect(true)
+      props.setRedirect('/')
     })
-  }
-
-  if (redirect) {
-    return <Redirect to="/" />
   }
 
   return (
     <div>
       <br />
       <Paper style={{ padding: '1em' }}>
+        <Button onClick={() => props.setRedirect('/')}>Home</Button>
         <Typography variant="h5">
           Add question to "{test.fields.title}"
         </Typography>

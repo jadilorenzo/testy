@@ -63,28 +63,19 @@
 .gradient {
   background: linear-gradient(0.6deg, #006bcd, #00558c);
 }
-body {
+html, p {
   zoom: 1.25;
-  cursor: pointer;
+  cursor: default;
 }
 
 a {
   text-decoration: none;
 }
 
-.diamond {
- width: 0;
- height: 0;
- border: 50px solid transparent;
- position: relative;
- top: -50px; }
+.MuiTypography-h6:hover {
+  color: #81c784;
+}
 
-.diamond:after {
-  content: '';
-  position: absolute;
-  left: -50px;
-  top: 50px;
-  width: 0;
-  height: 0;
-  border: 50px solid transparent;
+::selection {
+  background-color: #81c784;
 }

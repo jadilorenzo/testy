@@ -15,12 +15,11 @@ export default (props: any) => {
       id="button"
       className="button"
       color="secondary"
+      variant="contained"
       style={{
-        borderRadius: '0',
-        border: 'none',
         ...{
-          borderRadius: '0',
-          border: '1px solid black'
+          marginBottom: '0.5em'
+          // border: '1px solid black'
         }
       }}
       disableElevation

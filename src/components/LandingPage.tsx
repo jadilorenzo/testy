@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Typography, Grid } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import Paper from './Paper'
 import Button from './Button'
 import TestDisplay from './TestDisplay'
@@ -25,7 +24,10 @@ export default (props: any) => {
         </span>
         <Typography variant="h4">Recent Tests</Typography>
         {tests.map((row: any) => (
-          <Link key={row.fields.ID} to={`/test/${row.id}`}>
+          <div
+            key={row.fields.ID}
+            onClick={() => props.setRedirect(`/test/${row.id}`)}
+          >
             <TestDisplay
               test={{
                 ...row.fields,
@@ -35,7 +37,7 @@ export default (props: any) => {
                   : []
               }}
             />
-          </Link>
+          </div>
         ))}
         <br />
       </Paper>

@@ -1,18 +1,16 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
-import { Container, Typography, Chip } from '@material-ui/core'
+import { Typography, Chip, Card } from '@material-ui/core'
 import Paper from './Paper'
 import Button from './Button'
 
-export default (props: { test: any; id: string }) => {
-  const [redirect, setRedirect] = React.useState(false)
-
-  if (redirect) {
-    return <Redirect to={`/add/question/to/${props.id}`} />
-  }
-
+export default (props: {
+  test: any
+  id: string
+  setRedirect: any
+  questions: any
+}) => {
   return (
-    <Container>
+    <div>
       <br />
       <Paper style={{ padding: '1em', paddingBottom: 0 }}>
         <Typography variant="h5">{props.test.title}</Typography>
@@ -33,15 +31,27 @@ export default (props: { test: any; id: string }) => {
         <br /> <br />
         <Button>Take Test</Button>
         <br />
+        {props.questions
+          .filter((question: any) =>
+            props.test.questions.split(', ').includes(question.id)
+          )
+          .map((question: any) => (
+            <Card
+              elevation={0}
+              style={{ padding: '0.5em', marginBottom: '0.5em' }}
+            >
+              {question.fields.question}
+            </Card>
+          ))}
+        <br />
         <Button
           onClick={() => {
-            setRedirect(true)
+            props.setRedirect(`/add/question/to/${props.id}`)
           }}
-          style={{ paddingLeft: '1em' }}
         >
           + Question
         </Button>
       </Paper>
-    </Container>
+    </div>
   )
 }

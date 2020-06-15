@@ -5,13 +5,14 @@ const Book = (props: any) => {
   const { color, size, ...otherProps } = props
   return (
     <svg
+      style={{ marginTop: '0.5em' }}
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox="0 0 24 24"
       fill="none"
       stroke={color}
-      strokeWidth="1"
+      strokeWidth="1.25"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...otherProps}

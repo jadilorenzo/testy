@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tab, Tabs, Typography, Container } from '@material-ui/core'
+import { Tab, Tabs, Typography } from '@material-ui/core'
 import QuestionForm from './QuestionForm'
 import OptionsForm from './OptionsForm'
 import Verification from './Verification'
@@ -33,7 +33,7 @@ function TabPanel(props: any) {
   )
 }
 
-export default () => {
+export default (props: any) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {

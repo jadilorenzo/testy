@@ -6,8 +6,10 @@ import {
   TuiCreateQuestion,
   TuiCreateTest,
   TuiMain,
-  TuiAddQuestionTo
+  TuiAddQuestionTo,
+  TuiHeader
 } from './components'
+import Button from './components/Button'
 import { AirDBProvider } from './context/AirDBContext'
 import TestsRoutes from './TestsRoutes'
 import Reroute from './Reroute'
@@ -27,17 +29,17 @@ const App = () => {
                   </Route>
 
                   <Route exact path="/add/question">
-                    <TuiCreateQuestion />
+                    <TuiCreateQuestion setRedirect={setRedirect} />
                   </Route>
                   <Route exact path="/add/test">
                     <TestProvider>
-                      <TuiCreateTest />
+                      <TuiCreateTest setRedirect={setRedirect} />
                     </TestProvider>
                   </Route>
                   <Route exact path="/add/question/to/:id">
-                    <TuiAddQuestionTo />
+                    <TuiAddQuestionTo setRedirect={setRedirect} />
                   </Route>
-                  <TestsRoutes />
+                  <TestsRoutes setRedirect={setRedirect} />
                   <div style={{ height: '6rem' }} />
                 </>
               )}

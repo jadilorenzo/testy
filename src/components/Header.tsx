@@ -8,11 +8,12 @@ import {
   CircularProgress,
   Fab
 } from '@material-ui/core'
+
 import { Close } from '@material-ui/icons'
 // import { CategorySharp } from '@material-ui/icons'
 import Book from './icons/Book'
 
-const Header = () => {
+const Header = (props: any) => {
   const { loading } = React.useContext(AirDBContext)
 
   return (
@@ -23,8 +24,7 @@ const Header = () => {
           display: 'flex',
           alignItems: 'left',
           top: 'auto',
-          background: 'rgb(250, 230, 168)',
-          color: 'black',
+          background: '#1574d2',
           bottom: 0,
           zIndex: 500
         }}
@@ -33,43 +33,43 @@ const Header = () => {
           style={{
             width: '100%',
             height: '2rem',
-            background: 'rgb(250, 249, 212)'
+            background: '#1263c0'
           }}
         />
         <Toolbar variant="regular">
-          <Book size={30} />
-          <Typography variant="h4" className="title">
-            Testy
-          </Typography>
+          <span onClick={() => props.setRedirect('/')}>
+            <Book size={30} color="#fff" />
+            <Typography variant="h4" className="title">
+              Testy
+            </Typography>
+          </span>
         </Toolbar>
       </AppBar>
-      <Backdrop open={loading}>
+      <Backdrop open={loading} style={{ zIndex: 1000 }}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <div className="mdc-button foo-button">
-        <Fab
-          color="secondary"
+      <Fab
+        color="secondary"
+        onClick={() => props.setRedirect('/add')}
+        style={{
+          borderRadius: 3,
+          position: 'fixed',
+          top: 'auto',
+          bottom: '1.5em',
+          left: 'calc(50% - 50px/2)',
+          height: '50px',
+          width: '50px',
+          transform: 'rotate(45deg)',
+          zIndex: 500
+        }}
+      >
+        <Close
           style={{
-            borderRadius: 2,
-            position: 'fixed',
-            top: 'auto',
-            bottom: '1.5em',
-            left: '50%',
-            height: '50px',
-            width: '50px',
-            transform: 'rotate(45deg)',
-            // border: 'transparent 10px solid',
-            zIndex: 500
+            position: 'relative',
+            color: 'black'
           }}
-        >
-          <Close
-            style={{
-              position: 'relative',
-              color: 'black'
-            }}
-          />
-        </Fab>
-      </div>
+        />
+      </Fab>
     </>
   )
 }

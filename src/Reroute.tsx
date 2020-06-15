@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
+import { TuiHeader } from './components'
 import { Slide } from '@material-ui/core'
 
 export default ({ render }: { render: any }) => {
@@ -24,9 +25,12 @@ export default ({ render }: { render: any }) => {
 
   if (!isReady) {
     return (
-      <Slide direction="up" in={redirect === 'none'} timeout={500}>
-        <div>{render(setRedirect)}</div>
-      </Slide>
+      <>
+        <TuiHeader setRedirect={setRedirect} />
+        <Slide direction="up" in={redirect === 'none'} timeout={500}>
+          <div>{render(setRedirect)}</div>
+        </Slide>
+      </>
     )
   } else {
     return <Redirect to={redirect} />

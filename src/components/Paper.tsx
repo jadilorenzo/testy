@@ -8,7 +8,7 @@ export default (props: any) => {
       <div
         style={{
           // position: 'relative',
-          background: 'rgb(250, 230, 168)',
+          background: '#1574d2',
           borderRadius: '0',
           width: '100%',
           border: 'none'
@@ -22,10 +22,7 @@ export default (props: any) => {
             zIndex: 100
           }}
         >
-          <polygon
-            points={`0,0 ${30},00, 00,${30}`}
-            fill={'rgb(250, 249, 212)'}
-          />
+          <polygon points={`0,0 ${30},00, 00,${30}`} fill={'#1263c0'} />
         </svg>
         <div style={{ margin: '1rem', marginTop: -10 }}>{props.children}</div>
         <br />

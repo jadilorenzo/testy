@@ -2,7 +2,6 @@ import { createMuiTheme } from '@material-ui/core/styles'
 
 const title = {
   fontWeight: 200,
-  fontSize: '2.5em',
   fontFamily: 'Chakra Petch',
   marginBottom: '0.2em'
 }

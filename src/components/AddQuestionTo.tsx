@@ -51,7 +51,6 @@ export default (props: any) => {
     <div>
       <br />
       <Paper style={{ padding: '1em' }}>
-        <Button onClick={() => props.setRedirect('/')}>Home</Button>
         <Typography variant="h5">
           Add question to "{test.fields.title}"
         </Typography>

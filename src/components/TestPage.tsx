@@ -1,5 +1,12 @@
 import React from 'react'
-import { Typography, Button, Chip, Card, useTheme } from '@material-ui/core'
+import {
+  Typography,
+  Button,
+  Chip,
+  Card,
+  ButtonGroup,
+  useTheme
+} from '@material-ui/core'
 import Paper from './Paper'
 
 export default (props: {
@@ -28,8 +35,7 @@ export default (props: {
         ) : (
           <em>No tags</em>
         )}
-        <br /> <br />
-        <Button color="primary">Take Test</Button>
+        <br />
         <br />
         {props.questions
           .filter((question: any) =>
@@ -48,13 +54,17 @@ export default (props: {
             </Card>
           ))}
         <br />
-        <Button
-          onClick={() => {
-            props.setRedirect(`/add/question/to/${props.id}`)
-          }}
-        >
-          + Question
-        </Button>
+        <ButtonGroup orientation="vertical">
+          <Button
+            variant="text"
+            onClick={() => {
+              props.setRedirect(`/add/question/to/${props.id}`)
+            }}
+          >
+            + Question
+          </Button>
+          <Button color="primary">Take Test</Button>
+        </ButtonGroup>
       </Paper>
     </div>
   )

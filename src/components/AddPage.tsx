@@ -30,7 +30,7 @@ export default (props: any) => {
             onClick={() => props.setRedirect('/add/question')}
           >
             <ShortTextIcon style={{ height: '4.5em', width: '4.5em' }} />
-            <div style={{ margin: 1.5 }}>
+            <div style={{ margin: 1.5, width: '100%' }}>
               <Typography variant="h6">Add Question</Typography>
               <Typography variant="subtitle1">
                 Add a question to your test or to a collection for later.

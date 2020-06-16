@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Button, ButtonGroup } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import Paper from './Paper'
 import TestDisplay from './TestDisplay'
 import { AirDBContext } from '../context/AirDBContext'
@@ -10,7 +10,6 @@ export default (props: any) => {
   return (
     <>
       <br />
-
       <Paper>
         <Typography variant="h4">Recent Tests</Typography>
         {tests.map((row: any) => (
@@ -29,7 +28,6 @@ export default (props: any) => {
             />
           </div>
         ))}
-        <br />
       </Paper>
     </>
   )

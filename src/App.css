@@ -64,7 +64,6 @@
   background: linear-gradient(0.6deg, #006bcd, #00558c);
 }
 html, p {
-  zoom: 1.25;
   cursor: default;
 }
 

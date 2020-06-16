@@ -55,7 +55,7 @@ const theme = createMuiTheme({
   }
 })
 // theme.palette.background.default = 'rgb(250, 249, 212)'
-theme.palette.background.default = '#EEE' // '#1263c0'
+if (theme.palette.type === 'light') theme.palette.background.default = '#EEE' // '#1263c0'
 // theme.palette.background.paper = '#1574d2'
 
 export default theme

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { TestContext } from '../context/TestContext'
-import { FormControl, TextField, Chip } from '@material-ui/core'
-import Button from './Button'
+import { FormControl, TextField, Chip, Button } from '@material-ui/core'
 
 export default () => {
   const [test, setTest] = useContext(TestContext)

@@ -5,9 +5,9 @@ import {
   Grid,
   FormControlLabel,
   Checkbox,
-  FormControl
+  FormControl,
+  Button
 } from '@material-ui/core'
-import Button from './Button'
 import { useParams } from 'react-router-dom'
 import { AirDBContext } from '../context/AirDBContext'
 

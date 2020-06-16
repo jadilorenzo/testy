@@ -9,7 +9,7 @@ const title = {
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    // type: 'dark',
     primary: {
       main: '#1574d2'
     },
@@ -29,9 +29,7 @@ const theme = createMuiTheme({
       marginBottom: '0.2em'
     },
     button: {
-      fontWeight: 700,
-      fontFamily: "Amiko, local('Amico')",
-      color: '#F0F0F0'
+      color: '#E0E0E0'
     }
   },
   props: {
@@ -39,17 +37,26 @@ const theme = createMuiTheme({
       elevation: 0
     },
     MuiButton: {
-      variant: 'outlined',
-      color: 'primary',
-      disableRipple: true,
-      style: {
-        border: '1px solid black'
-      }
+      variant: 'contained',
+      color: 'secondary',
+      disableElevation: true
+    },
+    MuiButtonGroup: {
+      variant: 'contained',
+      color: 'secondary',
+      disableElevation: true
+    },
+    MuiPaper: {
+      elevation: 0,
+      style: { padding: '1em', background: '#EEE' }
+    },
+    MuiCard: {
+      elevation: 0
     }
   }
 })
 // theme.palette.background.default = 'rgb(250, 249, 212)'
-theme.palette.background.default = '#1263c0'
-theme.palette.background.paper = '#1263c0'
+theme.palette.background.default = '#EEE' // '#1263c0'
+// theme.palette.background.paper = '#1574d2'
 
 export default theme

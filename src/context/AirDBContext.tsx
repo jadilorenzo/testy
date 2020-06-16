@@ -68,7 +68,7 @@ export const AirDBProvider = (props: any) => {
           setLoading(false)
           return r
         })
-    }, 300)
+    }, 3000)
   }, [])
 
   return (

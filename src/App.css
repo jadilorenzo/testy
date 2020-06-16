@@ -75,6 +75,9 @@ a {
 .MuiTypography-h6:hover {
   color: #81c784;
 }
+.MuiTypography-h6::selection {
+  background: none;
+}
 
 ::selection {
   background-color: #81c784;

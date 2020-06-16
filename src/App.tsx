@@ -1,15 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { Container, CssBaseline } from '@material-ui/core'
+import { CssBaseline, useTheme } from '@material-ui/core'
 import { TestProvider } from './context/TestContext'
 import {
   TuiCreateQuestion,
   TuiCreateTest,
   TuiMain,
   TuiAddQuestionTo,
-  TuiHeader
+  TuiAddPage
 } from './components'
-import Button from './components/Button'
 import { AirDBProvider } from './context/AirDBContext'
 import TestsRoutes from './TestsRoutes'
 import Reroute from './Reroute'
@@ -27,7 +26,9 @@ const App = () => {
                   <Route exact path="/">
                     <TuiMain setRedirect={setRedirect} />
                   </Route>
-
+                  <Route exact path="/add">
+                    <TuiAddPage setRedirect={setRedirect} />
+                  </Route>
                   <Route exact path="/add/question">
                     <TuiCreateQuestion setRedirect={setRedirect} />
                   </Route>

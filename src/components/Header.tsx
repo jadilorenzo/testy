@@ -6,7 +6,8 @@ import {
   Typography,
   Backdrop,
   CircularProgress,
-  Fab
+  Fab,
+  useTheme
 } from '@material-ui/core'
 
 import { Close } from '@material-ui/icons'
@@ -15,16 +16,18 @@ import Book from './icons/Book'
 
 const Header = (props: any) => {
   const { loading } = React.useContext(AirDBContext)
+  const theme = useTheme()
 
   return (
     <>
       <AppBar
         position="fixed"
+        color="inherit"
         style={{
           display: 'flex',
           alignItems: 'left',
           top: 'auto',
-          background: '#1574d2',
+          background: theme.palette.background.paper,
           bottom: 0,
           zIndex: 500
         }}
@@ -33,21 +36,26 @@ const Header = (props: any) => {
           style={{
             width: '100%',
             height: '2rem',
-            background: '#1263c0'
+            background: theme.palette.background.default,
+            borderBottom: '0.2em solid',
+            borderColor: theme.palette.primary.main
           }}
         />
         <Toolbar variant="regular">
           <span onClick={() => props.setRedirect('/')}>
-            <Book size={30} color="#fff" />
+            <Book size={25} />
             <Typography variant="h4" className="title">
               Testy
             </Typography>
           </span>
         </Toolbar>
       </AppBar>
-      <Backdrop open={loading} style={{ zIndex: 1000 }}>
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      {window.location.pathname.includes('add') ||
+        window.location.pathname !== '/' || (
+          <Backdrop open={loading} style={{ zIndex: 1000 }}>
+            <CircularProgress color="secondary" />
+          </Backdrop>
+        )}
       <Fab
         color="secondary"
         onClick={() => props.setRedirect('/add')}

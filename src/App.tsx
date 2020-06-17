@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { CssBaseline, useTheme } from '@material-ui/core'
+import { CssBaseline } from '@material-ui/core'
 import { TestProvider } from './context/TestContext'
 import {
   TuiCreateQuestion,
@@ -30,11 +30,11 @@ const App = () => {
                     <TuiAddPage setRedirect={setRedirect} />
                   </Route>
                   <Route exact path="/add/question">
-                    <TuiCreateQuestion setRedirect={setRedirect} />
+                    <TuiCreateQuestion />
                   </Route>
                   <Route exact path="/add/test">
                     <TestProvider>
-                      <TuiCreateTest setRedirect={setRedirect} />
+                      <TuiCreateTest />
                     </TestProvider>
                   </Route>
                   <Route exact path="/add/question/to/:id">

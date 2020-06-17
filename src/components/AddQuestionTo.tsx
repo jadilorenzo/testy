@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Paper from './Paper'
 import {
   Typography,
@@ -20,24 +20,19 @@ export default (props: any) => {
     fields: { title: '' }
   }
 
-  const handleChange = (question: any) => {
-    if (!questionIDs.includes(question.id)) {
-      setQuestions(prev => {
-        console.log('added', [...prev, question.id])
+  const handleChange = useCallback((question: any) => {
+    setQuestions(prev => {
+      if (!prev.includes(question.id)) {
         return [...prev, question.id]
-      })
-    } else {
-      setQuestions(prev => {
+      } else {
         let newIDs = prev
         const index = newIDs.indexOf(question.id)
-        if (index > -1) {
-          newIDs.splice(index, 1)
-        }
-        console.log('removed', newIDs)
+        newIDs.splice(index, 1)
+
         return newIDs
-      })
-    }
-  }
+      }
+    })
+  }, [])
 
   const handleClick = () => {
     updateAirDB('Testy - Tests', id, {
@@ -46,6 +41,8 @@ export default (props: any) => {
       props.setRedirect('/')
     })
   }
+
+  console.log('render', questionIDs)
 
   return (
     <div>
@@ -61,17 +58,17 @@ export default (props: any) => {
           alignItems="center"
         >
           <FormControl>
-            {questions.map((question: any) => (
-              <FormControlLabel
-                onChange={() => handleChange(question)}
-                checked={questionIDs.includes(question.id)}
-                control={
-                  <Checkbox checked={questionIDs.includes(question.id)} />
-                }
-                label={question.fields.question}
-                key={question.fields.question}
-              />
-            ))}
+            {questions.map((question: any) => {
+              return (
+                <FormControlLabel
+                  onChange={() => handleChange(question)}
+                  checked={questionIDs.includes(question.id)}
+                  control={<Checkbox name={question.id} />}
+                  label={question.fields.question}
+                  key={question.fields.question}
+                />
+              )
+            })}
           </FormControl>
         </Grid>
         <Button onClick={handleClick}>Add Questions</Button>

@@ -37,22 +37,26 @@ export default (props: {
         )}
         <br />
         <br />
-        {props.questions
-          .filter((question: any) =>
-            props.test.questions.split(', ').includes(question.id)
-          )
-          .map((question: any) => (
-            <Card
-              elevation={0}
-              style={{
-                padding: '0.5em',
-                marginBottom: '0.5em',
-                background: theme.palette.background.default
-              }}
-            >
-              {question.fields.question}
-            </Card>
-          ))}
+        {props.test.questions !== undefined ? (
+          props.questions
+            .filter((question: any) =>
+              (props.test.questions || '').split(', ').includes(question.id)
+            )
+            .map((question: any) => (
+              <Card
+                elevation={0}
+                style={{
+                  padding: '0.5em',
+                  marginBottom: '0.5em',
+                  background: theme.palette.background.default
+                }}
+              >
+                {question.fields.question}
+              </Card>
+            ))
+        ) : (
+          <em>No Questions</em>
+        )}
         <br />
         <ButtonGroup orientation="vertical">
           <Button

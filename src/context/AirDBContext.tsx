@@ -17,7 +17,7 @@ export const AirDBContext = createContext<{
   loading: false
 })
 
-export const AirDBProvider = (props: any) => {
+export const AirDBProvider = React.memo((props: any) => {
   const [tests, setTests] = React.useState([])
   const [loading, setLoading] = React.useState(true)
   const [questions, setQuestions] = React.useState([])
@@ -85,4 +85,4 @@ export const AirDBProvider = (props: any) => {
       {props.children}
     </AirDBContext.Provider>
   )
-}
+})

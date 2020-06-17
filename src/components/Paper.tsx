@@ -1,25 +1,24 @@
-import React from 'react'
+import React from "react";
 
-import { useTheme } from '@material-ui/core'
+import { useTheme } from "@material-ui/core";
 
 export default (props: any) => {
-  const theme = useTheme()
+  const theme = useTheme();
   return (
     <div style={{}}>
       <div
         style={{
-          // position: 'relative',
           background: theme.palette.background.paper,
-          borderRadius: '0',
-          width: '100%',
-          border: 'none'
+          borderRadius: "0",
+          width: "100%",
+          border: "none"
         }}
       >
         <svg
           style={{
             width: 30,
             height: 30,
-            display: 'x',
+            display: "x",
             zIndex: 100
           }}
         >
@@ -28,9 +27,9 @@ export default (props: any) => {
             fill={theme.palette.background.default}
           />
         </svg>
-        <div style={{ margin: '1rem', marginTop: -10 }}>{props.children}</div>
+        <div style={{ margin: "1rem", marginTop: -10 }}>{props.children}</div>
         <br />
       </div>
     </div>
-  )
-}
+  );
+};

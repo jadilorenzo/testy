@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core'
 
 import { Close } from '@material-ui/icons'
-// import { CategorySharp } from '@material-ui/icons'
 import Book from './icons/Book'
 
 const Header = (props: any) => {

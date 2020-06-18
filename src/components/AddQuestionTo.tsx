@@ -80,7 +80,9 @@ export default (props: any) => {
             })}
           </FormControl>
         </Grid>
-        <Button onClick={handleClick}>Add Questions</Button>
+        <Button color="primary" onClick={handleClick}>
+          Add Questions
+        </Button>
       </Paper>
     </div>
   );

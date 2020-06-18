@@ -53,14 +53,13 @@ export default () => {
           Add
         </Button>
       </FormControl>
-      {/* // This doesn't actually work...
-        test.tags.length > 0 ? (
+      {test.tags.length > 0 ? (
         test.tags.map((x: string) => (
-          <Chip label={x} style={{ marginRight: '0.5em' }} />
+          <Chip label={x} style={{ marginRight: "0.5em" }} />
         ))
       ) : (
         <em>No tags</em>
-      ) */}
+      )}
     </>
   );
 };

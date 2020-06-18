@@ -1,46 +1,61 @@
-import React, { useContext } from 'react'
+import React, { useContext, useCallback } from "react";
 import {
   FormControl,
   FormControlLabel,
   Checkbox,
   Button
-} from '@material-ui/core'
-import { TestContext } from '../context/TestContext'
-import { AirDBContext } from '../context/AirDBContext'
+} from "@material-ui/core";
+import { TestContext } from "../context/TestContext";
+import { AirDBContext } from "../context/AirDBContext";
 
-import TestDisplay from './TestDisplay'
+import TestDisplay from "./TestDisplay";
 
 export default () => {
-  const db = useContext(AirDBContext)
-  const [test] = useContext(TestContext)
+  const db = useContext(AirDBContext);
+  const [test] = useContext(TestContext);
 
-  const handleAddQuestion = async () => {
+  const [questionIDs, setQuestions] = React.useState<string[]>([]);
+
+  const handleChange = useCallback((question: any) => {
+    setQuestions(prev => {
+      if (!prev.includes(question.id)) {
+        return [...prev, question.id];
+      } else {
+        return prev.filter((id: string) => id !== question.id);
+      }
+    });
+  }, []);
+
+  const handleAddTest = async () => {
     await db
-      .postAirDB('Testy - Tests', {
+      .postAirDB("Testy - Tests", {
         ...test,
-        questions: test.questions.join(', '),
-        tags: test.tags.join(', ')
+        tags: test.tags.join(", "),
+        questions: questionIDs.join(", ")
       })
-      .then(() => (window.location.pathname = '/'))
-  }
+      .then(() => (window.location.pathname = "/"));
+  };
 
   return (
     <div>
       <TestDisplay />
       <FormControl>
-        {db.questions.map((x: any) => (
-          <div>
+        {db.questions.map((question: any) => {
+          return (
             <FormControlLabel
-              control={<Checkbox />}
-              label={x.fields.question}
+              onChange={() => handleChange(question)}
+              checked={questionIDs.includes(question.id)}
+              control={<Checkbox name={question.id} />}
+              label={question.fields.question}
+              key={question.fields.question}
             />
-          </div>
-        ))}
+          );
+        })}
       </FormControl>
       <br />
-      <Button color="primary" onClick={handleAddQuestion}>
+      <Button color="primary" onClick={handleAddTest}>
         Add
       </Button>
     </div>
-  )
-}
+  );
+};

@@ -1,17 +1,17 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import { CssBaseline } from '@material-ui/core'
-import { TestProvider } from './context/TestContext'
+import React from "react";
+import { Route } from "react-router-dom";
+import { CssBaseline } from "@material-ui/core";
+import { TestProvider } from "./context/TestContext";
 import {
   TuiCreateQuestion,
   TuiCreateTest,
   TuiMain,
   TuiAddQuestionTo,
   TuiAddPage
-} from './components'
-import { AirDBProvider } from './context/AirDBContext'
-import TestsRoutes from './TestsRoutes'
-import Reroute from './Reroute'
+} from "./components";
+import { AirDBProvider } from "./context/AirDBContext";
+import TestsRoutes from "./TestsRoutes";
+import Reroute from "./Reroute";
 
 const App = () => {
   return (
@@ -41,7 +41,7 @@ const App = () => {
                     <TuiAddQuestionTo setRedirect={setRedirect} />
                   </Route>
                   <TestsRoutes setRedirect={setRedirect} />
-                  <div style={{ height: '6rem' }} />
+                  <div style={{ height: "6rem" }} />
                 </>
               )}
             />
@@ -49,7 +49,7 @@ const App = () => {
         </AirDBProvider>
       </AirDBProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

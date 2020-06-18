@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import { TestContext } from "../context/TestContext";
 import { AirDBContext } from "../context/AirDBContext";
+import { Check, Close } from "@material-ui/icons";
 
 import TestDisplay from "./TestDisplay";
 
@@ -45,7 +46,13 @@ export default () => {
             <FormControlLabel
               onChange={() => handleChange(question)}
               checked={questionIDs.includes(question.id)}
-              control={<Checkbox name={question.id} />}
+              control={
+                <Checkbox
+                  checkedIcon={<Check />}
+                  icon={<Close />}
+                  name={question.id}
+                />
+              }
               label={question.fields.question}
               key={question.fields.question}
             />

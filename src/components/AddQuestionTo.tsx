@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { AirDBContext } from "../context/AirDBContext";
+import { Check, Close } from "@material-ui/icons";
 
 export default (props: any) => {
   const { id } = useParams();
@@ -65,7 +66,13 @@ export default (props: any) => {
                 <FormControlLabel
                   onChange={() => handleChange(question)}
                   checked={questionIDs.includes(question.id)}
-                  control={<Checkbox name={question.id} />}
+                  control={
+                    <Checkbox
+                      checkedIcon={<Check />}
+                      icon={<Close />}
+                      name={question.id}
+                    />
+                  }
                   label={question.fields.question}
                   key={question.fields.question}
                 />

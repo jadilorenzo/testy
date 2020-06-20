@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Route } from "react-router-dom";
 import { CssBaseline } from "@material-ui/core";
 import { TestProvider } from "./context/TestContext";
@@ -7,21 +7,32 @@ import {
   TuiCreateTest,
   TuiMain,
   TuiAddQuestionTo,
-  TuiAddPage
+  TuiAddPage,
+  TuiLogin
 } from "./components";
-import { AirDBProvider } from "./context/AirDBContext";
+import { AirDBContext } from "./context/AirDBContext";
 import TestsRoutes from "./TestsRoutes";
 import Reroute from "./Reroute";
 
 const App = () => {
+  const { users } = useContext(AirDBContext);
+  const user = users.filter(
+    user => user.fields.username === window.localStorage.getItem("username")
+  )[0] || { fields: { active: "false" } };
+  const loggedIn = JSON.parse(user.fields.active);
+
   return (
     <>
       <CssBaseline />
-      <AirDBProvider table="Testy - Tests">
-        <AirDBProvider table="Testy - Questions">
-          <div>
-            <Reroute
-              render={(setRedirect: any) => (
+      <div>
+        <Reroute
+          render={(setRedirect: any) => (
+            <>
+              {!loggedIn ? (
+                <Route exact path="/">
+                  <TuiLogin setRedirect={setRedirect} />
+                </Route>
+              ) : (
                 <>
                   <Route exact path="/">
                     <TuiMain setRedirect={setRedirect} />
@@ -40,14 +51,14 @@ const App = () => {
                   <Route exact path="/add/question/to/:id">
                     <TuiAddQuestionTo setRedirect={setRedirect} />
                   </Route>
-                  <TestsRoutes setRedirect={setRedirect} />
-                  <div style={{ height: "6rem" }} />
                 </>
               )}
-            />
-          </div>
-        </AirDBProvider>
-      </AirDBProvider>
+              <TestsRoutes setRedirect={setRedirect} />
+              <div style={{ height: "6rem" }} />
+            </>
+          )}
+        />
+      </div>
     </>
   );
 };

@@ -5,7 +5,7 @@ import { useTheme } from "@material-ui/core";
 export default (props: any) => {
   const theme = useTheme();
   return (
-    <div style={{}}>
+    <div>
       <div
         style={{
           background: theme.palette.background.paper,

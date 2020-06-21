@@ -35,7 +35,7 @@ export default React.memo((props: any) => {
 
     if (isMatching) {
       setToggled(false);
-      props.setRedirect("/main");
+      props.setRedirect("/");
       window.localStorage.setItem("username", username);
       updateAirDB("Testy - Users", userId, {
         active: "true"

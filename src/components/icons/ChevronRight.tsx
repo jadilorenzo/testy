@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// I am going to use font awsome icons later
+
 const ChevronRight = (props: any) => {
   const { color, size, ...otherProps } = props
   return (

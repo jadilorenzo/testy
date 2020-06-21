@@ -1,41 +1,68 @@
-import React, { useContext } from 'react'
-import { FormControl, FormControlLabel, Checkbox } from '@material-ui/core'
-import { TestContext } from '../context/TestContext'
-import { AirDBContext } from '../context/AirDBContext'
-import Button from './Button'
-import TestDisplay from './TestDisplay'
+import React, { useContext, useCallback } from "react";
+import {
+  FormControl,
+  FormControlLabel,
+  Checkbox,
+  Button
+} from "@material-ui/core";
+import { TestContext } from "../context/TestContext";
+import { AirDBContext } from "../context/AirDBContext";
+import { Check, Close } from "@material-ui/icons";
+
+import TestDisplay from "./TestDisplay";
 
 export default () => {
-  const db = useContext(AirDBContext)
-  const [test] = useContext(TestContext)
+  const db = useContext(AirDBContext);
+  const [test] = useContext(TestContext);
 
-  const handleAddQuestion = async () => {
+  const [questionIDs, setQuestions] = React.useState<string[]>([]);
+
+  const handleChange = useCallback((question: any) => {
+    setQuestions(prev => {
+      if (!prev.includes(question.id)) {
+        return [...prev, question.id];
+      } else {
+        return prev.filter((id: string) => id !== question.id);
+      }
+    });
+  }, []);
+
+  const handleAddTest = async () => {
     await db
-      .postAirDB('Testy - Tests', {
+      .postAirDB("Testy - Tests", {
         ...test,
-        questions: test.questions.join(', '),
-        tags: test.tags.join(', ')
+        tags: test.tags.join(", "),
+        questions: questionIDs.join(", ")
       })
-      .then(() => (window.location.pathname = '/'))
-  }
+      .then(() => (window.location.pathname = "/"));
+  };
 
   return (
     <div>
       <TestDisplay />
       <FormControl>
-        {db.questions.map((x: any) => (
-          <div>
+        {db.questions.map((question: any) => {
+          return (
             <FormControlLabel
-              control={<Checkbox />}
-              label={x.fields.question}
+              onChange={() => handleChange(question)}
+              checked={questionIDs.includes(question.id)}
+              control={
+                <Checkbox
+                  checkedIcon={<Check />}
+                  icon={<Close />}
+                  name={question.id}
+                />
+              }
+              label={question.fields.question}
+              key={question.fields.question}
             />
-          </div>
-        ))}
+          );
+        })}
       </FormControl>
       <br />
-      <Button onClick={handleAddQuestion} variant="contained" color="primary">
+      <Button color="primary" onClick={handleAddTest}>
         Add
       </Button>
     </div>
-  )
-}
+  );
+};

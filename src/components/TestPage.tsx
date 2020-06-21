@@ -1,7 +1,13 @@
 import React from 'react'
-import { Typography, Chip, Card } from '@material-ui/core'
+import {
+  Typography,
+  Button,
+  Chip,
+  Card,
+  ButtonGroup,
+  useTheme
+} from '@material-ui/core'
 import Paper from './Paper'
-import Button from './Button'
 
 export default (props: {
   test: any
@@ -9,6 +15,7 @@ export default (props: {
   setRedirect: any
   questions: any
 }) => {
+  const theme = useTheme()
   return (
     <div>
       <br />
@@ -28,29 +35,40 @@ export default (props: {
         ) : (
           <em>No tags</em>
         )}
-        <br /> <br />
-        <Button>Take Test</Button>
         <br />
-        {props.questions
-          .filter((question: any) =>
-            props.test.questions.split(', ').includes(question.id)
-          )
-          .map((question: any) => (
-            <Card
-              elevation={0}
-              style={{ padding: '0.5em', marginBottom: '0.5em' }}
-            >
-              {question.fields.question}
-            </Card>
-          ))}
         <br />
-        <Button
-          onClick={() => {
-            props.setRedirect(`/add/question/to/${props.id}`)
-          }}
-        >
-          + Question
-        </Button>
+        {props.test.questions !== undefined ? (
+          props.questions
+            .filter((question: any) =>
+              (props.test.questions || '').split(', ').includes(question.id)
+            )
+            .map((question: any) => (
+              <Card
+                elevation={0}
+                style={{
+                  padding: '0.5em',
+                  marginBottom: '0.5em',
+                  background: theme.palette.background.default
+                }}
+              >
+                {question.fields.question}
+              </Card>
+            ))
+        ) : (
+          <em>No Questions</em>
+        )}
+        <br />
+        <ButtonGroup orientation="vertical">
+          <Button
+            variant="text"
+            onClick={() => {
+              props.setRedirect(`/add/question/to/${props.id}`)
+            }}
+          >
+            + Question
+          </Button>
+          <Button color="primary">Take Test</Button>
+        </ButtonGroup>
       </Paper>
     </div>
   )

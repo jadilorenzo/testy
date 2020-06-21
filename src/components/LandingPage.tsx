@@ -1,46 +1,61 @@
-import React from 'react'
-import { Typography } from '@material-ui/core'
-import Paper from './Paper'
-import Button from './Button'
-import TestDisplay from './TestDisplay'
-import { AirDBContext } from '../context/AirDBContext'
+import React from "react";
+import { Typography, IconButton } from "@material-ui/core";
+import Paper from "./Paper";
+import TestDisplay from "./TestDisplay";
+import { AirDBContext } from "../context/AirDBContext";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 export default (props: any) => {
-  const { tests } = React.useContext(AirDBContext)
+  const { tests, users, updateAirDB } = React.useContext(AirDBContext);
+
+  const handleLogout = () => {
+    const userId = users.filter(
+      user => user.fields.username === window.localStorage.getItem("username")
+    )[0].id;
+
+    updateAirDB("Testy - Users", userId, {
+      active: "false"
+    }).then(() => {
+      props.setRedirect("/");
+      window.localStorage.removeItem("username");
+    });
+  };
 
   return (
     <>
       <br />
-
       <Paper>
-        <span>
-          <Button onClick={() => props.setRedirect('/add/question')}>
-            + Question
-          </Button>
-        </span>
-        <br />
-        <span>
-          <Button onClick={() => props.setRedirect('/add/test')}>+ Test</Button>
-        </span>
         <Typography variant="h4">Recent Tests</Typography>
+        <IconButton
+          onClick={handleLogout}
+          color="primary"
+          style={{
+            float: "right",
+            position: "absolute",
+            top: 35,
+            right: "1rem"
+          }}
+        >
+          <ExitToAppIcon />
+        </IconButton>
         {tests.map((row: any) => (
           <div
             key={row.fields.ID}
+            style={{ width: "100%" }}
             onClick={() => props.setRedirect(`/test/${row.id}`)}
           >
             <TestDisplay
               test={{
                 ...row.fields,
-                tags: row.fields.tags ? row.fields.tags.split(', ') : [],
+                tags: row.fields.tags ? row.fields.tags.split(", ") : [],
                 questions: row.fields.questions
-                  ? row.fields.questions.split(', ')
+                  ? row.fields.questions.split(", ")
                   : []
               }}
             />
           </div>
         ))}
-        <br />
       </Paper>
     </>
-  )
-}
+  );
+};

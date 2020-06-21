@@ -6,12 +6,11 @@ import {
   Radio,
   RadioGroup,
   Checkbox,
-  TextField,
-  Button
+  TextField
 } from '@material-ui/core'
 import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { OptionsContext } from '../context/OptionsContext'
-
+import Button from './Button'
 const QuestionDisplay = () => {
   const [question] = useContext(CurrentQuestionContext)
   const [options] = useContext(OptionsContext)

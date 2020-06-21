@@ -1,10 +1,10 @@
 .title {
   display: inline-block;
-  padding-left: 0.2rem;
+  padding-left: 0.2em;
 }
 
 .QuestionForm {
-  padding: 1rem;
+  padding: 1em;
 }
 
 .OptionTextField {
@@ -14,23 +14,23 @@
 .QuestionTitle {
   display: block;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .MultiOptionQuestionFormField {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .FormGroups > * {
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .TestGroup {
   display: flex;
   width: 100%;
   justify-content: space-around;
-  margin: 1rem;
+  margin: 1em;
 }
 
 .TestGroup > * {
@@ -39,12 +39,12 @@
 
 .Select {
   width: calc(100%);
-  margin-top: 0.5rem;
+  margin-top: 0.5em;
 }
 
 .FormGroup {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
 }
 
 .MuiTabs-root > * {
@@ -64,6 +64,7 @@
   background: linear-gradient(0.6deg, #006bcd, #00558c);
 }
 html, p {
+  zoom: 1.25;
   cursor: default;
 }
 
@@ -73,9 +74,6 @@ a {
 
 .MuiTypography-h6:hover {
   color: #81c784;
-}
-.MuiTypography-h6::selection {
-  background: none;
 }
 
 ::selection {

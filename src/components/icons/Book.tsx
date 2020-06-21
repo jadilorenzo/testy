@@ -5,7 +5,7 @@ const Book = (props: any) => {
   const { color, size, ...otherProps } = props
   return (
     <svg
-      style={{ marginTop: '-0.8em' }}
+      style={{ marginTop: '0.5em' }}
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}

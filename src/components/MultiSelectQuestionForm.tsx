@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react'
 import {
   TextField,
   Checkbox,
@@ -6,35 +6,35 @@ import {
   InputLabel,
   Select,
   MenuItem
-} from "@material-ui/core";
-import { CurrentQuestionContext } from "../context/CurrentQuestionContext";
-import { Question } from "../types";
+} from '@material-ui/core'
+import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
+import { Question } from '../types'
 
 export default () => {
-  const [question, setQuestion] = useContext(CurrentQuestionContext);
+  const [question, setQuestion] = useContext(CurrentQuestionContext)
 
   const handleTitleChange = (e: any) => {
-    e.persist();
+    e.persist()
     setQuestion((q: Question) => ({
       ...q,
       question: e.target.value
-    }));
-  };
+    }))
+  }
 
   const handleOptionChange = (e: any, num: number) => {
-    let options = question.options;
-    options[num] = e.target.value;
-    e.persist();
-    setQuestion((q: Question) => ({ ...q, options }));
-  };
+    let options = question.options
+    options[num] = e.target.value
+    e.persist()
+    setQuestion((q: Question) => ({ ...q, options }))
+  }
 
   const handleAnswerChange = (e: any) => {
-    e.persist();
+    e.persist()
     setQuestion((q: Question) => ({
       ...q,
-      answer: e.target.value.filter((x: string) => x !== "").join(", ")
-    }));
-  };
+      answer: e.target.value.filter((x: string) => x !== '').join(', ')
+    }))
+  }
 
   return (
     <div className="QuestionFormContainer">
@@ -87,7 +87,7 @@ export default () => {
             className="Select"
             labelId="select"
             multiple
-            value={question.answer.split(", ")}
+            value={question.answer.split(', ')}
           >
             {question.options.map((option: string) => (
               <MenuItem value={option}>{option}</MenuItem>
@@ -99,5 +99,5 @@ export default () => {
         </div>
       </FormControl>
     </div>
-  );
-};
+  )
+}

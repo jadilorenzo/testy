@@ -33,7 +33,7 @@ function TabPanel(props: any) {
   )
 }
 
-export default (props: any) => {
+export default () => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {

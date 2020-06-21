@@ -3,7 +3,7 @@ import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
 import { OptionsContext } from '../context/OptionsContext'
 import QuestionDisplay from '../components/QuestionDisplay'
 import { AirDBContext } from '../context/AirDBContext'
-import Button from './Button'
+import { Button } from '@material-ui/core'
 
 const Verification = () => {
   const db = useContext(AirDBContext)
@@ -26,7 +26,7 @@ const Verification = () => {
       <div className="TestGroup">
         <QuestionDisplay />
       </div>
-      <Button onClick={handleAddQuestion} variant="contained" color="primary">
+      <Button onClick={handleAddQuestion} color="primary">
         Add
       </Button>
     </div>

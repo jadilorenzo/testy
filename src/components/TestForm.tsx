@@ -1,23 +1,23 @@
-import React, { useContext } from 'react'
-import { TestContext } from '../context/TestContext'
-import { FormControl, TextField, Chip } from '@material-ui/core'
-import Button from './Button'
+import React, { useContext, useCallback } from "react";
+import { TestContext } from "../context/TestContext";
+import { FormControl, TextField, Chip, Button } from "@material-ui/core";
 
 export default () => {
-  const [test, setTest] = useContext(TestContext)
+  const [test, setTest] = useContext(TestContext);
 
-  const handleTitleChange = (e: any) => {
-    setTest((prev: any) => ({ ...prev, title: e.target.value }))
-  }
+  const handleTitleChange = useCallback((e: any) => {
+    e.persist();
+    setTest((prev: any) => ({ ...prev, title: e.target.value }));
+  }, []);
 
-  const [tag, setTag] = React.useState('#')
+  const [tag, setTag] = React.useState("#");
 
   const handleButtonClick = () => {
-    if (tag !== '#') {
-      setTest((prev: any) => ({ ...prev, tags: prev.tags.concat([tag]) }))
-      setTag('#')
+    if (tag !== "#") {
+      setTest((prev: any) => ({ ...prev, tags: prev.tags.concat([tag]) }));
+      setTag("#");
     }
-  }
+  };
 
   return (
     <>
@@ -26,7 +26,7 @@ export default () => {
           value={test.title}
           variant="outlined"
           label="Title"
-          onChange={handleTitleChange}
+          onChange={(e: any) => handleTitleChange(e)}
         />
       </FormControl>
       <br />
@@ -36,8 +36,8 @@ export default () => {
           value={tag}
           onChange={e =>
             setTag(
-              !e.target.value.includes('#')
-                ? '#' + e.target.value.toLocaleLowerCase()
+              !e.target.value.includes("#")
+                ? "#" + e.target.value.toLocaleLowerCase()
                 : e.target.value.toLocaleLowerCase()
             )
           }
@@ -55,11 +55,11 @@ export default () => {
       </FormControl>
       {test.tags.length > 0 ? (
         test.tags.map((x: string) => (
-          <Chip label={x} style={{ marginRight: '0.5em' }} />
+          <Chip label={x} style={{ marginRight: "0.5em" }} />
         ))
       ) : (
         <em>No tags</em>
       )}
     </>
-  )
-}
+  );
+};

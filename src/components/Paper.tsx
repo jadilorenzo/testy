@@ -1,32 +1,35 @@
-import React from 'react'
+import React from "react";
 
-import { Paper } from '@material-ui/core'
+import { useTheme } from "@material-ui/core";
 
 export default (props: any) => {
+  const theme = useTheme();
   return (
-    <div style={{}}>
+    <div>
       <div
         style={{
-          // position: 'relative',
-          background: '#1574d2',
-          borderRadius: '0',
-          width: '100%',
-          border: 'none'
+          background: theme.palette.background.paper,
+          borderRadius: "0",
+          width: "100%",
+          border: "none"
         }}
       >
         <svg
           style={{
             width: 30,
             height: 30,
-            display: 'x',
+            display: "x",
             zIndex: 100
           }}
         >
-          <polygon points={`0,0 ${30},00, 00,${30}`} fill={'#1263c0'} />
+          <polygon
+            points={`0,0 ${30},00, 00,${30}`}
+            fill={theme.palette.background.default}
+          />
         </svg>
-        <div style={{ margin: '1rem', marginTop: -10 }}>{props.children}</div>
+        <div style={{ margin: "1rem", marginTop: -10 }}>{props.children}</div>
         <br />
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,57 +1,56 @@
-import React from 'react'
-import Paper from './Paper'
+import React, { useCallback } from "react";
+import Paper from "./Paper";
 import {
   Typography,
   Grid,
   FormControlLabel,
   Checkbox,
-  FormControl
-} from '@material-ui/core'
-import Button from './Button'
-import { useParams } from 'react-router-dom'
-import { AirDBContext } from '../context/AirDBContext'
+  FormControl,
+  Button
+} from "@material-ui/core";
+import { useParams } from "react-router-dom";
+import { AirDBContext } from "../context/AirDBContext";
+import { Check, Close } from "@material-ui/icons";
 
 export default (props: any) => {
-  const [questionIDs, setQuestions] = React.useState<string[]>([])
-
-  const { id } = useParams()
-  const { tests, questions, updateAirDB } = React.useContext(AirDBContext)
+  const { id } = useParams();
+  const { tests, questions, updateAirDB } = React.useContext(AirDBContext);
   const test = tests.filter(test => test.id === id)[0] || {
-    fields: { title: '' }
-  }
+    fields: { title: "", questions: "" }
+  };
+  const [questionIDs, setQuestions] = React.useState<string[]>(
+    (test.fields.questions || "").split(", ")
+  );
 
-  const handleChange = (question: any) => {
-    if (!questionIDs.includes(question.id)) {
+  const handleChange = useCallback(
+    (question: any) => {
       setQuestions(prev => {
-        console.log('added', [...prev, question.id])
-        return [...prev, question.id]
-      })
-    } else {
-      setQuestions(prev => {
-        let newIDs = prev
-        const index = newIDs.indexOf(question.id)
-        if (index > -1) {
-          newIDs.splice(index, 1)
+        if (!prev.includes(question.id)) {
+          return [...prev, question.id];
+        } else {
+          return prev.filter((id: string) => id !== question.id);
         }
-        console.log('removed', newIDs)
-        return newIDs
-      })
-    }
-  }
+      });
+    },
+    [questions]
+  );
 
   const handleClick = () => {
-    updateAirDB('Testy - Tests', id, {
-      questions: questionIDs.join(', ')
+    updateAirDB("Testy - Tests", id, {
+      questions: questionIDs.join(", ")
     }).then(() => {
-      props.setRedirect('/')
-    })
-  }
+      props.setRedirect("/");
+    });
+  };
+
+  React.useEffect(() => {
+    setQuestions((test.fields.questions || "").split(", "));
+  }, [test.fields.questions]);
 
   return (
     <div>
       <br />
-      <Paper style={{ padding: '1em' }}>
-        <Button onClick={() => props.setRedirect('/')}>Home</Button>
+      <Paper style={{ padding: "1em" }}>
         <Typography variant="h5">
           Add question to "{test.fields.title}"
         </Typography>
@@ -62,21 +61,29 @@ export default (props: any) => {
           alignItems="center"
         >
           <FormControl>
-            {questions.map((question: any) => (
-              <FormControlLabel
-                onChange={() => handleChange(question)}
-                checked={questionIDs.includes(question.id)}
-                control={
-                  <Checkbox checked={questionIDs.includes(question.id)} />
-                }
-                label={question.fields.question}
-                key={question.fields.question}
-              />
-            ))}
+            {questions.map((question: any) => {
+              return (
+                <FormControlLabel
+                  onChange={() => handleChange(question)}
+                  checked={questionIDs.includes(question.id)}
+                  control={
+                    <Checkbox
+                      checkedIcon={<Check />}
+                      icon={<Close />}
+                      name={question.id}
+                    />
+                  }
+                  label={question.fields.question}
+                  key={question.fields.question}
+                />
+              );
+            })}
           </FormControl>
         </Grid>
-        <Button onClick={handleClick}>Add Questions</Button>
+        <Button color="primary" onClick={handleClick}>
+          Add Questions
+        </Button>
       </Paper>
     </div>
-  )
-}
+  );
+};

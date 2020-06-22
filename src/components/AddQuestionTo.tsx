@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import Paper from "./Paper";
+import React, { useCallback } from 'react'
+import Paper from './Paper'
 import {
   Typography,
   Grid,
@@ -7,50 +7,50 @@ import {
   Checkbox,
   FormControl,
   Button
-} from "@material-ui/core";
-import { useParams } from "react-router-dom";
-import { AirDBContext } from "../context/AirDBContext";
-import { Check, Close } from "@material-ui/icons";
+} from '@material-ui/core'
+import { useParams } from 'react-router-dom'
+import { AirDBContext } from '../context/AirDBContext'
+import { Check, Close } from '@material-ui/icons'
 
 export default (props: any) => {
-  const { id } = useParams();
-  const { tests, questions, updateAirDB } = React.useContext(AirDBContext);
+  const { id } = useParams()
+  const { tests, questions, updateAirDB } = React.useContext(AirDBContext)
   const test = tests.filter(test => test.id === id)[0] || {
-    fields: { title: "", questions: "" }
-  };
+    fields: { title: '', questions: '' }
+  }
   const [questionIDs, setQuestions] = React.useState<string[]>(
-    (test.fields.questions || "").split(", ")
-  );
+    (test.fields.questions || '').split(', ')
+  )
 
   const handleChange = useCallback(
     (question: any) => {
       setQuestions(prev => {
         if (!prev.includes(question.id)) {
-          return [...prev, question.id];
+          return [...prev, question.id]
         } else {
-          return prev.filter((id: string) => id !== question.id);
+          return prev.filter((id: string) => id !== question.id)
         }
-      });
+      })
     },
     [questions]
-  );
+  )
 
   const handleClick = () => {
-    updateAirDB("Testy - Tests", id, {
-      questions: questionIDs.join(", ")
+    updateAirDB('Testy - Tests', id, {
+      questions: questionIDs.join(', ')
     }).then(() => {
-      props.setRedirect("/");
-    });
-  };
+      props.setRedirect('/')
+    })
+  }
 
   React.useEffect(() => {
-    setQuestions((test.fields.questions || "").split(", "));
-  }, [test.fields.questions]);
+    setQuestions((test.fields.questions || '').split(', '))
+  }, [test.fields.questions])
 
   return (
     <div>
       <br />
-      <Paper style={{ padding: "1em" }}>
+      <Paper style={{ padding: '1em' }}>
         <Typography variant="h5">
           Add question to "{test.fields.title}"
         </Typography>
@@ -76,7 +76,7 @@ export default (props: any) => {
                   label={question.fields.question}
                   key={question.fields.question}
                 />
-              );
+              )
             })}
           </FormControl>
         </Grid>
@@ -85,5 +85,5 @@ export default (props: any) => {
         </Button>
       </Paper>
     </div>
-  );
-};
+  )
+}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react'
 import {
   TextField,
   Radio,
@@ -6,44 +6,44 @@ import {
   MenuItem,
   InputLabel,
   FormControl
-} from "@material-ui/core";
-import { CurrentQuestionContext } from "../../context/CurrentQuestionContext";
-import { Question } from "../../types";
+} from '@material-ui/core'
+import { CurrentQuestionContext } from '../../context/CurrentQuestionContext'
+import { Question } from '../../types'
 
 export default () => {
-  const [question, setQuestion] = useContext(CurrentQuestionContext);
+  const [question, setQuestion] = useContext(CurrentQuestionContext)
 
   const handleTitleChange = (e: any) => {
     if (e !== null) {
-      e.persist();
+      e.persist()
     } else {
-      e = { target: { value: "" } };
+      e = { target: { value: '' } }
     }
 
     setQuestion((q: Question) => ({
       ...q,
-      question: e.target.value || ""
-    }));
-  };
+      question: e.target.value || ''
+    }))
+  }
 
   const handleOptionChange = (e: any, num: number) => {
     if (e !== null) {
-      e.persist();
+      e.persist()
     } else {
-      e = { target: { value: "" } };
+      e = { target: { value: '' } }
     }
 
-    let options = question.options;
-    options[num] = e.target.value === "" ? undefined : e.target.value;
-    setQuestion((q: Question) => ({ ...q, options }));
-  };
+    let options = question.options
+    options[num] = e.target.value === '' ? undefined : e.target.value
+    setQuestion((q: Question) => ({ ...q, options }))
+  }
 
   const handleAnswerChange = (e: any) => {
     setQuestion((q: Question) => ({
       ...q,
-      answer: e.target.value || ""
-    }));
-  };
+      answer: e.target.value || ''
+    }))
+  }
 
   return (
     <div className="QuestionFormContainer">
@@ -107,5 +107,5 @@ export default () => {
         </div>
       </FormControl>
     </div>
-  );
-};
+  )
+}

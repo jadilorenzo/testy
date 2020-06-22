@@ -1,41 +1,41 @@
-import React, { useContext, useCallback } from "react";
+import React, { useContext, useCallback } from 'react'
 import {
   FormControl,
   FormControlLabel,
   Checkbox,
   Button
-} from "@material-ui/core";
-import { TestContext } from "../../context/TestContext";
-import { AirDBContext } from "../../context/AirDBContext";
-import { Check, Close } from "@material-ui/icons";
+} from '@material-ui/core'
+import { TestContext } from '../../context/TestContext'
+import { AirDBContext } from '../../context/AirDBContext'
+import { Check, Close } from '@material-ui/icons'
 
-import TestDisplay from "./TestDisplay";
+import TestDisplay from './TestDisplay'
 
 export default () => {
-  const db = useContext(AirDBContext);
-  const [test] = useContext(TestContext);
+  const db = useContext(AirDBContext)
+  const [test] = useContext(TestContext)
 
-  const [questionIDs, setQuestions] = React.useState<string[]>([]);
+  const [questionIDs, setQuestions] = React.useState<string[]>([])
 
   const handleChange = useCallback((question: any) => {
     setQuestions(prev => {
       if (!prev.includes(question.id)) {
-        return [...prev, question.id];
+        return [...prev, question.id]
       } else {
-        return prev.filter((id: string) => id !== question.id);
+        return prev.filter((id: string) => id !== question.id)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   const handleAddTest = async () => {
     await db
-      .postAirDB("Testy - Tests", {
+      .postAirDB('Testy - Tests', {
         ...test,
-        tags: test.tags.join(", "),
-        questions: questionIDs.join(", ")
+        tags: test.tags.join(', '),
+        questions: questionIDs.join(', ')
       })
-      .then(() => (window.location.pathname = "/"));
-  };
+      .then(() => (window.location.pathname = '/'))
+  }
 
   return (
     <div>
@@ -56,7 +56,7 @@ export default () => {
               label={question.fields.question}
               key={question.fields.question}
             />
-          );
+          )
         })}
       </FormControl>
       <br />
@@ -64,5 +64,5 @@ export default () => {
         Add
       </Button>
     </div>
-  );
-};
+  )
+}

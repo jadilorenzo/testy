@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Select,
   MenuItem,
@@ -6,18 +6,18 @@ import {
   Switch,
   FormGroup,
   FormHelperText
-} from "@material-ui/core";
-import { OptionsContext } from "../../context/OptionsContext";
+} from '@material-ui/core'
+import { OptionsContext } from '../../context/OptionsContext'
 
 const OptionsForm = () => {
-  const [options, setOptions] = React.useContext(OptionsContext);
+  const [options, setOptions] = React.useContext(OptionsContext)
 
   const handleChange = (e: any) => {
     setOptions({
       ...options,
-      type: e.target.value.length !== 0 ? e.target.value : ""
-    });
-  };
+      type: e.target.value.length !== 0 ? e.target.value : ''
+    })
+  }
 
   return (
     <div className="FormGroups">
@@ -29,9 +29,9 @@ const OptionsForm = () => {
           value={options.type}
           onChange={handleChange}
         >
-          <MenuItem value={"multiple-choice"}>Multiple Options</MenuItem>
-          <MenuItem value={"multi-answer"}>Multiple Select</MenuItem>
-          <MenuItem value={"essay"}>Free Answer</MenuItem>
+          <MenuItem value={'multiple-choice'}>Multiple Options</MenuItem>
+          <MenuItem value={'multi-answer'}>Multiple Select</MenuItem>
+          <MenuItem value={'essay'}>Free Answer</MenuItem>
         </Select>
       </FormGroup>
       <FormGroup>
@@ -40,7 +40,7 @@ const OptionsForm = () => {
           color="secondary"
           checked={options.autocheck}
           onClick={() => {
-            setOptions({ ...options, autocheck: !options.autocheck });
+            setOptions({ ...options, autocheck: !options.autocheck })
           }}
         />
         {options.autocheck && (
@@ -48,7 +48,7 @@ const OptionsForm = () => {
         )}
       </FormGroup>
     </div>
-  );
-};
+  )
+}
 
-export default OptionsForm;
+export default OptionsForm

@@ -1,14 +1,14 @@
-import React from "react";
-import { Tab, Tabs, Typography } from "@material-ui/core";
-import QuestionForm from "./QuestionForm";
-import OptionsForm from "./OptionsForm";
-import Verification from "./Verification";
-import { CurrentQuestionContextProvider } from "../../context/CurrentQuestionContext";
-import { OptionsContextProvider } from "../../context/OptionsContext";
-import Paper from "../Paper";
+import React from 'react'
+import { Tab, Tabs, Typography } from '@material-ui/core'
+import QuestionForm from './QuestionForm'
+import OptionsForm from './OptionsForm'
+import Verification from './Verification'
+import { CurrentQuestionContextProvider } from '../../context/CurrentQuestionContext'
+import { OptionsContextProvider } from '../../context/OptionsContext'
+import Paper from '../Paper'
 
 function TabPanel(props: any) {
-  const { title, children, value, index, ...other } = props;
+  const { title, children, value, index, ...other } = props
 
   return (
     <div
@@ -21,8 +21,8 @@ function TabPanel(props: any) {
       {value === index && (
         <div>
           <Typography
-            variant={title !== "Options" ? "h5" : "h4"}
-            className={"QuestionTitle"}
+            variant={title !== 'Options' ? 'h5' : 'h4'}
+            className={'QuestionTitle'}
           >
             {title}
           </Typography>
@@ -30,16 +30,16 @@ function TabPanel(props: any) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    console.log(event);
-    setValue(newValue);
-  };
+    console.log(event)
+    setValue(newValue)
+  }
 
   return (
     <OptionsContextProvider>
@@ -66,5 +66,5 @@ export default () => {
         </CurrentQuestionContextProvider>
       )}
     </OptionsContextProvider>
-  );
-};
+  )
+}

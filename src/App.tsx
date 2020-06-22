@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { Route } from "react-router-dom";
-import { CssBaseline } from "@material-ui/core";
-import { TestProvider } from "./context/TestContext";
+import React, { useContext } from 'react'
+import { Route } from 'react-router-dom'
+import { CssBaseline } from '@material-ui/core'
+import { TestProvider } from './context/TestContext'
 import {
   TuiCreateQuestion,
   TuiCreateTest,
@@ -9,17 +9,17 @@ import {
   TuiAddQuestionTo,
   TuiAddPage,
   TuiLogin
-} from "./components";
-import { AirDBContext } from "./context/AirDBContext";
-import TestsRoutes from "./TestsRoutes";
-import Reroute from "./Reroute";
+} from './components'
+import { AirDBContext } from './context/AirDBContext'
+import TestsRoutes from './TestsRoutes'
+import Reroute from './Reroute'
 
 const App = () => {
-  const { users } = useContext(AirDBContext);
+  const { users } = useContext(AirDBContext)
   const user = users.filter(
-    user => user.fields.username === window.localStorage.getItem("username")
-  )[0] || { fields: { active: "false" } };
-  const loggedIn = JSON.parse(user.fields.active);
+    user => user.fields.username === window.localStorage.getItem('username')
+  )[0] || { fields: { active: 'false' } }
+  const loggedIn = JSON.parse(user.fields.active)
 
   return (
     <>
@@ -54,13 +54,13 @@ const App = () => {
                 </>
               )}
               <TestsRoutes setRedirect={setRedirect} />
-              <div style={{ height: "6rem" }} />
+              <div style={{ height: '6rem' }} />
             </>
           )}
         />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

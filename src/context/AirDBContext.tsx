@@ -1,14 +1,14 @@
-import Airtable from "airtable";
-import React, { createContext } from "react";
+import Airtable from 'airtable'
+import React, { createContext } from 'react'
 
 export const AirDBContext = createContext<{
-  postAirDB: Function;
-  getAirDB: Function;
-  updateAirDB: Function;
-  tests: any[];
-  questions: any[];
-  loading: boolean;
-  users: any[];
+  postAirDB: Function
+  getAirDB: Function
+  updateAirDB: Function
+  tests: any[]
+  questions: any[]
+  loading: boolean
+  users: any[]
 }>({
   postAirDB: () => {},
   updateAirDB: () => {},
@@ -17,26 +17,26 @@ export const AirDBContext = createContext<{
   questions: [],
   loading: false,
   users: []
-});
+})
 
 export const AirDBProvider = React.memo((props: any) => {
-  const [tests, setTests] = React.useState([]);
-  const [questions, setQuestions] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [users, setUsers] = React.useState([]);
+  const [tests, setTests] = React.useState([])
+  const [questions, setQuestions] = React.useState([])
+  const [loading, setLoading] = React.useState(true)
+  const [users, setUsers] = React.useState([])
 
-  const base = new Airtable({ apiKey: "key29JR5FoxxlCqor" }).base(
-    "appeQvvPNhaPvYi0s"
-  );
+  const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
+    'appeQvvPNhaPvYi0s'
+  )
 
   const getAirDB = async (table: string) => {
     return await base(table)
-      .select({ view: "Grid view" })
+      .select({ view: 'Grid view' })
       .all()
       .then(r => {
-        return r;
-      });
-  };
+        return r
+      })
+  }
 
   const postAirDB = async (table: string, newRow: any) => {
     return base(table).create([
@@ -45,8 +45,8 @@ export const AirDBProvider = React.memo((props: any) => {
           ...newRow
         }
       }
-    ]);
-  };
+    ])
+  }
 
   const updateAirDB = (table: string, id: string, fields: any) => {
     return base(table).update([
@@ -56,24 +56,24 @@ export const AirDBProvider = React.memo((props: any) => {
           ...fields
         }
       }
-    ]);
-  };
+    ])
+  }
 
   React.useEffect(() => {
     setInterval(() => {
-      getAirDB("Testy - Tests").then((r: any) => setTests(r));
-      getAirDB("Testy - Users").then((r: any) => setUsers(r));
-      getAirDB("Testy - Questions")
+      getAirDB('Testy - Tests').then((r: any) => setTests(r))
+      getAirDB('Testy - Users').then((r: any) => setUsers(r))
+      getAirDB('Testy - Questions')
         .then((r: any) => {
-          setQuestions(r);
-          return r;
+          setQuestions(r)
+          return r
         })
         .then(r => {
-          setLoading(false);
-          return r;
-        });
-    }, 3000);
-  }, []);
+          setLoading(false)
+          return r
+        })
+    }, 3000)
+  }, [])
 
   return (
     <AirDBContext.Provider
@@ -89,5 +89,5 @@ export const AirDBProvider = React.memo((props: any) => {
     >
       {props.children}
     </AirDBContext.Provider>
-  );
-});
+  )
+})

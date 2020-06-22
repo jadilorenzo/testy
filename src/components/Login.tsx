@@ -9,9 +9,11 @@ import {
   DialogActions,
   Button,
   TextField,
-  FormControl
+  FormControl,
+  Paper as Container
 } from '@material-ui/core'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import Question from './take-test/Question'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default React.memo((props: any) => {
@@ -46,8 +48,30 @@ export default React.memo((props: any) => {
     <>
       <br />
       <Paper>
-        <Typography variant="h4">Home</Typography>
-        I'd put a lot of text here...{' '}
+        <Typography variant="h3">Home</Typography>
+        <div style={{ display: 'block', width: '50%' }}>
+          <div style={{ width: '50%' }}>
+            <Question
+              question={{
+                question: 'Please enter your username.',
+                type: 'essay',
+                autocheck: true
+              }}
+              handlers={[]}
+            />
+          </div>
+          <div style={{ paddingTop: '2em', width: '50%' }}>
+            <Question
+              question={{
+                question: 'Please enter your password.',
+                type: 'essay',
+                autocheck: true
+              }}
+              handlers={[]}
+            />
+          </div>
+        </div>
+        <br />
         <IconButton onClick={() => setToggled(true)} color="primary">
           <ExitToAppIcon />
         </IconButton>

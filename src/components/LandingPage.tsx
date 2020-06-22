@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, IconButton } from "@material-ui/core";
 import Paper from "./Paper";
-import TestDisplay from "./TestDisplay";
+import TestDisplay from "./add-test/TestDisplay";
 import { AirDBContext } from "../context/AirDBContext";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 

@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
-import { TextField } from '@material-ui/core'
-import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
+import React, { useContext } from "react";
+import { TextField } from "@material-ui/core";
+import { CurrentQuestionContext } from "../../context/CurrentQuestionContext";
 
 export default () => {
-  const [question, setQuestion] = useContext(CurrentQuestionContext)
+  const [question, setQuestion] = useContext(CurrentQuestionContext);
 
   const handleTitleChange = (e: any) => {
-    setQuestion({ ...question, question: e.target.value })
-  }
+    setQuestion({ ...question, question: e.target.value });
+  };
 
   const handleAnswerChange = (e: any) => {
-    setQuestion({ ...question, answer: e.target.value })
-  }
+    setQuestion({ ...question, answer: e.target.value });
+  };
 
   return (
     <div className="QuestionFormContainer">
@@ -34,5 +34,5 @@ export default () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};

@@ -2,8 +2,8 @@ import React from "react";
 import { Tab, Tabs, Typography } from "@material-ui/core";
 import TestForm from "./TestForm";
 import TestVerification from "./TestVerification";
-import { TestProvider } from "../context/TestContext";
-import Paper from "./Paper";
+import { TestProvider } from "../../context/TestContext";
+import Paper from "../Paper";
 
 function TabPanel(props: any) {
   const { title, children, value, index, ...other } = props;

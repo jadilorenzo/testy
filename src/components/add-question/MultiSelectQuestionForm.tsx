@@ -1,49 +1,40 @@
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import {
   TextField,
-  Radio,
-  Select,
-  MenuItem,
+  Checkbox,
+  FormControl,
   InputLabel,
-  FormControl
-} from '@material-ui/core'
-import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
-import { Question } from '../types'
+  Select,
+  MenuItem
+} from "@material-ui/core";
+import { CurrentQuestionContext } from "../../context/CurrentQuestionContext";
+import { Question } from "../../types";
 
 export default () => {
-  const [question, setQuestion] = useContext(CurrentQuestionContext)
+  const [question, setQuestion] = useContext(CurrentQuestionContext);
 
   const handleTitleChange = (e: any) => {
-    if (e !== null) {
-      e.persist()
-    } else {
-      e = { target: { value: '' } }
-    }
-
+    e.persist();
     setQuestion((q: Question) => ({
       ...q,
-      question: e.target.value || ''
-    }))
-  }
+      question: e.target.value
+    }));
+  };
 
   const handleOptionChange = (e: any, num: number) => {
-    if (e !== null) {
-      e.persist()
-    } else {
-      e = { target: { value: '' } }
-    }
-
-    let options = question.options
-    options[num] = e.target.value === '' ? undefined : e.target.value
-    setQuestion((q: Question) => ({ ...q, options }))
-  }
+    let options = question.options;
+    options[num] = e.target.value;
+    e.persist();
+    setQuestion((q: Question) => ({ ...q, options }));
+  };
 
   const handleAnswerChange = (e: any) => {
+    e.persist();
     setQuestion((q: Question) => ({
       ...q,
-      answer: e.target.value || ''
-    }))
-  }
+      answer: e.target.value.filter((x: string) => x !== "").join(", ")
+    }));
+  };
 
   return (
     <div className="QuestionFormContainer">
@@ -57,7 +48,7 @@ export default () => {
         />
       </div>
       <div>
-        <Radio disabled />
+        <Checkbox disabled />
         <TextField
           className="OptionTextField"
           value={question.options[0]}
@@ -65,7 +56,7 @@ export default () => {
         />
       </div>
       <div>
-        <Radio disabled />
+        <Checkbox disabled />
         <TextField
           className="OptionTextField"
           value={question.options[1]}
@@ -73,7 +64,7 @@ export default () => {
         />
       </div>
       <div>
-        <Radio disabled />
+        <Checkbox disabled />
         <TextField
           className="OptionTextField"
           value={question.options[2]}
@@ -81,7 +72,7 @@ export default () => {
         />
       </div>
       <div>
-        <Radio disabled />
+        <Checkbox disabled />
         <TextField
           className="OptionTextField"
           value={question.options[3]}
@@ -95,7 +86,8 @@ export default () => {
             onChange={handleAnswerChange}
             className="Select"
             labelId="select"
-            value={question.answer}
+            multiple
+            value={question.answer.split(", ")}
           >
             {question.options.map((option: string) => (
               <MenuItem value={option}>{option}</MenuItem>
@@ -107,5 +99,5 @@ export default () => {
         </div>
       </FormControl>
     </div>
-  )
-}
+  );
+};

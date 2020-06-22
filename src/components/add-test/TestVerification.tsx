@@ -5,8 +5,8 @@ import {
   Checkbox,
   Button
 } from "@material-ui/core";
-import { TestContext } from "../context/TestContext";
-import { AirDBContext } from "../context/AirDBContext";
+import { TestContext } from "../../context/TestContext";
+import { AirDBContext } from "../../context/AirDBContext";
 import { Check, Close } from "@material-ui/icons";
 
 import TestDisplay from "./TestDisplay";

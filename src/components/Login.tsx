@@ -10,7 +10,7 @@ import {
   Button,
   TextField,
   FormControl,
-  Paper as Container
+  Divider
 } from '@material-ui/core'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import Question from './take-test/Question'
@@ -49,21 +49,24 @@ export default React.memo((props: any) => {
       <br />
       <Paper>
         <Typography variant="h3">Home</Typography>
-        <div style={{ display: 'block', width: '50%' }}>
+        <Divider />
+        <br />
+        <Typography variant="h4">Sign Up</Typography>
+        <div style={{ display: 'flex', width: '100%', height: 'max-content' }}>
           <div style={{ width: '50%' }}>
             <Question
               question={{
-                question: 'Please enter your username.',
+                question: 'Enter your username.',
                 type: 'essay',
                 autocheck: true
               }}
               handlers={[]}
             />
           </div>
-          <div style={{ paddingTop: '2em', width: '50%' }}>
+          <div style={{ paddingLeft: '2em', width: '50%' }}>
             <Question
               question={{
-                question: 'Please enter your password.',
+                question: 'Enter your password.',
                 type: 'essay',
                 autocheck: true
               }}

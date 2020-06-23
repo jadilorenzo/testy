@@ -12,7 +12,7 @@ export default ({ render }: { render: any }) => {
     if (redirect !== 'none') {
       setTimeout(() => {
         setIsReady(true)
-      }, 500)
+      }, 1000)
     }
   }, [redirect])
 
@@ -25,6 +25,7 @@ export default ({ render }: { render: any }) => {
     return (
       <>
         <TuiHeader setRedirect={setRedirect} />
+        <div style={{ height: '5em' }} />
         <Slide direction="up" in={redirect === 'none'} timeout={500}>
           <div>{render(setRedirect)}</div>
         </Slide>

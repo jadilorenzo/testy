@@ -10,7 +10,7 @@ import {
   Button,
   TextField,
   FormControl,
-  Divider
+  useTheme
 } from '@material-ui/core'
 import { ExitToApp, Edit } from '@material-ui/icons'
 import Question from './take-test/Question'
@@ -24,6 +24,8 @@ export default React.memo((props: any) => {
   const [newUsername, setNewUsername] = React.useState('User Name')
   const [newPassword, setNewPassword] = React.useState('password')
   const [submitted, setSubmitted] = React.useState(false)
+
+  const theme = useTheme()
 
   const handleSubmition = () => {
     setSubmitted(true)
@@ -70,56 +72,65 @@ export default React.memo((props: any) => {
       <Paper>
         <Typography variant="h3">Home</Typography>
         <br />
-        <Divider />
-        <Typography variant="h4">Sign Up</Typography>
-        <div style={{ display: 'flex', width: '100%', height: 'max-content' }}>
-          <div style={{ width: 'calc(50% - 2em)' }}>
-            <Question
-              question={{
-                question: 'Enter your username.',
-                type: 'essay',
-                autocheck: true
-              }}
-              handlers={[handleUsernameChange]}
-              value={newUsername}
-              submitted={submitted}
-              handleSubmit={handleSubmitionClick}
-              type="text"
-            />
-          </div>
-          <div style={{ paddingLeft: '2em', width: '50%' }}>
-            <Question
-              question={{
-                question: 'Enter your password.',
-                type: 'essay',
-                autocheck: true
-              }}
-              handlers={[handlePasswordChange]}
-              value={newPassword}
-              submitted={submitted}
-              handleSubmit={handleSubmitionClick}
-              type="password"
-            />
-          </div>
-        </div>
-        <Button disabled={!submitted} color="primary">
-          Sign Up
-        </Button>
-        <IconButton
-          disabled={!submitted}
-          onClick={() => setSubmitted(false)}
-          style={{ marginLeft: '0.2em' }}
+        <div
+          style={{
+            padding: '1em',
+            border: '2px solid',
+            borderRadius: 4,
+            borderColor: theme.palette.primary.main
+          }}
         >
-          <Edit />
-        </IconButton>
-        <Divider />
-        <IconButton
+          <Typography variant="h4">Sign Up</Typography>
+          <div
+            style={{ display: 'flex', width: '100%', height: 'max-content' }}
+          >
+            <div style={{ width: 'calc(50% - 2em)' }}>
+              <Question
+                question={{
+                  question: 'Enter your username.',
+                  type: 'essay',
+                  autocheck: true
+                }}
+                handlers={[handleUsernameChange]}
+                value={newUsername}
+                submitted={submitted}
+                handleSubmit={handleSubmitionClick}
+                type="text"
+              />
+            </div>
+            <div style={{ paddingLeft: '2em', width: '50%' }}>
+              <Question
+                question={{
+                  question: 'Enter your password.',
+                  type: 'essay',
+                  autocheck: true
+                }}
+                handlers={[handlePasswordChange]}
+                value={newPassword}
+                submitted={submitted}
+                handleSubmit={handleSubmitionClick}
+                type="password"
+              />
+            </div>
+          </div>
+          <Button disabled={!submitted} color="primary">
+            Sign Up
+          </Button>
+          <IconButton
+            disabled={!submitted}
+            onClick={() => setSubmitted(false)}
+            style={{ marginLeft: '0.2em' }}
+          >
+            <Edit />
+          </IconButton>
+        </div>
+        <Button
           style={{ marginTop: '0.2em' }}
           onClick={() => setToggled(true)}
           color="primary"
         >
-          <ExitToApp />
-        </IconButton>
+          Login <ExitToApp style={{ marginLeft: '0.2em' }} />
+        </Button>
 
         <Dialog
           fullWidth={true}

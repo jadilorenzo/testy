@@ -19,14 +19,17 @@ const theme = createMuiTheme({
     h1: title,
     h2: title,
     h3: title,
-    h4: title,
     h5: title,
+    h4: {
+      fontWeight: 200,
+      fontFamily: 'Chakra Petch'
+    },
     h6: {
       fontWeight: 400,
-      fontFamily: 'Chakra Petch',
-      marginBottom: '0.2em'
+      ...title
     },
     button: {
+      fontFamily: 'Roboto',
       color: '#E0E0E0'
     }
   },

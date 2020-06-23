@@ -1,40 +1,17 @@
 import React from 'react'
-import { Typography, IconButton, Divider } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import Paper from './Paper'
 import TestDisplay from './add-test/TestDisplay'
 import { AirDBContext } from '../context/AirDBContext'
-import { ExitToApp, Add } from '@material-ui/icons'
 
 export default (props: any) => {
-  const { tests, users, updateAirDB } = React.useContext(AirDBContext)
-
-  const handleLogout = () => {
-    const userId = users.filter(
-      user => user.fields.username === window.localStorage.getItem('username')
-    )[0].id
-
-    updateAirDB('Testy - Users', userId, {
-      active: 'false'
-    }).then(() => {
-      props.setRedirect('/')
-      window.localStorage.removeItem('username')
-    })
-  }
+  const { tests } = React.useContext(AirDBContext)
 
   return (
     <>
       <br />
       <Paper>
         <Typography variant="h4">Recent Tests</Typography>
-        <Divider />
-        <div style={{ marginTop: '0.5em', marginBottom: '0.5em' }}>
-          <IconButton onClick={() => props.setRedirect('/add')} color="primary">
-            <Add />
-          </IconButton>
-          <IconButton onClick={handleLogout} color="secondary">
-            <ExitToApp />
-          </IconButton>
-        </div>
         {tests.map((row: any) => (
           <div
             key={row.fields.ID}

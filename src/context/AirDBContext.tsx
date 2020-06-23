@@ -62,16 +62,10 @@ export const AirDBProvider = React.memo((props: any) => {
   React.useEffect(() => {
     setInterval(() => {
       getAirDB('Testy - Tests').then((r: any) => setTests(r))
-      getAirDB('Testy - Users').then((r: any) => setUsers(r))
-      getAirDB('Testy - Questions')
-        .then((r: any) => {
-          setQuestions(r)
-          return r
-        })
-        .then(r => {
-          setLoading(false)
-          return r
-        })
+      getAirDB('Testy - Users')
+        .then((r: any) => setUsers(r))
+        .then(() => setLoading(false))
+      getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
     }, 3000)
   }, [])
 

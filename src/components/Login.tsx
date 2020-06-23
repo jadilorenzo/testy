@@ -12,7 +12,7 @@ import {
   FormControl,
   Divider
 } from '@material-ui/core'
-import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { ExitToApp, Edit } from '@material-ui/icons'
 import Question from './take-test/Question'
 import { AirDBContext } from '../context/AirDBContext'
 
@@ -21,6 +21,26 @@ export default React.memo((props: any) => {
   const [toggled, setToggled] = React.useState(false)
   const [username, setUser] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [newUsername, setNewUsername] = React.useState('User Name')
+  const [newPassword, setNewPassword] = React.useState('password')
+  const [submitted, setSubmitted] = React.useState(false)
+
+  const handleSubmition = () => {
+    setSubmitted(true)
+  }
+
+  const handleSubmitionClick = () => {
+    setSubmitted(true)
+    handleSubmition()
+  }
+
+  const handleUsernameChange = (e: any) => {
+    if (!submitted) setNewUsername(e.target.value)
+  }
+
+  const handlePasswordChange = (e: any) => {
+    if (!submitted) setNewPassword(e.target.value)
+  }
 
   const handleClose = () => {
     setToggled(false)
@@ -49,18 +69,22 @@ export default React.memo((props: any) => {
       <br />
       <Paper>
         <Typography variant="h3">Home</Typography>
-        <Divider />
         <br />
+        <Divider />
         <Typography variant="h4">Sign Up</Typography>
         <div style={{ display: 'flex', width: '100%', height: 'max-content' }}>
-          <div style={{ width: '50%' }}>
+          <div style={{ width: 'calc(50% - 2em)' }}>
             <Question
               question={{
                 question: 'Enter your username.',
                 type: 'essay',
                 autocheck: true
               }}
-              handlers={[]}
+              handlers={[handleUsernameChange]}
+              value={newUsername}
+              submitted={submitted}
+              handleSubmit={handleSubmitionClick}
+              type="text"
             />
           </div>
           <div style={{ paddingLeft: '2em', width: '50%' }}>
@@ -70,14 +94,33 @@ export default React.memo((props: any) => {
                 type: 'essay',
                 autocheck: true
               }}
-              handlers={[]}
+              handlers={[handlePasswordChange]}
+              value={newPassword}
+              submitted={submitted}
+              handleSubmit={handleSubmitionClick}
+              type="password"
             />
           </div>
         </div>
-        <br />
-        <IconButton onClick={() => setToggled(true)} color="primary">
-          <ExitToAppIcon />
+        <Button disabled={!submitted} color="primary">
+          Sign Up
+        </Button>
+        <IconButton
+          disabled={!submitted}
+          onClick={() => setSubmitted(false)}
+          style={{ marginLeft: '0.2em' }}
+        >
+          <Edit />
         </IconButton>
+        <Divider />
+        <IconButton
+          style={{ marginTop: '0.2em' }}
+          onClick={() => setToggled(true)}
+          color="primary"
+        >
+          <ExitToApp />
+        </IconButton>
+
         <Dialog
           fullWidth={true}
           open={toggled}

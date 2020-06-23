@@ -10,7 +10,14 @@ import {
   Button
 } from '@material-ui/core'
 
-const Question = ({ question, handlers, handleSubmit }: any) => {
+const Question = ({
+  question,
+  handlers,
+  handleSubmit,
+  value,
+  type,
+  submitted
+}: any) => {
   if (question.type === 'multiple-choice' || question.type === 'multi-answer') {
     return (
       <FormControl style={{ width: '100%' }}>
@@ -19,7 +26,7 @@ const Question = ({ question, handlers, handleSubmit }: any) => {
             {question.question === '' ? 'None' : question.question}
           </FormLabel>
           {question.answer !== '' && (
-            <RadioGroup>
+            <RadioGroup value={value}>
               <FormControlLabel
                 onClick={handlers[0]}
                 value={question.question[0]}
@@ -69,12 +76,23 @@ const Question = ({ question, handlers, handleSubmit }: any) => {
     return (
       <FormControl style={{ width: '100%' }}>
         {question.question === '' ? 'None' : question.question}
-        <FormControl onChange={handlers[0]} style={{ marginTop: '1em' }}>
-          <TextField variant="outlined" label="Answer" />
+        <FormControl style={{ marginTop: '1em' }}>
+          <TextField
+            value={value}
+            type={type}
+            onChange={handlers[0]}
+            variant="outlined"
+            label="Answer"
+          />
         </FormControl>
         <br />
         {question.autocheck !== '' && question.answer !== '' && (
-          <Button color="secondary" variant="outlined" onClick={handleSubmit}>
+          <Button
+            color="secondary"
+            variant="outlined"
+            disabled={submitted}
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
         )}

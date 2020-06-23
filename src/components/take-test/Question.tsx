@@ -17,7 +17,14 @@ const Question = ({
   value,
   type,
   submitted
-}: any) => {
+}: {
+  question: any
+  handlers?: any
+  handleSubmit?: any
+  value?: string
+  type?: string
+  submitted?: boolean
+}) => {
   if (question.type === 'multiple-choice' || question.type === 'multi-answer') {
     return (
       <FormControl style={{ width: '100%' }}>

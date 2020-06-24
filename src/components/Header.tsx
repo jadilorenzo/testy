@@ -6,13 +6,21 @@ import {
   Fade,
   Grid,
   IconButton,
+  Grow,
   useTheme
 } from '@material-ui/core'
 import loader from './loader.gif'
 
-import { Add, ExitToApp, BubbleChart } from '@material-ui/icons'
+import {
+  Add,
+  ExitToApp,
+  BubbleChart,
+  MoreHoriz,
+  Close
+} from '@material-ui/icons'
 
 const Header = (props: any) => {
+  const [toggled, setToggled] = React.useState(false)
   const { loading, users, updateAirDB } = React.useContext(AirDBContext)
   const theme = useTheme()
   const user = users.filter(
@@ -76,15 +84,29 @@ const Header = (props: any) => {
           </span>
           {loggedIn || (
             <div style={{ position: 'absolute', right: 'calc(7.5%)' }}>
-              <IconButton
-                color="secondary"
-                onClick={() => props.setRedirect('/add')}
-              >
-                <Add />
-              </IconButton>
-              <IconButton onClick={handleLogout} color="primary">
-                <ExitToApp />
-              </IconButton>
+              <Grow in={toggled} timeout={400}>
+                <IconButton
+                  color="secondary"
+                  onClick={() => props.setRedirect('/add')}
+                >
+                  <Add />
+                </IconButton>
+              </Grow>
+              <Grow in={toggled}>
+                <IconButton onClick={handleLogout} color="secondary">
+                  <ExitToApp />
+                </IconButton>
+              </Grow>
+
+              {!toggled ? (
+                <IconButton onClick={() => setToggled(true)}>
+                  <MoreHoriz color="primary" />
+                </IconButton>
+              ) : (
+                <IconButton onClick={() => setToggled(false)}>
+                  <Close color="primary" />
+                </IconButton>
+              )}
             </div>
           )}
         </div>

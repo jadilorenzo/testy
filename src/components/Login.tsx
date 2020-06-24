@@ -70,8 +70,7 @@ export default React.memo((props: any) => {
     <>
       <br />
       <Paper>
-        <Typography variant="h3">Home</Typography>
-        <br />
+        <Typography variant="h4">Home</Typography>
         <div
           style={{
             padding: '1em',
@@ -81,15 +80,13 @@ export default React.memo((props: any) => {
           }}
         >
           <Typography variant="h4">Sign Up</Typography>
-          <div
-            style={{ display: 'flex', width: '100%', height: 'max-content' }}
-          >
-            <div style={{ width: 'calc(50% - 2em)' }}>
+          <div>
+            <div>
               <Question
                 question={{
                   question: 'Enter your username.',
                   type: 'essay',
-                  autocheck: true
+                  autocheck: 'false'
                 }}
                 handlers={[handleUsernameChange]}
                 value={newUsername}
@@ -98,7 +95,7 @@ export default React.memo((props: any) => {
                 type="text"
               />
             </div>
-            <div style={{ paddingLeft: '2em', width: '50%' }}>
+            <div>
               <Question
                 question={{
                   question: 'Enter your password.',

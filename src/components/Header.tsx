@@ -10,8 +10,7 @@ import {
 } from '@material-ui/core'
 import loader from './loader.gif'
 
-import { Add, ExitToApp } from '@material-ui/icons'
-import Testy from './Testy.png'
+import { Add, ExitToApp, BubbleChart } from '@material-ui/icons'
 
 const Header = (props: any) => {
   const { loading, users, updateAirDB } = React.useContext(AirDBContext)
@@ -54,20 +53,23 @@ const Header = (props: any) => {
         <div
           style={{
             width: '85%',
+            height: '5em',
             margin: 'auto',
             display: 'flex',
             alignItems: 'center'
           }}
         >
-          <img
-            style={{
-              height: '5em',
-              marginLeft: '-1em'
-            }}
-            src={Testy}
-          />
           <span onClick={() => props.setRedirect('/')}>
-            <Typography variant="h4" className="title">
+            <BubbleChart
+              color="primary"
+              fontSize="large"
+              style={{ position: 'relative', top: 5 }}
+            />
+            <Typography
+              variant="h4"
+              className="title"
+              style={{ fontFamily: 'Avenir Next' }}
+            >
               Smart
               <span style={{ color: theme.palette.primary.main }}>One</span>
             </Typography>
@@ -104,7 +106,10 @@ const Header = (props: any) => {
               justify="center"
               alignItems="center"
             >
-              <img src={loader} style={{ width: '25%', margin: 'auto' }} />
+              <img
+                src={loader}
+                style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
+              />
             </Grid>
           </Fade>
         )}

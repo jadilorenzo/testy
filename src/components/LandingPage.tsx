@@ -11,7 +11,7 @@ export default (props: any) => {
     <>
       <br />
       <Paper>
-        <Typography variant="h4">Recent Tests</Typography>
+        <Typography variant="h5">Recent Tests</Typography>
         {tests.map((row: any) => (
           <div
             key={row.fields.ID}

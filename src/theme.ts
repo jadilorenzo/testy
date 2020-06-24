@@ -1,8 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/styles'
-
+const font = "'Ubuntu'"
 const title = {
-  fontWeight: 200,
-  fontFamily: 'Chakra Petch',
+  fontWeight: 400,
+  fontFamily: font,
   marginBottom: '0.2em'
 }
 
@@ -19,14 +19,16 @@ const theme = createMuiTheme({
     h1: title,
     h2: title,
     h3: title,
-    h5: title,
-    h4: {
-      fontWeight: 200,
-      fontFamily: 'Chakra Petch'
+    h4: title,
+    h5: {
+      ...title,
+      fontFamily: 'Ubuntu',
+      fontWeight: 400
     },
     h6: {
-      fontWeight: 400,
-      ...title
+      ...title,
+      fontFamily: 'Ubuntu',
+      fontWeight: 400
     },
     button: {
       fontFamily: 'Roboto',

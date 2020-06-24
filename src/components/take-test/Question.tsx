@@ -93,7 +93,7 @@ const Question = ({
           />
         </FormControl>
         <br />
-        {question.autocheck !== '' && question.answer !== '' && (
+        {question.autocheck !== 'false' && question.answer !== '' && (
           <Button
             color="secondary"
             variant="outlined"

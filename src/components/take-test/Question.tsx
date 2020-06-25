@@ -12,19 +12,43 @@ import {
 
 const Question = ({
   question,
-  handlers,
   handleSubmit,
-  value,
   type,
   submitted
 }: {
-  question: any
-  handlers?: any
+  question: {
+    question: string
+    type: 'multiple-choice' | 'multi-answer' | 'essay'
+    autocheck: string
+    options?: string
+    answer?: string
+  }
   handleSubmit?: any
-  value?: string
   type?: string
   submitted?: boolean
 }) => {
+  const [answer, setAnswer] = React.useState('')
+
+  const handleAnswer = (answer: string) => {
+    if (question.type !== 'multi-answer') {
+      setAnswer(answer)
+    } else {
+      setAnswer(prev => {
+        const previous = prev.split(', ').filter((x: string) => x !== '')
+
+        let newArray: string[] = []
+
+        if (!prev.split(', ').includes(answer)) {
+          newArray = [...previous, answer]
+        } else {
+          newArray = previous.filter((item: string) => item !== answer)
+        }
+
+        return newArray.sort().join(', ')
+      })
+    }
+  }
+
   if (question.type === 'multiple-choice' || question.type === 'multi-answer') {
     return (
       <FormControl style={{ width: '100%' }}>
@@ -32,47 +56,77 @@ const Question = ({
           <FormLabel component="legend">
             {question.question === '' ? 'None' : question.question}
           </FormLabel>
+          <div style={{ height: '0.2rem' }} />
           {question.answer !== '' && (
-            <RadioGroup value={value}>
+            <RadioGroup value={answer}>
               <FormControlLabel
-                onClick={handlers[0]}
-                value={question.question[0]}
-                control={
-                  question.type !== 'multi-answer' ? <Radio /> : <Checkbox />
+                onClick={() =>
+                  handleAnswer((question.options || '').split(', ')[0])
                 }
-                label={question.question[0]}
+                value={(question.options || '').split(', ')[0]}
+                control={
+                  question.type !== 'multi-answer' ? (
+                    <Radio disabled={submitted} />
+                  ) : (
+                    <Checkbox disabled={submitted} />
+                  )
+                }
+                label={(question.options || '').split(', ')[0]}
               />
               <FormControlLabel
-                onClick={handlers[1]}
-                value={question.question[1]}
-                control={
-                  question.type !== 'multi-answer' ? <Radio /> : <Checkbox />
+                onClick={() =>
+                  handleAnswer((question.options || '').split(', ')[1])
                 }
-                label={question.question[1]}
+                value={(question.options || '').split(', ')[1]}
+                control={
+                  question.type !== 'multi-answer' ? (
+                    <Radio disabled={submitted} />
+                  ) : (
+                    <Checkbox disabled={submitted} />
+                  )
+                }
+                label={(question.options || '').split(', ')[1]}
               />
               <FormControlLabel
-                onClick={handlers[2]}
-                value={question.question[2]}
-                control={
-                  question.type !== 'multi-answer' ? <Radio /> : <Checkbox />
+                onClick={() =>
+                  handleAnswer((question.options || '').split(', ')[2])
                 }
-                label={question.question[2]}
+                value={(question.options || '').split(', ')[2]}
+                control={
+                  question.type !== 'multi-answer' ? (
+                    <Radio disabled={submitted} />
+                  ) : (
+                    <Checkbox disabled={submitted} />
+                  )
+                }
+                label={(question.options || '').split(', ')[2]}
               />
               <FormControlLabel
-                onClick={handlers[3]}
-                value={question.question[3]}
-                control={
-                  question.type !== 'multi-answer' ? <Radio /> : <Checkbox />
+                onClick={() =>
+                  handleAnswer((question.options || '').split(', ')[3])
                 }
-                label={question.question[3]}
+                value={(question.options || '').split(', ')[3]}
+                control={
+                  question.type !== 'multi-answer' ? (
+                    <Radio disabled={submitted} />
+                  ) : (
+                    <Checkbox disabled={submitted} />
+                  )
+                }
+                label={(question.options || '').split(', ')[3]}
               />
             </RadioGroup>
           )}
         </FormControl>
-        <br />
+        <div style={{ height: '0.2rem' }} />
         <FormControl>
-          {question.autocheck !== '' && question.answer !== '' && (
-            <Button color="secondary" variant="outlined" onClick={handleSubmit}>
+          {question.autocheck !== 'false' && question.answer !== '' && (
+            <Button
+              color="secondary"
+              variant="outlined"
+              disabled={submitted}
+              onClick={() => handleSubmit(answer)}
+            >
               Submit
             </Button>
           )}
@@ -85,20 +139,21 @@ const Question = ({
         {question.question === '' ? 'None' : question.question}
         <FormControl style={{ marginTop: '1em' }}>
           <TextField
-            value={value}
+            value={answer}
             type={type}
-            onChange={handlers[0]}
+            disabled={submitted}
+            onChange={e => handleAnswer(e.target.value)}
             variant="outlined"
             label="Answer"
           />
         </FormControl>
-        <br />
+        <div style={{ height: '0.2rem' }} />
         {question.autocheck !== 'false' && question.answer !== '' && (
           <Button
             color="secondary"
             variant="outlined"
             disabled={submitted}
-            onClick={handleSubmit}
+            onClick={() => handleSubmit(answer)}
           >
             Submit
           </Button>

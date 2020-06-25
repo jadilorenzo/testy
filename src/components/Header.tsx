@@ -111,30 +111,24 @@ const Header = (props: any) => {
           )}
         </div>
       </AppBar>
-      {window.location.pathname.includes('add') ||
-        window.location.pathname !== '/' || (
-          <Fade
-            in={loading}
-            style={{
-              zIndex: 1000,
-              position: 'absolute',
-              height: '100%',
-              background: '#fff'
-            }}
-          >
-            <Grid
-              container
-              direction="row"
-              justify="center"
-              alignItems="center"
-            >
-              <img
-                src={loader}
-                style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
-              />
-            </Grid>
-          </Fade>
-        )}
+      {window.location.pathname.includes('add') || (
+        <Fade
+          in={loading}
+          style={{
+            zIndex: 1000,
+            position: 'absolute',
+            height: '100%',
+            background: '#fff'
+          }}
+        >
+          <Grid container direction="row" justify="center" alignItems="center">
+            <img
+              src={loader}
+              style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
+            />
+          </Grid>
+        </Fade>
+      )}
     </>
   )
 }

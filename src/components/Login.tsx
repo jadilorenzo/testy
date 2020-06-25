@@ -27,21 +27,19 @@ export default React.memo((props: any) => {
 
   const theme = useTheme()
 
-  const handleSubmition = () => {
+  const handleSubmitionClick = (newUsername: string, newPassword: string) => {
     setSubmitted(true)
+    // TODO: more stuff
   }
 
-  const handleSubmitionClick = () => {
-    setSubmitted(true)
-    handleSubmition()
+  const handleUsernameChange = (username: string) => {
+    if (!submitted) setNewUsername(username)
+    handleSubmitionClick(newUsername, newPassword)
   }
 
-  const handleUsernameChange = (e: any) => {
-    if (!submitted) setNewUsername(e.target.value)
-  }
-
-  const handlePasswordChange = (e: any) => {
-    if (!submitted) setNewPassword(e.target.value)
+  const handlePasswordChange = (password: string) => {
+    if (!submitted) setNewPassword(password)
+    handleSubmitionClick(newUsername, newPassword)
   }
 
   const handleClose = () => {
@@ -70,7 +68,7 @@ export default React.memo((props: any) => {
     <>
       <br />
       <Paper>
-        <Typography variant="h4">Home</Typography>
+        <Typography variant="h3">Home</Typography>
         <div
           style={{
             padding: '1em',
@@ -81,17 +79,15 @@ export default React.memo((props: any) => {
         >
           <Typography variant="h4">Sign Up</Typography>
           <div>
-            <div>
+            {/* <div>
               <Question
                 question={{
                   question: 'Enter your username.',
                   type: 'essay',
                   autocheck: 'false'
                 }}
-                handlers={[handleUsernameChange]}
-                value={newUsername}
                 submitted={submitted}
-                handleSubmit={handleSubmitionClick}
+                handleSubmit={handleUsernameChange}
                 type="text"
               />
             </div>
@@ -100,15 +96,12 @@ export default React.memo((props: any) => {
                 question={{
                   question: 'Enter your password.',
                   type: 'essay',
-                  autocheck: true
+                  autocheck: 'true'
                 }}
-                handlers={[handlePasswordChange]}
-                value={newPassword}
                 submitted={submitted}
-                handleSubmit={handleSubmitionClick}
-                type="password"
+                handleSubmit={handlePasswordChange}
               />
-            </div>
+            </div> */}
           </div>
           <Button disabled={!submitted} color="primary">
             Sign Up

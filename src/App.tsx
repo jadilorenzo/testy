@@ -8,7 +8,8 @@ import {
   TuiMain,
   TuiAddQuestionTo,
   TuiAddPage,
-  TuiLogin
+  TuiLogin,
+  TuiSampleTest
 } from './components'
 import { AirDBContext } from './context/AirDBContext'
 import TestsRoutes from './TestsRoutes'
@@ -50,6 +51,9 @@ const App = () => {
                   </Route>
                   <Route exact path="/add/question/to/:id">
                     <TuiAddQuestionTo setRedirect={setRedirect} />
+                  </Route>
+                  <Route exact path="/sample/test">
+                    <TuiSampleTest />
                   </Route>
                 </>
               )}

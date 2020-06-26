@@ -8,6 +8,7 @@ const title = {
 
 const theme = createMuiTheme({
   palette: {
+    // type: 'dark',
     primary: {
       main: '#1574d2'
     },

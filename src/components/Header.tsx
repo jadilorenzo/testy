@@ -6,7 +6,7 @@ import {
   Fade,
   Grid,
   IconButton,
-  Grow,
+  Zoom,
   useTheme
 } from '@material-ui/core'
 import loader from './loader.gif'
@@ -84,19 +84,19 @@ const Header = (props: any) => {
           </span>
           {loggedIn || (
             <div style={{ position: 'absolute', right: 'calc(7.5%)' }}>
-              <Grow in={toggled} timeout={400}>
+              <Zoom in={toggled} timeout={400}>
                 <IconButton
                   color="secondary"
                   onClick={() => props.setRedirect('/add')}
                 >
                   <Add />
                 </IconButton>
-              </Grow>
-              <Grow in={toggled}>
+              </Zoom>
+              <Zoom in={toggled}>
                 <IconButton onClick={handleLogout} color="secondary">
                   <ExitToApp />
                 </IconButton>
-              </Grow>
+              </Zoom>
 
               {!toggled ? (
                 <IconButton onClick={() => setToggled(true)}>

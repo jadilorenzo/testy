@@ -22,6 +22,7 @@ export default ({
     undefined,
     undefined
   ])
+
   const theme = useTheme()
 
   const handleSubmit = (value: string, question: any, index: number) => {
@@ -52,36 +53,10 @@ export default ({
               marginBottom: '0.2em'
             }}
           >
-            {score[index] === true && (
-              <Alert
-                style={{ marginBottom: '0.5em' }}
-                variant="filled"
-                color="success"
-                severity="success"
-              >
-                Correct
-              </Alert>
-            )}
-            {score[index] === false && (
-              <>
-                <Alert
-                  style={{ marginBottom: '0.5em' }}
-                  color="error"
-                  variant="filled"
-                  severity="error"
-                >
-                  Incorrect
-                </Alert>
-                <div style={{ color: theme.palette.error.main }}>
-                  Correct Answer: {question.fields.answer}
-                </div>
-                <div style={{ height: '0.2rem' }} />
-              </>
-            )}
-
             <Question
               question={question.fields}
               submitted={score[index] !== undefined}
+              correct={score[index]}
               handleSubmit={(value: string) =>
                 handleSubmit(value, question, index)
               }

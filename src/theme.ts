@@ -55,6 +55,10 @@ const theme = createMuiTheme({
     },
     MuiCard: {
       elevation: 0
+    },
+    MuiIconButton: {
+      disableTouchRipple: true,
+      disableRipple: true
     }
   }
 })

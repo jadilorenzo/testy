@@ -21,8 +21,6 @@ export default React.memo((props: any) => {
   const [toggled, setToggled] = React.useState(false)
   const [username, setUser] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [newUsername, setNewUsername] = React.useState('User Name')
-  const [newPassword, setNewPassword] = React.useState('password')
   const [submitted, setSubmitted] = React.useState(false)
 
   const theme = useTheme()
@@ -30,16 +28,6 @@ export default React.memo((props: any) => {
   const handleSubmitionClick = (newUsername: string, newPassword: string) => {
     setSubmitted(true)
     // TODO: more stuff
-  }
-
-  const handleUsernameChange = (username: string) => {
-    if (!submitted) setNewUsername(username)
-    handleSubmitionClick(newUsername, newPassword)
-  }
-
-  const handlePasswordChange = (password: string) => {
-    if (!submitted) setNewPassword(password)
-    handleSubmitionClick(newUsername, newPassword)
   }
 
   const handleClose = () => {

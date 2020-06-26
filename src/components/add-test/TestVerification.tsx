@@ -28,9 +28,16 @@ export default () => {
   }, [])
 
   const handleAddTest = async () => {
+    const userid = (
+      db.users.filter(
+        user => user.fields.username === window.localStorage.getItem('username')
+      )[0] || { id: '' }
+    ).id
+
     await db
       .postAirDB('Testy - Tests', {
         ...test,
+        userid,
         tags: test.tags.join(', '),
         questions: questionIDs.join(', ')
       })

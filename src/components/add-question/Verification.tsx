@@ -11,9 +11,16 @@ const Verification = () => {
   const [options] = useContext(OptionsContext)
 
   const handleAddQuestion = async () => {
+    const userid = (
+      db.users.filter(
+        user => user.fields.username === window.localStorage.getItem('username')
+      )[0] || { id: '' }
+    ).id
+
     await db
       .postAirDB('Testy - Questions', {
         ...question,
+        userid,
         options: question.options
           .sort()
           .map((x: string) => x.trim())

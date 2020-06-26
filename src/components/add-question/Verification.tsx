@@ -14,7 +14,10 @@ const Verification = () => {
     await db
       .postAirDB('Testy - Questions', {
         ...question,
-        options: question.options.map((x: string) => x.trim()).join(', '),
+        options: question.options
+          .sort()
+          .map((x: string) => x.trim())
+          .join(', '),
         type: options.type,
         autocheck: JSON.stringify(options.autocheck)
       })

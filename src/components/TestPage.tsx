@@ -67,7 +67,12 @@ export default (props: {
           >
             + Question
           </Button>
-          <Button color="primary">Take Test</Button>
+          <Button
+            color="primary"
+            onClick={() => props.setRedirect(`/take/test/${props.id}`)}
+          >
+            Take Test
+          </Button>
         </ButtonGroup>
       </Paper>
     </div>

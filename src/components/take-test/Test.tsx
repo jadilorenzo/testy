@@ -16,15 +16,27 @@ export default ({
   const myQuestions = questions.filter(question =>
     test.questions.split(', ').includes(question.id)
   )
-  const [score, setCorrectProblems] = React.useState<boolean[]>([])
+  const [score, setCorrectProblems] = React.useState<(boolean | undefined)[]>([
+    undefined,
+    undefined,
+    undefined,
+    undefined
+  ])
   const theme = useTheme()
 
-  if (score.filter(x => x !== undefined).length === myQuestions.length) {
-    setScore(
-      `${Math.round(
-        (score.filter(x => x === true).length / myQuestions.length) * 100
-      )}%`
-    )
+  const handleSubmit = (value: string, question: any, index: number) => {
+    setCorrectProblems(prev => {
+      prev[index] = value === question.fields.answer
+      return prev
+    })
+
+    if (score.filter(x => x !== undefined).length === myQuestions.length) {
+      setScore(
+        `${Math.round(
+          (score.filter(x => x === true).length / myQuestions.length) * 100
+        )}%`
+      )
+    }
   }
 
   return (
@@ -70,13 +82,9 @@ export default ({
             <Question
               question={question.fields}
               submitted={score[index] !== undefined}
-              handleSubmit={(value: string) => {
-                setCorrectProblems(prev => {
-                  console.log(value, question.fields.answer)
-                  prev[index] = value === question.fields.answer
-                  return prev
-                })
-              }}
+              handleSubmit={(value: string) =>
+                handleSubmit(value, question, index)
+              }
             />
           </div>
         )

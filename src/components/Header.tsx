@@ -126,6 +126,13 @@ const Header = (props: any) => {
               src={loader}
               style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
             />
+            {loading && (
+              <audio
+                autoPlay={true}
+                preload="http://localhost:3000/hero_simple-celebration-01.wav"
+                src="http://localhost:3000/hero_simple-celebration-01.wav"
+              ></audio>
+            )}
           </Grid>
         </Fade>
       )}

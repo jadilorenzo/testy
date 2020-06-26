@@ -58,9 +58,11 @@ export default (props: any) => {
         </div>
         <div>
           <FormControl variant="outlined" style={{ width: '50%' }}>
+            <InputLabel placeholder="Tags">Tags</InputLabel>
             <Select
               variant="outlined"
               multiple
+              label="Tags"
               value={search.tags}
               onChange={handleTagChange}
               fullWidth

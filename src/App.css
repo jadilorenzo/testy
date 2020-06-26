@@ -88,4 +88,5 @@ a {
 
 .MuiSelect-select:focus {
   background-color: none;
+  background: none;
 }

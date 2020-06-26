@@ -37,10 +37,9 @@ export default (props: any) => {
       <br />
       <Paper>
         <Typography variant="h5">Recent Tests</Typography>
-        <div>
+        <div style={{ marginBottom: '0.2rem' }}>
           <TextField
-            placeholder="Search"
-            variant="outlined"
+            label="Search"
             onChange={handleSearchChange}
             value={search.search}
             style={{
@@ -49,30 +48,11 @@ export default (props: any) => {
               borderRadius: '0.4em',
               marginBottom: 5
             }}
-            inputProps={{
-              style: {
-                padding: '1rem'
-              }
-            }}
           />
-        </div>
-        <div>
-          <FormControl variant="outlined" style={{ width: '50%' }}>
-            <InputLabel placeholder="Tags">Tags</InputLabel>
-            <Select
-              variant="outlined"
-              multiple
-              label="Tags"
-              value={search.tags}
-              onChange={handleTagChange}
-              fullWidth
-              style={{
-                borderRadius: 5,
-                margin: 'auto',
-                marginBottom: 5
-              }}
-              inputProps={{ label: 'Tags' }}
-            >
+          <br />
+          <FormControl style={{ width: '50%' }}>
+            <InputLabel>Tags</InputLabel>
+            <Select multiple value={search.tags} onChange={handleTagChange}>
               {tests
                 .flatMap((test: any) => test.fields.tags.split(', '))
                 .sort()

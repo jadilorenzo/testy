@@ -76,7 +76,7 @@ const Header = (props: any) => {
             <Typography
               variant="h4"
               className="title"
-              style={{ fontFamily: 'Avenir Next' }}
+              style={{ fontFamily: 'Avenir' }}
             >
               Smart
               <span style={{ color: theme.palette.primary.main }}>One</span>

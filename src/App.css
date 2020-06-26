@@ -85,3 +85,7 @@ a {
 .MuiIconButton-root:hover {
   color: #006bcd;
 }
+
+.MuiSelect-select:focus {
+  background-color: none;
+}

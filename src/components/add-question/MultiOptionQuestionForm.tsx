@@ -59,7 +59,7 @@ export default () => {
       <div>
         <Radio disabled />
         <TextField
-          className="OptionTextField"
+          className="options-text-field"
           value={question.options[0]}
           onChange={(e: any) => handleOptionChange(e, 0)}
         />
@@ -67,7 +67,7 @@ export default () => {
       <div>
         <Radio disabled />
         <TextField
-          className="OptionTextField"
+          className="options-text-field"
           value={question.options[1]}
           onChange={(e: any) => handleOptionChange(e, 1)}
         />
@@ -75,7 +75,7 @@ export default () => {
       <div>
         <Radio disabled />
         <TextField
-          className="OptionTextField"
+          className="options-text-field"
           value={question.options[2]}
           onChange={(e: any) => handleOptionChange(e, 2)}
         />
@@ -83,7 +83,7 @@ export default () => {
       <div>
         <Radio disabled />
         <TextField
-          className="OptionTextField"
+          className="options-text-field"
           value={question.options[3]}
           onChange={(e: any) => handleOptionChange(e, 3)}
         />
@@ -93,7 +93,6 @@ export default () => {
           <InputLabel id="select">Answer</InputLabel>
           <Select
             onChange={handleAnswerChange}
-            className="Select"
             labelId="select"
             value={question.answer}
           >

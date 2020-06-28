@@ -3,66 +3,24 @@
   padding-left: 0.2rem;
 }
 
-.QuestionForm {
-  padding: 1rem;
-}
-
-.OptionTextField {
+.options-text-field {
   width: 90%;
 }
 
-.QuestionTitle {
-  display: block;
-  text-align: center;
+.form-groups > * {
   margin-bottom: 1rem;
 }
 
-.MultiOptionQuestionFormField {
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.FormGroups > * {
-  margin-bottom: 1rem;
-}
-
-.TestGroup {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  margin: 1rem;
-}
-
-.TestGroup > * {
-  width: 70%;
-}
-
-.Select {
+.select {
   width: calc(100%);
   margin-top: 0.5rem;
 }
 
-.FormGroup {
+.form-group {
   width: 100%;
   margin-bottom: 1rem;
 }
 
-.MuiTabs-root > * {
-  justify-content: space-around;
-
-}
-
-.icon-group {
-  position: relative;
-}
-
-.icon {
-  opacity: 0.5;
-}
-
-.gradient {
-  background: linear-gradient(0.6deg, #006bcd, #00558c);
-}
 html, p {
   cursor: default;
 }
@@ -71,17 +29,10 @@ a {
   text-decoration: none;
 }
 
-.MuiTypography-h6:hover {
-  color: #81c784;
-}
-.MuiTypography-h6::selection {
-  background: none;
-}
-
 ::selection {
   background-color: #81c784;
 }
 
-.MuiIconButton-root:hover {
+.icon-btn:hover {
   color: #006bcd;
 }

@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import { primary, secondary } from './colors'
 const font = "'Ubuntu'"
 const title = {
   fontWeight: 400,
@@ -9,10 +10,10 @@ const title = {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#1574d2'
+      main: primary
     },
     secondary: {
-      main: '#81c784'
+      main: secondary
     }
   },
   typography: {
@@ -28,7 +29,10 @@ const theme = createMuiTheme({
     h6: {
       ...title,
       fontFamily: 'Ubuntu',
-      fontWeight: 400
+      fontWeight: 400,
+      '& > hover': {
+        color: primary
+      }
     },
     button: {
       fontFamily: 'Roboto',
@@ -42,9 +46,11 @@ const theme = createMuiTheme({
     MuiButton: {
       variant: 'contained',
       color: 'secondary',
+      className: 'btn',
       disableElevation: true
     },
     MuiButtonGroup: {
+      className: 'btn-group',
       variant: 'contained',
       color: 'secondary',
       disableElevation: true
@@ -57,8 +63,15 @@ const theme = createMuiTheme({
       elevation: 0
     },
     MuiIconButton: {
+      className: 'icon-btn',
       disableTouchRipple: true,
       disableRipple: true
+    },
+    MuiSelect: {
+      className: 'select'
+    },
+    MuiFormGroup: {
+      className: 'form-group'
     }
   }
 })

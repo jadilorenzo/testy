@@ -60,9 +60,8 @@ export default React.memo((props: any) => {
         <div
           style={{
             padding: '1em',
-            border: '2px solid',
-            borderRadius: 4,
-            borderColor: theme.palette.primary.main
+            border: `2px solid ${theme.palette.primary.main}`,
+            borderRadius: 4
           }}
         >
           <Typography variant="h4">Sign Up</Typography>

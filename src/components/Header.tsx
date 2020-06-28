@@ -60,11 +60,12 @@ const Header = (props: any) => {
         />
         <div
           style={{
-            width: '85%',
-            height: '5em',
+            flexBasis: '85%',
+            height: '5rem',
             margin: 'auto',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyItems: 'left'
           }}
         >
           <span onClick={() => props.setRedirect('/')}>

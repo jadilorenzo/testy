@@ -50,7 +50,7 @@ export default (props: any) => {
   return (
     <div>
       <br />
-      <Paper style={{ padding: '1em' }}>
+      <Paper style={{ padding: '1rem' }}>
         <Typography variant="h5">
           Add question to "{test.fields.title}"
         </Typography>

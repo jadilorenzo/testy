@@ -60,7 +60,7 @@ const Header = (props: any) => {
         />
         <div
           style={{
-            flexBasis: '85%',
+            width: '85%',
             height: '5rem',
             margin: 'auto',
             display: 'flex',
@@ -85,7 +85,10 @@ const Header = (props: any) => {
           </span>
           {loggedIn || (
             <div style={{ position: 'absolute', right: 'calc(7.5%)' }}>
-              <Zoom in={toggled} timeout={400}>
+              <Zoom
+                in={toggled}
+                style={{ transitionDelay: toggled ? '50ms' : '0ms' }}
+              >
                 <IconButton
                   color="secondary"
                   onClick={() => props.setRedirect('/add')}

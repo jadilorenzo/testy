@@ -50,7 +50,7 @@ export default (props: any) => {
             }}
           />
           <br />
-          <FormControl style={{ width: '50%' }}>
+          <FormControl style={{ width: '50%', marginBottom: '0.2rem' }}>
             <InputLabel>Tags</InputLabel>
             <Select multiple value={search.tags} onChange={handleTagChange}>
               {tests

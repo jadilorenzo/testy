@@ -4,7 +4,7 @@ import {
   TextField,
   Select,
   MenuItem,
-  useTheme,
+  // OutlinedInput,
   FormControl,
   InputLabel
 } from '@material-ui/core'
@@ -41,17 +41,30 @@ export default (props: any) => {
             label="Search"
             onChange={handleSearchChange}
             value={search.search}
+            variant="outlined"
             style={{
               width: '40%',
               margin: 'auto',
-              borderRadius: '0.4em',
-              marginBottom: 5
+              borderRadius: '0.4em'
             }}
           />
-          <br />
-          <FormControl style={{ width: '50%', marginBottom: '0.2rem' }}>
-            <InputLabel>Tags</InputLabel>
-            <Select multiple value={search.tags} onChange={handleTagChange}>
+        </div>
+        <div>
+          <FormControl
+            variant="outlined"
+            style={{ width: '50%', marginTop: -15, marginBottom: 10 }}
+          >
+            <InputLabel style={{ position: 'relative', top: 22.5 }}>
+              Tags
+            </InputLabel>
+            <Select
+              multiple
+              label="Tags"
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={search.tags}
+              onChange={handleTagChange}
+            >
               {tests
                 .flatMap((test: any) => test.fields.tags.split(', '))
                 .sort()

@@ -1,26 +1,30 @@
 import React from 'react'
 import {
   Typography,
-  Button,
   Chip,
   Card,
   ButtonGroup,
   useTheme
 } from '@material-ui/core'
 import Paper from './Paper'
+import Button from './Button'
 
 export default (props: {
   test: any
   id: string
   setRedirect: any
   questions: any
+  user: any
 }) => {
   const theme = useTheme()
   return (
     <div>
       <br />
       <Paper style={{ padding: '1em', paddingBottom: 0 }}>
-        <Typography variant="h5">{props.test.title}</Typography>
+        <Typography variant="h4">{props.test.title}</Typography>
+        <Typography variant="h5">
+          <em>{(props.user || { fields: {} }).fields.username}</em>
+        </Typography>
         {props.test.tags.split(', ').length > 0 ? (
           props.test.tags
             .split(', ')
@@ -35,8 +39,7 @@ export default (props: {
         ) : (
           <em>No tags</em>
         )}
-        <br />
-        <br />
+        <div style={{ height: '0.5rem' }} />
         {props.test.questions !== undefined ? (
           props.questions
             .filter((question: any) =>
@@ -57,7 +60,7 @@ export default (props: {
         ) : (
           <em>No Questions</em>
         )}
-        <br />
+        <div style={{ height: '0.5rem' }} />
         <ButtonGroup orientation="vertical">
           <Button
             variant="text"

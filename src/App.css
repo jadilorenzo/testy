@@ -36,3 +36,8 @@ a {
 .icon-btn:hover {
   color: #006bcd;
 }
+
+.MuiSelect-select:focus {
+  background-color: none;
+  background: none;
+}

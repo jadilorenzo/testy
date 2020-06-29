@@ -7,8 +7,9 @@ const title = {
   marginBottom: '0.2em'
 }
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
+    // type: 'dark',
     primary: {
       main: primary
     },

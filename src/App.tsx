@@ -12,6 +12,7 @@ import {
   TuiSampleTest
 } from './components'
 import { AirDBContext } from './context/AirDBContext'
+import { SearchProvider } from './context/SearchContext'
 import TestsRoutes from './TestsRoutes'
 import Reroute from './Reroute'
 
@@ -34,7 +35,7 @@ const App = () => {
                   <TuiLogin setRedirect={setRedirect} />
                 </Route>
               ) : (
-                <>
+                <SearchProvider>
                   <Route exact path="/">
                     <TuiMain setRedirect={setRedirect} />
                   </Route>
@@ -55,7 +56,7 @@ const App = () => {
                   <Route exact path="/sample/test">
                     <TuiSampleTest />
                   </Route>
-                </>
+                </SearchProvider>
               )}
               <TestsRoutes setRedirect={setRedirect} />
               <div style={{ height: '6rem' }} />

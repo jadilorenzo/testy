@@ -77,7 +77,7 @@ const Header = (props: any) => {
             <Typography
               variant="h4"
               className="title"
-              style={{ fontFamily: 'Avenir Next' }}
+              style={{ fontFamily: 'Avenir' }}
             >
               Smart
               <span style={{ color: theme.palette.primary.main }}>One</span>
@@ -130,6 +130,13 @@ const Header = (props: any) => {
               src={loader}
               style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
             />
+            {loading && (
+              <audio
+                autoPlay={true}
+                preload="http://localhost:3000/hero_simple-celebration-01.wav"
+                src="http://localhost:3000/hero_simple-celebration-01.wav"
+              ></audio>
+            )}
           </Grid>
         </Fade>
       )}

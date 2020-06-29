@@ -1,14 +1,9 @@
 import React, { useContext, useCallback } from 'react'
-import {
-  FormControl,
-  FormControlLabel,
-  Checkbox,
-  Button
-} from '@material-ui/core'
+import { FormControl, FormControlLabel, Checkbox } from '@material-ui/core'
 import { TestContext } from '../../context/TestContext'
 import { AirDBContext } from '../../context/AirDBContext'
 import { Check, Close } from '@material-ui/icons'
-
+import Button from '../Button'
 import TestDisplay from './TestDisplay'
 
 export default () => {

@@ -1,13 +1,13 @@
 import React from 'react'
 import {
   Typography,
-  Button,
   Chip,
   Card,
   ButtonGroup,
   useTheme
 } from '@material-ui/core'
 import Paper from './Paper'
+import Button from './Button'
 
 export default (props: {
   test: any

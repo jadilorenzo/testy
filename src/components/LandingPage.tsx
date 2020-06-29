@@ -17,7 +17,6 @@ import filterTests from '../methods/filterTests'
 export default (props: any) => {
   const { tests } = React.useContext(AirDBContext)
   const [search, setSearch] = React.useContext(SearchContext)
-  const theme = useTheme()
 
   const handleSearchChange = (e: any) => {
     e.persist()

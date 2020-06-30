@@ -4,7 +4,6 @@ import {
   TextField,
   Select,
   MenuItem,
-  // OutlinedInput,
   FormControl,
   InputLabel
 } from '@material-ui/core'
@@ -13,6 +12,7 @@ import TestDisplay from './add-test/TestDisplay'
 import { AirDBContext } from '../context/AirDBContext'
 import { SearchContext } from '../context/SearchContext'
 import filterTests from '../methods/filterTests'
+import Button from './Button'
 
 export default (props: any) => {
   const { tests } = React.useContext(AirDBContext)
@@ -35,7 +35,15 @@ export default (props: any) => {
     <>
       <br />
       <Paper>
-        <Typography variant="h5">Recent Tests</Typography>
+        <Typography variant="h5">Search Tests</Typography>
+        <Button
+          variant="text"
+          color="primary"
+          style={{ float: 'right', position: 'relative', top: '-2.5rem' }}
+          onClick={() => props.setRedirect('/scores')}
+        >
+          Scores
+        </Button>
         <div style={{ marginBottom: '0.2rem' }}>
           <TextField
             label="Search"

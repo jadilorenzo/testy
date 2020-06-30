@@ -12,7 +12,7 @@ export default ({ render }: { render: any }) => {
     if (redirect !== 'none') {
       setTimeout(() => {
         setIsReady(true)
-      }, 1000)
+      }, 1500)
     }
   }, [redirect])
 

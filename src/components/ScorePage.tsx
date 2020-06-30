@@ -4,8 +4,13 @@ import { Typography, Grid, Paper, useTheme } from '@material-ui/core'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default (props: any) => {
-  const { scores, tests } = React.useContext(AirDBContext)
+  const { scores, tests, users } = React.useContext(AirDBContext)
   const theme = useTheme()
+  const userid = (
+    users.filter(
+      user => user.fields.username === window.localStorage.getItem('username')
+    )[0] || { id: '' }
+  ).id
 
   console.log(theme.breakpoints.up('xs'))
 
@@ -14,51 +19,53 @@ export default (props: any) => {
       <br />
       <Page>
         <Typography variant="h5">Your Scores</Typography>
-        {scores.map(score => (
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="center"
-            spacing={2}
-          >
-            <Grid item xs={7} sm={3}>
-              <Paper
-                style={{
-                  background: theme.palette.background.default,
-                  padding: '0.75rem'
-                }}
-              >
-                {
-                  (
-                    tests.filter(test => {
-                      return test.id === score.fields.test
-                    })[0] || {
-                      fields: { title: <em>Test not found</em> }
-                    }
-                  ).fields.title
-                }
-              </Paper>
+        {scores
+          .filter(score => score.fields.userid === userid)
+          .map(score => (
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="center"
+              spacing={2}
+            >
+              <Grid item xs={7} sm={4}>
+                <Paper
+                  style={{
+                    background: theme.palette.background.default,
+                    padding: '0.75rem'
+                  }}
+                >
+                  {
+                    (
+                      tests.filter(test => {
+                        return test.id === score.fields.test
+                      })[0] || {
+                        fields: { title: <em>Test not found</em> }
+                      }
+                    ).fields.title
+                  }
+                </Paper>
+              </Grid>
+              <Grid item xs={5} sm={8}>
+                <Paper
+                  style={{
+                    background: theme.palette.background.default,
+                    padding: '0.75rem',
+                    border: '1px solid',
+                    borderColor:
+                      JSON.parse(score.fields.score.replace('%', '')) < 50
+                        ? theme.palette.error.main
+                        : theme.palette.success.main,
+                    minWidth: 50,
+                    width: `${JSON.parse(score.fields.score.replace('%', ''))}%`
+                  }}
+                >
+                  {score.fields.score}
+                </Paper>
+              </Grid>
             </Grid>
-            <Grid item xs={5} sm={9}>
-              <Paper
-                style={{
-                  background: theme.palette.background.default,
-                  padding: '0.75rem',
-                  border: '1px solid',
-                  borderColor:
-                    JSON.parse(score.fields.score.replace('%', '')) < 50
-                      ? theme.palette.error.main
-                      : theme.palette.success.main,
-                  minWidth: 50,
-                  width: `${JSON.parse(score.fields.score.replace('%', ''))}%`
-                }}
-              >
-                {score.fields.score}
-              </Paper>
-            </Grid>
-          </Grid>
-        ))}
+          ))}
       </Page>
     </>
   )

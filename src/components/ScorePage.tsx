@@ -1,6 +1,6 @@
 import React from 'react'
 import Page from './Paper'
-import { Typography, Grid, Paper, useTheme } from '@material-ui/core'
+import { Typography, Grid, Paper, Button, useTheme } from '@material-ui/core'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default (props: any) => {
@@ -30,7 +30,7 @@ export default (props: any) => {
               alignItems="center"
               spacing={2}
             >
-              <Grid item xs={7} sm={4}>
+              <Grid item sm={12}>
                 <Paper
                   style={{
                     background: theme.palette.background.default,
@@ -48,23 +48,38 @@ export default (props: any) => {
                       ).fields.title
                     }
                   </Typography>
-                </Paper>
-              </Grid>
-              <Grid item xs={5} sm={8}>
-                <Paper
-                  style={{
-                    background: theme.palette.background.default,
-                    padding: '0.75rem',
-                    border: '1px solid',
-                    borderColor:
-                      JSON.parse(score.fields.score.replace('%', '')) < 50
-                        ? theme.palette.error.main
-                        : theme.palette.success.main,
-                    minWidth: 50,
-                    width: `${JSON.parse(score.fields.score.replace('%', ''))}%`
-                  }}
-                >
-                  {score.fields.score}
+                  <Button
+                    onClick={() =>
+                      props.setRedirect(`/test/${score.fields.test}`)
+                    }
+                    variant="outlined"
+                    style={{ marginBottom: '0.2rem' }}
+                  >
+                    Take again
+                  </Button>
+                  <div
+                    style={{
+                      backgroundImage:
+                        'repeating-linear-gradient(-45deg, transparent, transparent 10px, #E0E0E0 10px, #E0E0E0 20px)',
+                      borderRadius: 5
+                    }}
+                  >
+                    <Paper
+                      style={{
+                        padding: '0.2rem',
+                        background:
+                          JSON.parse(score.fields.score.replace('%', '')) < 50
+                            ? theme.palette.error.light
+                            : theme.palette.success.light,
+                        minWidth: 30,
+                        width: `${JSON.parse(
+                          score.fields.score.replace('%', '')
+                        )}%`
+                      }}
+                    >
+                      {score.fields.score}
+                    </Paper>
+                  </div>
                 </Paper>
               </Grid>
             </Grid>

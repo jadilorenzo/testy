@@ -14,7 +14,7 @@ export default ({ test, setRedirect, id }: any) => {
       )[0] || { id: '' }
     ).id
 
-    postAirDB('Testy - Test Instances', {
+    postAirDB('Testy - Test Scores', {
       userid,
       score,
       test: id
@@ -25,7 +25,7 @@ export default ({ test, setRedirect, id }: any) => {
     <>
       <br />
       <Paper>
-        <Test test={test} setScore={setScore} />
+        <Test test={test} setScore={setScore} id={id} />
         <Button onClick={() => setRedirect('/')}>End</Button>
       </Paper>
     </>

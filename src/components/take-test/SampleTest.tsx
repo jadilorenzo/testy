@@ -18,6 +18,7 @@ export default () => {
       <Paper>
         <Typography variant="h4">Sample Test</Typography>
         <Test
+          id=""
           setScore={setScore}
           test={{
             title: 'Sample Test',

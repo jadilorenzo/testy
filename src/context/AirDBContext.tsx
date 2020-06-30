@@ -69,7 +69,7 @@ export const AirDBProvider = React.memo((props: any) => {
         .then((r: any) => setUsers(r))
         .then(() => setLoading(false))
       getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
-      getAirDB('Testy - Test Instances').then((r: any) => setScores(r))
+      getAirDB('Testy - Test Scores').then((r: any) => setScores(r))
     }, 1500)
   }, [])
 

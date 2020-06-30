@@ -62,7 +62,7 @@ export default (props: any) => {
             variant="outlined"
             style={{ width: '50%', marginTop: -15, marginBottom: 10 }}
           >
-            <InputLabel style={{ position: 'relative', top: 22.5 }}>
+            <InputLabel style={{ position: 'relative', top: 25 }}>
               Tags
             </InputLabel>
             <Select

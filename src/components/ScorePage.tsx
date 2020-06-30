@@ -21,6 +21,7 @@ export default (props: any) => {
         <Typography variant="h5">Your Scores</Typography>
         {scores
           .filter(score => score.fields.userid === userid)
+          .reverse()
           .map(score => (
             <Grid
               container
@@ -36,15 +37,17 @@ export default (props: any) => {
                     padding: '0.75rem'
                   }}
                 >
-                  {
-                    (
-                      tests.filter(test => {
-                        return test.id === score.fields.test
-                      })[0] || {
-                        fields: { title: <em>Test not found</em> }
-                      }
-                    ).fields.title
-                  }
+                  <Typography variant="h6">
+                    {
+                      (
+                        tests.filter(test => {
+                          return test.id === score.fields.test
+                        })[0] || {
+                          fields: { title: <em>Test not found</em> }
+                        }
+                      ).fields.title
+                    }
+                  </Typography>
                 </Paper>
               </Grid>
               <Grid item xs={5} sm={8}>

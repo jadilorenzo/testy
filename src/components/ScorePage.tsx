@@ -30,7 +30,7 @@ export default (props: any) => {
               alignItems="center"
               spacing={2}
             >
-              <Grid item sm={12}>
+              <Grid item xs={12}>
                 <Paper
                   style={{
                     background: theme.palette.background.default,

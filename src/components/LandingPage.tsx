@@ -76,7 +76,8 @@ export default (props: any) => {
               {tests
                 .flatMap((test: any) => (test.fields.tags || '').split(', '))
                 .sort()
-                .map((tag: any) => (
+                .filter((tag: string) => tag !== '')
+                .map((tag: string) => (
                   <MenuItem key={tag} value={tag}>
                     {tag}
                   </MenuItem>
@@ -86,7 +87,12 @@ export default (props: any) => {
         </div>
         <div style={{ maxHeight: '30rem', overflow: 'scroll' }}>
           {tests
-            .filter((test: any) => filterTests(test.fields, search))
+            .filter((test: any) =>
+              filterTests(
+                { ...test.fields, tags: test.fields.tags || '' },
+                search
+              )
+            )
             .map((row: any) => (
               <div
                 key={row.fields.ID}

@@ -3,6 +3,7 @@ import Header from './Header'
 import CreateTest from './add-test/CreateTest'
 import SampleTest from './take-test/SampleTest'
 import TakeTest from './take-test/TakeTest'
+import ReviewTest from './review-test/ReviewTest'
 import Main from './LandingPage'
 import TestPage from './TestPage'
 import AddQuestionTo from './AddQuestionTo'
@@ -21,3 +22,4 @@ export const TuiLogin = Login
 export const TuiSampleTest = SampleTest
 export const TuiTakeTest = TakeTest
 export const TuiScorePage = ScorePage
+export const TuiReviewTest = ReviewTest

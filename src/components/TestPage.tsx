@@ -25,8 +25,8 @@ export default (props: {
         <Typography variant="h5">
           <em>{(props.user || { fields: {} }).fields.username}</em>
         </Typography>
-        {props.test.tags.split(', ').length > 0 ? (
-          props.test.tags
+        {props.test.tags ? (
+          (props.test.tags || '')
             .split(', ')
             .map((x: string, index: number) => (
               <Chip

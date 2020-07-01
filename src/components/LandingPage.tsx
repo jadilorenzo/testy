@@ -74,7 +74,7 @@ export default (props: any) => {
               onChange={handleTagChange}
             >
               {tests
-                .flatMap((test: any) => test.fields.tags.split(', '))
+                .flatMap((test: any) => (test.fields.tags || '').split(', '))
                 .sort()
                 .map((tag: any) => (
                   <MenuItem key={tag} value={tag}>

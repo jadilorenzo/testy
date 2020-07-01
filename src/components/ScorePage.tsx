@@ -52,10 +52,20 @@ export default (props: any) => {
                     onClick={() =>
                       props.setRedirect(`/test/${score.fields.test}`)
                     }
-                    variant="outlined"
+                    variant="text"
                     style={{ marginBottom: '0.2rem' }}
                   >
                     Take again
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      props.setRedirect(`/review/test/${score.id}`)
+                    }
+                    color="primary"
+                    variant="text"
+                    style={{ marginLeft: '0.2rem', marginBottom: '0.2rem' }}
+                  >
+                    Review Test
                   </Button>
                   <div
                     style={{
@@ -68,12 +78,14 @@ export default (props: any) => {
                       style={{
                         padding: '0.2rem',
                         background:
-                          JSON.parse(score.fields.score.replace('%', '')) < 50
+                          JSON.parse(
+                            (score.fields.score || '').replace('%', '')
+                          ) < 50
                             ? theme.palette.error.light
                             : theme.palette.success.light,
                         minWidth: 30,
                         width: `${JSON.parse(
-                          score.fields.score.replace('%', '')
+                          (score.fields.score || '').replace('%', '')
                         )}%`
                       }}
                     >

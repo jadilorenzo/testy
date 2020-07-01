@@ -29,11 +29,6 @@ a {
   text-decoration: none;
 }
 
-::selection {
-  background-color: #81c784;
-  opacity: 0.2;
-}
-
 .icon-btn:hover {
   color: #006bcd;
 }

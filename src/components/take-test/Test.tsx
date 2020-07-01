@@ -67,7 +67,7 @@ export default ({
 
                 postAirDB('Testy - Test Instances', {
                   answer: value,
-                  'correct answer': question.fields.answer.replaceAll(' '),
+                  'correct answer': question.fields.answer,
                   correct: JSON.stringify(question.fields.answer === value),
                   scoreid,
                   question: question.fields.question

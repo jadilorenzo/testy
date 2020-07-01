@@ -59,13 +59,13 @@ export default (props: { id: string; setRedirect: any }) => {
                       <>
                         <div>You put: '{question.fields.answer}'</div>
                         <div>
-                          The correct answer was: '
+                          The correct answer is: '
                           {question.fields['correct answer']}'
                         </div>
                       </>
                     ) : (
                       <div>
-                        The correct answer was: '
+                        The correct answer is: '
                         {question.fields['correct answer']}'
                       </div>
                     )}

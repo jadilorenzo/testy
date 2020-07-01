@@ -12,17 +12,17 @@ export default (props: any) => {
     )[0] || { id: '' }
   ).id
 
-  console.log(theme.breakpoints.up('xs'))
+  const yourScores = scores
+    .filter(score => score.fields.userid === userid)
+    .reverse()
 
   return (
     <>
       <br />
       <Page>
         <Typography variant="h5">Your Scores</Typography>
-        {scores
-          .filter(score => score.fields.userid === userid)
-          .reverse()
-          .map(score => (
+        {yourScores.length !== 0 ? (
+          yourScores.map(score => (
             <Grid
               container
               direction="row"
@@ -95,7 +95,10 @@ export default (props: any) => {
                 </Paper>
               </Grid>
             </Grid>
-          ))}
+          ))
+        ) : (
+          <em>You have not taken any tests.</em>
+        )}
       </Page>
     </>
   )

@@ -22,7 +22,7 @@ const App = () => {
   const user = users.filter(
     user => user.fields.username === window.localStorage.getItem('username')
   )[0] || { fields: { active: 'false' } }
-  const loggedIn = JSON.parse(user.fields.active)
+  const loggedIn = JSON.parse(user.fields.active || 'false')
 
   return (
     <>

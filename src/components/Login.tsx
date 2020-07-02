@@ -40,7 +40,11 @@ export default React.memo((props: any) => {
         user =>
           user.fields.password === password && user.fields.username === username
       ).length > 0
-    const userId = users.filter(user => user.fields.username === username)[0].id
+    const userId = (
+      users.filter(user => user.fields.username === username)[0] || {
+        fields: { ID: '' }
+      }
+    ).fields.ID
 
     if (isMatching) {
       setToggled(false)

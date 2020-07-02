@@ -13,13 +13,13 @@ export default (props: { id: string; setRedirect: any }) => {
 
   const scoreid = (questions[0] || { fields: { scoreid: 'x' } }).fields.scoreid
   const testid = (
-    scores.filter(score => score.id === scoreid)[0] || {
+    scores.filter(score => score.fields.ID === scoreid)[0] || {
       fields: { test: 'testid' }
     }
   ).fields.test
 
   const title = (
-    tests.filter(test => test.id === testid)[0] || {
+    tests.filter(test => test.fields.ID === testid)[0] || {
       fields: { title: 'title' }
     }
   ).fields.title

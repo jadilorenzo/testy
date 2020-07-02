@@ -97,7 +97,7 @@ export default (props: any) => {
               <div
                 key={row.fields.ID}
                 style={{ width: '100%' }}
-                onClick={() => props.setRedirect(`/test/${row.id}`)}
+                onClick={() => props.setRedirect(`/test/${row.fields.ID}`)}
               >
                 <TestDisplay
                   test={{

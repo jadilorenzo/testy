@@ -9,8 +9,8 @@ export default (props: any) => {
   const userid = (
     users.filter(
       user => user.fields.username === window.localStorage.getItem('username')
-    )[0] || { id: '' }
-  ).id
+    )[0] || { fields: { ID: '' } }
+  ).fields.ID
 
   const yourScores = scores
     .filter(score => score.fields.userid === userid)
@@ -41,7 +41,7 @@ export default (props: any) => {
                     {
                       (
                         tests.filter(test => {
-                          return test.id === score.fields.test
+                          return test.fields.ID === score.fields.test
                         })[0] || {
                           fields: { title: <em>Test not found</em> }
                         }
@@ -59,7 +59,7 @@ export default (props: any) => {
                   </Button>
                   <Button
                     onClick={() =>
-                      props.setRedirect(`/review/test/${score.id}`)
+                      props.setRedirect(`/review/test/${score.fields.ID}`)
                     }
                     color="primary"
                     variant="text"

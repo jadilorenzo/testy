@@ -1,6 +1,6 @@
 import React from 'react'
 import Question from './Question'
-import { Typography, useTheme } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 
 import { AirDBContext } from '../../context/AirDBContext'
@@ -8,15 +8,15 @@ import { AirDBContext } from '../../context/AirDBContext'
 export default ({
   test,
   setScore,
-  id
+  scoreID
 }: {
   test: { title: string; questions: string }
   setScore: any
-  id: string
+  scoreID?: number
 }) => {
-  const { questions, scores, postAirDB } = React.useContext(AirDBContext)
+  const { questions, postAirDB } = React.useContext(AirDBContext)
   const myQuestions = questions.filter(question =>
-    test.questions.split(', ').includes(question.id)
+    test.questions.split(', ').includes(JSON.stringify(question.fields.ID))
   )
   const [score, setCorrectProblems] = React.useState<(boolean | undefined)[]>(
     []
@@ -43,6 +43,7 @@ export default ({
       {myQuestions.map((question, index) => {
         return (
           <div
+            key={index}
             style={{
               border: '0.1rem solid gray',
               padding: '0.5rem',
@@ -56,20 +57,12 @@ export default ({
               correct={score[index]}
               handleSubmit={(value: string) => {
                 handleSubmit(value, question, index)
-                console.log(scores)
-                const scoreid = (
-                  scores.filter(score => {
-                    return score.fields.test === id
-                  })[0] || {
-                    id: ''
-                  }
-                ).id
 
                 postAirDB('Testy - Test Instances', {
                   answer: value,
                   'correct answer': question.fields.answer,
                   correct: JSON.stringify(question.fields.answer === value),
-                  scoreid,
+                  scoreid: scoreID,
                   question: question.fields.question
                 })
               }}

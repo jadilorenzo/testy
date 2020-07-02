@@ -1,6 +1,11 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { TuiTestPage, TuiTakeTest, TuiReviewTest } from './components'
+import {
+  TuiTestPage,
+  TuiTakeTest,
+  TuiReviewTest,
+  TuiAddQuestionTo
+} from './components'
 import { AirDBContext } from './context/AirDBContext'
 
 export default ({ setRedirect }: any) => {
@@ -10,30 +15,35 @@ export default ({ setRedirect }: any) => {
     <div>
       {tests.map((row: any) => {
         return (
-          <>
-            <Route path={`/test/${row.id}`}>
+          <div key={row.fields.ID}>
+            <Route path={`/test/${row.fields.ID}`}>
               <TuiTestPage
                 questions={questions}
                 setRedirect={setRedirect}
                 test={row.fields}
-                id={row.id}
-                user={users.filter(user => user.id === row.fields.userid)[0]}
+                id={row.fields.ID}
+                user={
+                  users.filter(user => user.fields.ID === row.fields.userid)[0]
+                }
               />
             </Route>
-            <Route path={`/take/test/${row.id}`}>
+            <Route path={`/take/test/${row.fields.ID}`}>
               <TuiTakeTest
                 setRedirect={setRedirect}
                 test={row.fields}
-                id={row.id}
+                id={row.fields.ID}
               />
             </Route>
-          </>
+            <Route exact path={`/add/question/to/${row.fields.ID}`}>
+              <TuiAddQuestionTo setRedirect={setRedirect} id={row.fields.ID} />
+            </Route>
+          </div>
         )
       })}
       {scores.map((score: any) => {
         return (
-          <Route path={`/review/test/${score.id}`}>
-            <TuiReviewTest setRedirect={setRedirect} id={score.id} />
+          <Route path={`/review/test/${score.fields.ID}`}>
+            <TuiReviewTest setRedirect={setRedirect} id={score.fields.ID} />
           </Route>
         )
       })}

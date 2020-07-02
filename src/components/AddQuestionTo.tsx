@@ -8,14 +8,12 @@ import {
   FormControl,
   Button
 } from '@material-ui/core'
-import { useParams } from 'react-router-dom'
 import { AirDBContext } from '../context/AirDBContext'
 import { Check, Close } from '@material-ui/icons'
 
 export default (props: any) => {
-  const { id } = useParams()
   const { tests, questions, updateAirDB } = React.useContext(AirDBContext)
-  const test = tests.filter(test => test.id === id)[0] || {
+  const test = tests.filter(test => test.fields.ID === props.id)[0] || {
     fields: { title: '', questions: '' }
   }
   const [questionIDs, setQuestions] = React.useState<string[]>(
@@ -25,10 +23,10 @@ export default (props: any) => {
   const handleChange = useCallback(
     (question: any) => {
       setQuestions(prev => {
-        if (!prev.includes(question.id)) {
-          return [...prev, question.id]
+        if (!prev.includes(question.fields.ID)) {
+          return [...prev, question.fields.ID]
         } else {
-          return prev.filter((id: string) => id !== question.id)
+          return prev.filter((id: string) => id !== question.fields.ID)
         }
       })
     },
@@ -36,7 +34,7 @@ export default (props: any) => {
   )
 
   const handleClick = () => {
-    updateAirDB('Testy - Tests', id, {
+    updateAirDB('Testy - Tests', test.id, {
       questions: questionIDs.join(', ')
     }).then(() => {
       props.setRedirect('/')
@@ -65,12 +63,12 @@ export default (props: any) => {
               return (
                 <FormControlLabel
                   onChange={() => handleChange(question)}
-                  checked={questionIDs.includes(question.id)}
+                  checked={questionIDs.includes(question.fields.ID)}
                   control={
                     <Checkbox
                       checkedIcon={<Check />}
                       icon={<Close />}
-                      name={question.id}
+                      name={question.fields.ID}
                     />
                   }
                   label={question.fields.question}

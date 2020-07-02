@@ -21,7 +21,7 @@ export default () => {
 
   return (
     <>
-      <FormControl variant="outlined" className="FormGroup">
+      <FormControl variant="outlined">
         <TextField
           value={test.title}
           variant="outlined"
@@ -31,7 +31,7 @@ export default () => {
       </FormControl>
       <br />
       <br />
-      <FormControl variant="standard" className="FormGroup">
+      <FormControl variant="standard">
         <TextField
           value={tag}
           onChange={e =>

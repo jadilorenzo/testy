@@ -7,8 +7,9 @@
   width: 90%;
 }
 
-.form-groups > * {
+.form-group > * {
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .select {
@@ -16,7 +17,7 @@
   margin-top: 0.5rem;
 }
 
-.form-group {
+.form-group > * {
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -37,8 +38,11 @@ a {
   background-color: none;
   background: none;
 }
-@media (min-width:600px) {
-  .score-paper: {
-    margin-top: -10;
-  }
+
+.form-control {
+  width: 100%;
+}
+
+.text-field {
+  width: 100%;
 }

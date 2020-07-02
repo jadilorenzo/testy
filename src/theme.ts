@@ -41,6 +41,9 @@ let theme = createMuiTheme({
     }
   },
   props: {
+    MuiFormGroup: {
+      className: 'form-group'
+    },
     MuiAppBar: {
       elevation: 0
     },
@@ -71,8 +74,11 @@ let theme = createMuiTheme({
     MuiSelect: {
       className: 'select'
     },
-    MuiFormGroup: {
-      className: 'form-group'
+    MuiFormControl: {
+      className: 'form-control'
+    },
+    MuiTextField: {
+      className: 'text-field'
     }
   }
 })

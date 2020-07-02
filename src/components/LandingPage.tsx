@@ -5,7 +5,8 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel
+  InputLabel,
+  Grid
 } from '@material-ui/core'
 import Paper from './Paper'
 import TestDisplay from './add-test/TestDisplay'
@@ -44,23 +45,22 @@ export default (props: any) => {
         >
           Scores
         </Button>
-        <div style={{ marginBottom: '0.2rem' }}>
+        <Grid item xs={12} sm={6} style={{ marginBottom: '0.2rem' }}>
           <TextField
             label="Search"
             onChange={handleSearchChange}
             value={search.search}
             variant="outlined"
             style={{
-              width: '40%',
               margin: 'auto',
               borderRadius: '0.4em'
             }}
           />
-        </div>
-        <div>
+        </Grid>
+        <Grid item xs={12} sm={7}>
           <FormControl
             variant="outlined"
-            style={{ width: '50%', marginTop: -15, marginBottom: 10 }}
+            style={{ marginTop: -15, marginBottom: 10 }}
           >
             <InputLabel style={{ position: 'relative', top: 25 }}>
               Tags
@@ -84,7 +84,7 @@ export default (props: any) => {
                 ))}
             </Select>
           </FormControl>
-        </div>
+        </Grid>
         <div style={{ maxHeight: '30rem', overflow: 'scroll' }}>
           {tests
             .filter((test: any) =>

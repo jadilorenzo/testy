@@ -63,7 +63,9 @@ export default (props: any) => {
               return (
                 <FormControlLabel
                   onChange={() => handleChange(question)}
-                  checked={questionIDs.includes(question.fields.ID)}
+                  checked={questionIDs.includes(
+                    JSON.stringify(question.fields.ID)
+                  )}
                   control={
                     <Checkbox
                       checkedIcon={<Check />}

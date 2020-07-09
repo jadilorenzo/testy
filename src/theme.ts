@@ -32,7 +32,6 @@ let theme = createMuiTheme({
     }
   },
   typography: {
-    fontFamily: 'Roboto Condensed',
     h1: title,
     h2: title,
     h3: title,

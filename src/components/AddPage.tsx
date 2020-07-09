@@ -25,10 +25,11 @@ export default (props: any) => {
             item
             style={{
               padding: '1rem',
+              margin: '0.2rem',
               borderRadius: '0.5rem',
               background: theme.palette.background.default
             }}
-            md={6}
+            md
             direction="row"
             justify="space-evenly"
             alignItems="stretch"
@@ -52,9 +53,10 @@ export default (props: any) => {
           <Grid
             container
             item
-            md={6}
+            md
             style={{
               padding: '1rem',
+              margin: '0.2rem',
               borderRadius: '0.5rem',
               background: theme.palette.background.default
             }}

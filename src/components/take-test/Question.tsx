@@ -157,6 +157,7 @@ const Question = ({
                 color="secondary"
                 variant="outlined"
                 disabled={submitted}
+                style={{}}
                 onClick={() => handleSubmit(answer)}
               >
                 Submit

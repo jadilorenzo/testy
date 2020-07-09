@@ -1,14 +1,22 @@
+html {
+  cursor: default;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
 .title {
   display: inline-block;
   padding-left: 0.2rem;
+  font-size: 2rem;
+  font-family: Avenir;
+  font-weight: 200;
 }
 
 .options-text-field {
   width: 90%;
-}
-
-.form-group > * {
-  width: 100%;
 }
 
 .select {
@@ -16,20 +24,12 @@
   margin-top: 0.5rem;
 }
 
+.menu {
+  background-color: blue;
+}
+
 .form-group > * {
   width: 100%;
-}
-
-html, p {
-  cursor: default;
-}
-
-a {
-  text-decoration: none;
-}
-
-.icon-btn:hover {
-  color: #006bcd;
 }
 
 .MuiSelect-select:focus {
@@ -43,4 +43,17 @@ a {
 
 .text-field {
   width: 100%;
+}
+
+.btn-label {
+  text-transform: none;
+}
+
+.paper-container {
+  border-radius: 1rem 0 0 0;
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

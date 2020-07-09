@@ -67,6 +67,7 @@ export default (props: any) => {
             </InputLabel>
             <Select
               multiple
+              classes={{ outlined: 'select' }}
               label="Tags"
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"

@@ -23,10 +23,12 @@ export default (props: any) => {
   const handleChange = useCallback(
     (question: any) => {
       setQuestions(prev => {
-        if (!prev.includes(question.fields.ID)) {
-          return [...prev, question.fields.ID]
+        if (!prev.includes(JSON.stringify(question.fields.ID))) {
+          return [...prev, JSON.stringify(question.fields.ID)]
         } else {
-          return prev.filter((id: string) => id !== question.fields.ID)
+          return prev.filter(
+            (id: string) => id !== JSON.stringify(question.fields.ID)
+          )
         }
       })
     },

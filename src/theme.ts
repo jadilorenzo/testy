@@ -1,8 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 import { primary, secondary } from './colors'
-const font = "'Ubuntu'"
+const font = 'Lato'
 const title = {
-  fontWeight: 400,
+  fontWeight: 200,
   fontFamily: font,
   marginBottom: '0.2em'
 }
@@ -17,26 +17,41 @@ let theme = createMuiTheme({
       main: secondary
     }
   },
+  overrides: {
+    MuiButton: {
+      label: {
+        textTransform: 'capitalize'
+      }
+    },
+    MuiCssBaseline: {
+      '@global': {
+        html: {
+          WebkitFontSmoothing: 'auto'
+        }
+      }
+    }
+  },
   typography: {
+    fontFamily: 'Roboto Condensed',
     h1: title,
     h2: title,
     h3: title,
     h4: title,
     h5: {
       ...title,
-      fontFamily: 'Ubuntu',
-      fontWeight: 400
+      fontFamily: font,
+      fontWeight: 200
     },
     h6: {
       ...title,
-      fontFamily: 'Ubuntu',
+      fontFamily: font,
       fontWeight: 400,
       '& > hover': {
         color: primary
       }
     },
     button: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Roboto Condensed',
       color: '#E0E0E0'
     }
   },
@@ -50,12 +65,13 @@ let theme = createMuiTheme({
     MuiButton: {
       variant: 'contained',
       color: 'secondary',
+      style: { borderRadius: '0.5rem' },
       className: 'btn',
-      disableElevation: true
+      disableElevation: true,
+      disableTouchRipple: true
     },
     MuiButtonGroup: {
       className: 'btn-group',
-      variant: 'contained',
       color: 'secondary',
       disableElevation: true
     },

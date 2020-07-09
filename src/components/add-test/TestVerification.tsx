@@ -7,7 +7,7 @@ import Button from '../Button'
 import TestDisplay from './TestDisplay'
 
 export default () => {
-  const db = useContext(AirDBContext)
+  const { handleAddTest, questions } = useContext(AirDBContext)
   const [test] = useContext(TestContext)
 
   const [questionIDs, setQuestions] = React.useState<string[]>([])
@@ -22,28 +22,15 @@ export default () => {
     })
   }, [])
 
-  const handleAddTest = async () => {
-    const userid = (
-      db.users.filter(
-        user => user.fields.username === window.localStorage.getItem('username')
-      )[0] || { fields: { ID: '' } }
-    ).fields.ID
-
-    await db
-      .postAirDB('Testy - Tests', {
-        ...test,
-        userid,
-        tags: test.tags.join(', '),
-        questions: questionIDs.join(', ')
-      })
-      .then(() => (window.location.pathname = '/'))
+  const addTest = () => {
+    handleAddTest({ questionIDs, test })
   }
 
   return (
     <div>
       <TestDisplay />
       <FormControl>
-        {db.questions.map((question: any) => {
+        {questions.map((question: any) => {
           return (
             <FormControlLabel
               onChange={() => handleChange(question)}
@@ -62,7 +49,7 @@ export default () => {
         })}
       </FormControl>
       <br />
-      <Button color="primary" onClick={handleAddTest}>
+      <Button color="primary" onClick={addTest}>
         Add
       </Button>
     </div>

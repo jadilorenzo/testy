@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, useTheme, Card, Grid, Button } from '@material-ui/core'
+import { Typography, useTheme, Grid, Button } from '@material-ui/core'
 import Paper from './Paper'
 import BarChartIcon from '@material-ui/icons/BarChart'
 import ShortTextIcon from '@material-ui/icons/ShortText'

@@ -2,7 +2,6 @@ import React from 'react'
 import { AirDBContext } from '../context/AirDBContext'
 import {
   AppBar,
-  Typography,
   Fade,
   Grid,
   IconButton,
@@ -14,21 +13,8 @@ import loader from './loader.gif'
 import { Add, ExitToApp, BubbleChart } from '@material-ui/icons'
 
 const Header = (props: any) => {
-  const { loading, users, updateAirDB } = React.useContext(AirDBContext)
+  const { loading, handleLogout } = React.useContext(AirDBContext)
   const theme = useTheme()
-
-  const handleLogout = () => {
-    const userId = users.filter(
-      user => user.fields.username === window.localStorage.getItem('username')
-    )[0].id
-
-    updateAirDB('Testy - Users', userId, {
-      active: 'false'
-    }).then(() => {
-      props.setRedirect('/')
-      window.localStorage.removeItem('username')
-    })
-  }
 
   return (
     <>
@@ -73,7 +59,7 @@ const Header = (props: any) => {
               </IconButton>
             </Zoom>
             <Zoom in={true}>
-              <IconButton onClick={handleLogout} color="inherit">
+              <IconButton onClick={() => handleLogout()} color="inherit">
                 <ExitToApp />
               </IconButton>
             </Zoom>
@@ -93,6 +79,7 @@ const Header = (props: any) => {
           <Grid container direction="row" justify="center" alignItems="center">
             <img
               src={loader}
+              alt="loader"
               style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
             />
             {loading && (

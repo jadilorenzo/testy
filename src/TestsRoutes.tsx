@@ -40,11 +40,13 @@ export default ({ setRedirect }: any) => {
           </div>
         )
       })}
-      {scores.map((score: any) => {
+      {scores.map((score: any, index) => {
         return (
-          <Route path={`/review/test/${score.fields.ID}`}>
-            <TuiReviewTest setRedirect={setRedirect} id={score.fields.ID} />
-          </Route>
+          <div key={index}>
+            <Route path={`/review/test/${score.fields.ID}`}>
+              <TuiReviewTest setRedirect={setRedirect} id={score.fields.ID} />
+            </Route>
+          </div>
         )
       })}
     </div>

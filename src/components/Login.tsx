@@ -16,7 +16,7 @@ import { ExitToApp, Edit } from '@material-ui/icons'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default React.memo((props: any) => {
-  const { users, updateAirDB } = React.useContext(AirDBContext)
+  const { users, handleLogin } = React.useContext(AirDBContext)
   const [toggled, setToggled] = React.useState(false)
   const [username, setUser] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -26,28 +26,6 @@ export default React.memo((props: any) => {
 
   const handleClose = () => {
     setToggled(false)
-  }
-
-  const handleLogin = () => {
-    const isMatching =
-      users.filter(
-        user =>
-          user.fields.password === password && user.fields.username === username
-      ).length > 0
-    const userId = (
-      users.filter(user => user.fields.username === username)[0] || {
-        id: ''
-      }
-    ).id
-
-    if (isMatching) {
-      setToggled(false)
-      props.setRedirect('/')
-      window.localStorage.setItem('username', username)
-      updateAirDB('Testy - Users', userId, {
-        active: 'true'
-      })
-    }
   }
 
   return users.length > 0 ? (
@@ -63,31 +41,6 @@ export default React.memo((props: any) => {
           }}
         >
           <Typography variant="h4">Sign Up</Typography>
-          <div>
-            {/* <div>
-              <Question
-                question={{
-                  question: 'Enter your username.',
-                  type: 'essay',
-                  autocheck: 'false'
-                }}
-                submitted={submitted}
-                handleSubmit={handleUsernameChange}
-                type="text"
-              />
-            </div>
-            <div>
-              <Question
-                question={{
-                  question: 'Enter your password.',
-                  type: 'essay',
-                  autocheck: 'true'
-                }}
-                submitted={submitted}
-                handleSubmit={handlePasswordChange}
-              />
-            </div> */}
-          </div>
           <Button disabled={!submitted} color="primary">
             Sign Up
           </Button>
@@ -139,7 +92,10 @@ export default React.memo((props: any) => {
             </FormControl>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleLogin} color="primary">
+            <Button
+              onClick={() => handleLogin({ password, username, setToggled })}
+              color="primary"
+            >
               Login
             </Button>
           </DialogActions>

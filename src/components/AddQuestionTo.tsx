@@ -12,7 +12,9 @@ import { AirDBContext } from '../context/AirDBContext'
 import { Check, Close } from '@material-ui/icons'
 
 export default (props: any) => {
-  const { tests, questions, updateAirDB } = React.useContext(AirDBContext)
+  const { tests, questions, updateTestQuestions } = React.useContext(
+    AirDBContext
+  )
   const test = tests.filter(test => test.fields.ID === props.id)[0] || {
     fields: { title: '', questions: '' }
   }
@@ -20,27 +22,20 @@ export default (props: any) => {
     (test.fields.questions || '').split(', ')
   )
 
-  const handleChange = useCallback(
-    (question: any) => {
-      setQuestions(prev => {
-        if (!prev.includes(JSON.stringify(question.fields.ID))) {
-          return [...prev, JSON.stringify(question.fields.ID)]
-        } else {
-          return prev.filter(
-            (id: string) => id !== JSON.stringify(question.fields.ID)
-          )
-        }
-      })
-    },
-    [questions]
-  )
+  const handleChange = useCallback((question: any) => {
+    setQuestions(prev => {
+      if (!prev.includes(JSON.stringify(question.fields.ID))) {
+        return [...prev, JSON.stringify(question.fields.ID)]
+      } else {
+        return prev.filter(
+          (id: string) => id !== JSON.stringify(question.fields.ID)
+        )
+      }
+    })
+  }, [])
 
   const handleClick = () => {
-    updateAirDB('Testy - Tests', test.id, {
-      questions: questionIDs.join(', ')
-    }).then(() => {
-      props.setRedirect('/')
-    })
+    updateTestQuestions({ test, questionIDs })
   }
 
   React.useEffect(() => {

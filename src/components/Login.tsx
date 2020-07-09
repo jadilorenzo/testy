@@ -20,9 +20,6 @@ export default React.memo((props: any) => {
   const [toggled, setToggled] = React.useState(false)
   const [username, setUser] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [submitted, setSubmitted] = React.useState(false)
-
-  const theme = useTheme()
 
   const handleClose = () => {
     setToggled(false)
@@ -33,31 +30,12 @@ export default React.memo((props: any) => {
       <br />
       <Paper>
         <Typography variant="h3">Home</Typography>
-        <div
-          style={{
-            padding: '1em',
-            border: `2px solid ${theme.palette.primary.main}`,
-            borderRadius: 4
-          }}
-        >
-          <Typography variant="h4">Sign Up</Typography>
-          <Button disabled={!submitted} color="primary">
-            Sign Up
-          </Button>
-          <IconButton
-            disabled={!submitted}
-            onClick={() => setSubmitted(false)}
-            style={{ marginLeft: '0.2em' }}
-          >
-            <Edit />
-          </IconButton>
-        </div>
         <Button
-          style={{ marginTop: '0.2em' }}
           onClick={() => setToggled(true)}
+          endIcon={<ExitToApp />}
           color="primary"
         >
-          Login <ExitToApp style={{ marginLeft: '0.2em' }} />
+          Login
         </Button>
 
         <Dialog
@@ -93,7 +71,11 @@ export default React.memo((props: any) => {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => handleLogin({ password, username, setToggled })}
+              onClick={() => {
+                handleLogin({ password, username, setToggled }).then(() =>
+                  props.setRedirect('/')
+                )
+              }}
               color="primary"
             >
               Login

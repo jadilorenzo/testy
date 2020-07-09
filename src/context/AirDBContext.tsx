@@ -98,11 +98,12 @@ export const AirDBProvider = React.memo((props: any) => {
 
     if (isMatching) {
       setToggled(false)
-      props.setRedirect('/')
       window.localStorage.setItem('username', username)
-      updateAirDB('Testy - Users', userId, {
+      return updateAirDB('Testy - Users', userId, {
         active: 'true'
       })
+    } else {
+      throw new Error('INCORRECT PASSWORD')
     }
   }
 
@@ -156,11 +157,8 @@ export const AirDBProvider = React.memo((props: any) => {
         user.fields.username === window.localStorage.getItem('username')
     )[0].id
 
-    updateAirDB('Testy - Users', userId, {
+    return updateAirDB('Testy - Users', userId, {
       active: false
-    }).then(() => {
-      props.setRedirect('/')
-      window.localStorage.removeItem('username')
     })
   }
 

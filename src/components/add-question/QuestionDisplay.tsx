@@ -9,8 +9,8 @@ import {
   TextField,
   Button
 } from '@material-ui/core'
-import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
-import { OptionsContext } from '../context/OptionsContext'
+import { CurrentQuestionContext } from '../../context/CurrentQuestionContext'
+import { OptionsContext } from '../../context/OptionsContext'
 
 const QuestionDisplay = () => {
   const [question] = useContext(CurrentQuestionContext)

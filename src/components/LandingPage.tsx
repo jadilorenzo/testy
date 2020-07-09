@@ -1,61 +1,103 @@
-import React from "react";
-import { Typography, IconButton } from "@material-ui/core";
-import Paper from "./Paper";
-import TestDisplay from "./TestDisplay";
-import { AirDBContext } from "../context/AirDBContext";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import React from 'react'
+import {
+  Typography,
+  TextField,
+  Select,
+  MenuItem,
+  // OutlinedInput,
+  FormControl,
+  InputLabel
+} from '@material-ui/core'
+import Paper from './Paper'
+import TestDisplay from './add-test/TestDisplay'
+import { AirDBContext } from '../context/AirDBContext'
+import { SearchContext } from '../context/SearchContext'
+import filterTests from '../methods/filterTests'
 
 export default (props: any) => {
-  const { tests, users, updateAirDB } = React.useContext(AirDBContext);
+  const { tests } = React.useContext(AirDBContext)
+  const [search, setSearch] = React.useContext(SearchContext)
 
-  const handleLogout = () => {
-    const userId = users.filter(
-      user => user.fields.username === window.localStorage.getItem("username")
-    )[0].id;
+  const handleSearchChange = (e: any) => {
+    e.persist()
+    setSearch((prev: any) => ({ ...prev, search: e.target.value }))
+  }
 
-    updateAirDB("Testy - Users", userId, {
-      active: "false"
-    }).then(() => {
-      props.setRedirect("/");
-      window.localStorage.removeItem("username");
-    });
-  };
+  const handleTagChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    event.persist()
+    setSearch((prev: any) => {
+      let tags: string[] = event.target.value as string[]
+      return { ...prev, tags }
+    })
+  }
 
   return (
     <>
       <br />
       <Paper>
-        <Typography variant="h4">Recent Tests</Typography>
-        <IconButton
-          onClick={handleLogout}
-          color="primary"
-          style={{
-            float: "right",
-            position: "absolute",
-            top: 35,
-            right: "1rem"
-          }}
-        >
-          <ExitToAppIcon />
-        </IconButton>
-        {tests.map((row: any) => (
-          <div
-            key={row.fields.ID}
-            style={{ width: "100%" }}
-            onClick={() => props.setRedirect(`/test/${row.id}`)}
+        <Typography variant="h5">Recent Tests</Typography>
+        <div style={{ marginBottom: '0.2rem' }}>
+          <TextField
+            label="Search"
+            onChange={handleSearchChange}
+            value={search.search}
+            variant="outlined"
+            style={{
+              width: '40%',
+              margin: 'auto',
+              borderRadius: '0.4em'
+            }}
+          />
+        </div>
+        <div>
+          <FormControl
+            variant="outlined"
+            style={{ width: '50%', marginTop: -15, marginBottom: 10 }}
           >
-            <TestDisplay
-              test={{
-                ...row.fields,
-                tags: row.fields.tags ? row.fields.tags.split(", ") : [],
-                questions: row.fields.questions
-                  ? row.fields.questions.split(", ")
-                  : []
-              }}
-            />
-          </div>
-        ))}
+            <InputLabel style={{ position: 'relative', top: 22.5 }}>
+              Tags
+            </InputLabel>
+            <Select
+              multiple
+              label="Tags"
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={search.tags}
+              onChange={handleTagChange}
+            >
+              {tests
+                .flatMap((test: any) => test.fields.tags.split(', '))
+                .sort()
+                .map((tag: any) => (
+                  <MenuItem key={tag} value={tag}>
+                    {tag}
+                  </MenuItem>
+                ))}
+            </Select>
+          </FormControl>
+        </div>
+        <div style={{ maxHeight: '30rem', overflow: 'scroll' }}>
+          {tests
+            .filter((test: any) => filterTests(test.fields, search))
+            .map((row: any) => (
+              <div
+                key={row.fields.ID}
+                style={{ width: '100%' }}
+                onClick={() => props.setRedirect(`/test/${row.id}`)}
+              >
+                <TestDisplay
+                  test={{
+                    ...row.fields,
+                    tags: row.fields.tags ? row.fields.tags.split(', ') : [],
+                    questions: row.fields.questions
+                      ? row.fields.questions.split(', ')
+                      : []
+                  }}
+                />
+              </div>
+            ))}
+        </div>
       </Paper>
     </>
-  );
-};
+  )
+}

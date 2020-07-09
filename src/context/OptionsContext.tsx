@@ -5,7 +5,7 @@ interface Options {
 }
 const defaultValue: Options = {
   type: 'multiple-choice',
-  autocheck: false
+  autocheck: true
 }
 
 export const OptionsContext = createContext<any[]>([defaultValue, () => {}])

@@ -7,7 +7,7 @@ import {
   FormGroup,
   FormHelperText
 } from '@material-ui/core'
-import { OptionsContext } from '../context/OptionsContext'
+import { OptionsContext } from '../../context/OptionsContext'
 
 const OptionsForm = () => {
   const [options, setOptions] = React.useContext(OptionsContext)

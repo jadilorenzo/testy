@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { TextField } from '@material-ui/core'
-import { CurrentQuestionContext } from '../context/CurrentQuestionContext'
+import { CurrentQuestionContext } from '../../context/CurrentQuestionContext'
 
 export default () => {
   const [question, setQuestion] = useContext(CurrentQuestionContext)

@@ -1,7 +1,6 @@
 {
   "rules": {
     "semi": ["error", "never"],
-    "quotes": ["error", "single"],
-    "comments": ["warning", "never"]
+    "quotes": ["error", "single"]
   }
 }

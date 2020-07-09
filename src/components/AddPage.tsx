@@ -27,14 +27,14 @@ export default (props: any) => {
           <Card
             style={{
               width: small ? '49%' : 'auto',
-              padding: '1em',
+              padding: '1rem',
               display: 'flex',
               justifyItems: 'center',
               background: theme.palette.background.default
             }}
             onClick={() => props.setRedirect('/add/question')}
           >
-            <ShortTextIcon style={{ height: '4.5em', width: '4.5em' }} />
+            <ShortTextIcon style={{ height: '4.5rem', width: '4.5rem' }} />
             <div style={{ margin: 1.5, width: '100%' }}>
               <Typography variant="h6">Add Question</Typography>
               <Typography variant="subtitle1">
@@ -46,15 +46,15 @@ export default (props: any) => {
           <Card
             style={{
               width: small ? '49%' : 'auto',
-              padding: '1em',
+              padding: '1rem',
               display: 'flex',
               justifyItems: 'center',
-              marginTop: !small ? '0.5em' : undefined,
+              marginTop: !small ? '0.5rem' : undefined,
               background: theme.palette.background.default
             }}
             onClick={() => props.setRedirect('/add/test')}
           >
-            <BarChartIcon style={{ height: '4.5em', width: '4.5em' }} />
+            <BarChartIcon style={{ height: '4.5rem', width: '4.5rem' }} />
             <div style={{ margin: 1.5, width: '100%' }}>
               <Typography variant="h6">Add Test</Typography>
               <Typography variant="subtitle1">

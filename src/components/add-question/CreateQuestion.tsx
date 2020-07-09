@@ -3,9 +3,9 @@ import { Tab, Tabs, Typography } from '@material-ui/core'
 import QuestionForm from './QuestionForm'
 import OptionsForm from './OptionsForm'
 import Verification from './Verification'
-import { CurrentQuestionContextProvider } from '../context/CurrentQuestionContext'
-import { OptionsContextProvider } from '../context/OptionsContext'
-import Paper from './Paper'
+import { CurrentQuestionContextProvider } from '../../context/CurrentQuestionContext'
+import { OptionsContextProvider } from '../../context/OptionsContext'
+import Paper from '../Paper'
 
 function TabPanel(props: any) {
   const { title, children, value, index, ...other } = props

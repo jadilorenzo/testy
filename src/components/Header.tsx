@@ -2,81 +2,144 @@ import React from 'react'
 import { AirDBContext } from '../context/AirDBContext'
 import {
   AppBar,
-  Toolbar,
   Typography,
-  Backdrop,
-  CircularProgress,
-  Fab,
+  Fade,
+  Grid,
+  IconButton,
+  Zoom,
   useTheme
 } from '@material-ui/core'
+import loader from './loader.gif'
 
-import { Close } from '@material-ui/icons'
-import Book from './icons/Book'
+import {
+  Add,
+  ExitToApp,
+  BubbleChart,
+  MoreHoriz,
+  Close
+} from '@material-ui/icons'
 
 const Header = (props: any) => {
-  const { loading } = React.useContext(AirDBContext)
+  const [toggled, setToggled] = React.useState(false)
+  const { loading, users, updateAirDB } = React.useContext(AirDBContext)
   const theme = useTheme()
+  const user = users.filter(
+    user => user.fields.username === window.localStorage.getItem('username')
+  )[0] || { fields: { active: 'false' } }
+  const loggedIn = !JSON.parse(user.fields.active)
+
+  const handleLogout = () => {
+    const userId = users.filter(
+      user => user.fields.username === window.localStorage.getItem('username')
+    )[0].id
+
+    updateAirDB('Testy - Users', userId, {
+      active: 'false'
+    }).then(() => {
+      props.setRedirect('/')
+      window.localStorage.removeItem('username')
+    })
+  }
 
   return (
     <>
       <AppBar
-        position="fixed"
         color="inherit"
         style={{
           display: 'flex',
           alignItems: 'left',
-          top: 'auto',
           background: theme.palette.background.paper,
-          bottom: 0,
           zIndex: 500
         }}
       >
         <div
           style={{
             width: '100%',
-            height: '2rem',
-            background: theme.palette.background.default,
-            borderBottom: '0.2em solid',
-            borderColor: theme.palette.primary.main
+            background: theme.palette.background.default
           }}
         />
-        <Toolbar variant="regular">
+        <div
+          style={{
+            width: '85%',
+            height: '5rem',
+            margin: 'auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyItems: 'left'
+          }}
+        >
           <span onClick={() => props.setRedirect('/')}>
-            <Book size={25} />
-            <Typography variant="h4" className="title">
-              Testy
+            <BubbleChart
+              color="primary"
+              fontSize="large"
+              style={{ position: 'relative', top: 5 }}
+            />
+            <Typography
+              variant="h4"
+              className="title"
+              style={{ fontFamily: 'Avenir' }}
+            >
+              Smart
+              <span style={{ color: theme.palette.primary.main }}>One</span>
             </Typography>
           </span>
-        </Toolbar>
+          {loggedIn || (
+            <div style={{ position: 'absolute', right: 'calc(7.5%)' }}>
+              <Zoom
+                in={toggled}
+                style={{ transitionDelay: toggled ? '50ms' : '0ms' }}
+              >
+                <IconButton
+                  color="secondary"
+                  onClick={() => props.setRedirect('/add')}
+                >
+                  <Add />
+                </IconButton>
+              </Zoom>
+              <Zoom in={toggled}>
+                <IconButton onClick={handleLogout} color="secondary">
+                  <ExitToApp />
+                </IconButton>
+              </Zoom>
+
+              {!toggled ? (
+                <IconButton onClick={() => setToggled(true)}>
+                  <MoreHoriz color="primary" />
+                </IconButton>
+              ) : (
+                <IconButton onClick={() => setToggled(false)}>
+                  <Close color="primary" />
+                </IconButton>
+              )}
+            </div>
+          )}
+        </div>
       </AppBar>
-      {window.location.pathname.includes('add') ||
-        window.location.pathname !== '/' || (
-          <Backdrop open={loading} style={{ zIndex: 1000 }}>
-            <CircularProgress color="secondary" />
-          </Backdrop>
-        )}
-      <Fab
-        color="secondary"
-        onClick={() => props.setRedirect('/add')}
-        style={{
-          borderRadius: 3,
-          position: 'fixed',
-          top: 'auto',
-          bottom: '1.5em',
-          left: 'calc(50% - 50px/2)',
-          height: '50px',
-          width: '50px',
-          transform: 'rotate(45deg)',
-          zIndex: 500
-        }}
-      >
-        <Close
+      {window.location.pathname.includes('add') || (
+        <Fade
+          in={loading}
           style={{
-            position: 'relative',
-            color: 'black'
+            zIndex: 1000,
+            position: 'absolute',
+            height: '100%',
+            background: '#fff'
           }}
-        />
-      </Fab>
+        >
+          <Grid container direction="row" justify="center" alignItems="center">
+            <img
+              src={loader}
+              style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
+            />
+            {loading && (
+              <audio
+                autoPlay={true}
+                preload="http://localhost:3000/hero_simple-celebration-01.wav"
+                src="http://localhost:3000/hero_simple-celebration-01.wav"
+              ></audio>
+            )}
+          </Grid>
+        </Fade>
+      )}
     </>
   )
 }

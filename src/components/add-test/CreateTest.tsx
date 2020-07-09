@@ -1,12 +1,12 @@
-import React from "react";
-import { Tab, Tabs, Typography } from "@material-ui/core";
-import TestForm from "./TestForm";
-import TestVerification from "./TestVerification";
-import { TestProvider } from "../context/TestContext";
-import Paper from "./Paper";
+import React from 'react'
+import { Tab, Tabs, Typography } from '@material-ui/core'
+import TestForm from './TestForm'
+import TestVerification from './TestVerification'
+import { TestProvider } from '../../context/TestContext'
+import Paper from '../Paper'
 
 function TabPanel(props: any) {
-  const { title, children, value, index, ...other } = props;
+  const { title, children, value, index, ...other } = props
 
   return (
     <div
@@ -18,22 +18,22 @@ function TabPanel(props: any) {
     >
       {value === index && (
         <div>
-          <Typography variant={"h5"} className={"QuestionTitle"}>
+          <Typography variant={'h5'} className={'QuestionTitle'}>
             {title}
           </Typography>
           {children}
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   return (
     <TestProvider>
@@ -52,5 +52,5 @@ export default () => {
         </Paper>
       </div>
     </TestProvider>
-  );
-};
+  )
+}

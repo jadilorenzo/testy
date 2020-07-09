@@ -1,18 +1,20 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-
+import { createMuiTheme } from '@material-ui/core/styles'
+import { primary, secondary } from './colors'
+const font = "'Ubuntu'"
 const title = {
-  fontWeight: 200,
-  fontFamily: "Chakra Petch",
-  marginBottom: "0.2em"
-};
+  fontWeight: 400,
+  fontFamily: font,
+  marginBottom: '0.2em'
+}
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   palette: {
+    // type: 'dark',
     primary: {
-      main: "#1574d2"
+      main: primary
     },
     secondary: {
-      main: "#81c784"
+      main: secondary
     }
   },
   typography: {
@@ -20,14 +22,22 @@ const theme = createMuiTheme({
     h2: title,
     h3: title,
     h4: title,
-    h5: title,
+    h5: {
+      ...title,
+      fontFamily: 'Ubuntu',
+      fontWeight: 400
+    },
     h6: {
+      ...title,
+      fontFamily: 'Ubuntu',
       fontWeight: 400,
-      fontFamily: "Chakra Petch",
-      marginBottom: "0.2em"
+      '& > hover': {
+        color: primary
+      }
     },
     button: {
-      color: "#E0E0E0"
+      fontFamily: 'Roboto',
+      color: '#E0E0E0'
     }
   },
   props: {
@@ -35,25 +45,38 @@ const theme = createMuiTheme({
       elevation: 0
     },
     MuiButton: {
-      variant: "contained",
-      color: "secondary",
+      variant: 'contained',
+      color: 'secondary',
+      className: 'btn',
       disableElevation: true
     },
     MuiButtonGroup: {
-      variant: "contained",
-      color: "secondary",
+      className: 'btn-group',
+      variant: 'contained',
+      color: 'secondary',
       disableElevation: true
     },
     MuiPaper: {
       elevation: 0,
-      style: { padding: "1em", background: "#EEE" }
+      style: { padding: '1em', background: '#EEE' }
     },
     MuiCard: {
       elevation: 0
+    },
+    MuiIconButton: {
+      className: 'icon-btn',
+      disableTouchRipple: true,
+      disableRipple: true
+    },
+    MuiSelect: {
+      className: 'select'
+    },
+    MuiFormGroup: {
+      className: 'form-group'
     }
   }
-});
+})
 
-if (theme.palette.type === "light") theme.palette.background.default = "#EEE";
+if (theme.palette.type === 'light') theme.palette.background.default = '#EEE'
 
-export default theme;
+export default theme

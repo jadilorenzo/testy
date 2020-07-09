@@ -5,27 +5,43 @@ import Test from './Test'
 import Paper from '../Paper'
 
 export default ({ test, setRedirect, id }: any) => {
-  const { postAirDB, users } = React.useContext(AirDBContext)
+  const { updateAirDB, postAirDB, users, scores } = React.useContext(
+    AirDBContext
+  )
+
+  const [scoreID, setScoreID] = React.useState(0)
+
+  const userid = (
+    users.filter(
+      user => user.fields.username === window.localStorage.getItem('username')
+    )[0] || { fields: { ID: 0 } }
+  ).fields.ID
+
+  const scorid = (
+    scores.filter(score => score.fields.ID === scoreID)[0] || {
+      id: ''
+    }
+  ).id
 
   const setScore = (score: string) => {
-    const userid = (
-      users.filter(
-        user => user.fields.username === window.localStorage.getItem('username')
-      )[0] || { id: '' }
-    ).id
-
-    postAirDB('Testy - Test Instances', {
-      userid,
-      score,
-      test: id
-    })
+    updateAirDB('Testy - Test Scores', scorid, { score })
   }
+
+  React.useEffect(() => {
+    postAirDB('Testy - Test Scores', {
+      userid,
+      test: id
+    }).then((r: any) => {
+      console.log('new-score-record', r)
+      setScoreID(r[r.length - 1].fields.ID)
+    })
+  }, [])
 
   return (
     <>
       <br />
       <Paper>
-        <Test test={test} setScore={setScore} />
+        <Test test={test} setScore={setScore} scoreID={scoreID} />
         <Button onClick={() => setRedirect('/')}>End</Button>
       </Paper>
     </>

@@ -6,10 +6,8 @@ import {
   TuiCreateQuestion,
   TuiCreateTest,
   TuiMain,
-  TuiAddQuestionTo,
   TuiAddPage,
   TuiLogin,
-  TuiSampleTest,
   TuiScorePage
 } from './components'
 import { AirDBContext } from './context/AirDBContext'
@@ -22,7 +20,7 @@ const App = () => {
   const user = users.filter(
     user => user.fields.username === window.localStorage.getItem('username')
   )[0] || { fields: { active: 'false' } }
-  const loggedIn = JSON.parse(user.fields.active)
+  const loggedIn = JSON.parse(user.fields.active || 'false')
 
   return (
     <>
@@ -53,12 +51,6 @@ const App = () => {
                     <TestProvider>
                       <TuiCreateTest />
                     </TestProvider>
-                  </Route>
-                  <Route exact path="/add/question/to/:id">
-                    <TuiAddQuestionTo setRedirect={setRedirect} />
-                  </Route>
-                  <Route exact path="/sample/test">
-                    <TuiSampleTest />
                   </Route>
                 </SearchProvider>
               )}

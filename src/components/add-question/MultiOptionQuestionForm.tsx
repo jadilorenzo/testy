@@ -46,7 +46,7 @@ export default () => {
   }
 
   return (
-    <div className="QuestionFormContainer">
+    <div>
       <div>
         <TextField
           variant="outlined"

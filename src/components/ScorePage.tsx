@@ -9,20 +9,20 @@ export default (props: any) => {
   const userid = (
     users.filter(
       user => user.fields.username === window.localStorage.getItem('username')
-    )[0] || { id: '' }
-  ).id
+    )[0] || { fields: { ID: '' } }
+  ).fields.ID
 
-  console.log(theme.breakpoints.up('xs'))
+  const yourScores = scores
+    .filter(score => score.fields.userid === userid)
+    .reverse()
 
   return (
     <>
       <br />
       <Page>
         <Typography variant="h5">Your Scores</Typography>
-        {scores
-          .filter(score => score.fields.userid === userid)
-          .reverse()
-          .map(score => (
+        {yourScores.length !== 0 ? (
+          yourScores.map(score => (
             <Grid
               container
               direction="row"
@@ -30,7 +30,7 @@ export default (props: any) => {
               alignItems="center"
               spacing={2}
             >
-              <Grid item sm={12}>
+              <Grid item xs={12}>
                 <Paper
                   style={{
                     background: theme.palette.background.default,
@@ -41,7 +41,7 @@ export default (props: any) => {
                     {
                       (
                         tests.filter(test => {
-                          return test.id === score.fields.test
+                          return test.fields.ID === score.fields.test
                         })[0] || {
                           fields: { title: <em>Test not found</em> }
                         }
@@ -52,10 +52,20 @@ export default (props: any) => {
                     onClick={() =>
                       props.setRedirect(`/test/${score.fields.test}`)
                     }
-                    variant="outlined"
+                    variant="text"
                     style={{ marginBottom: '0.2rem' }}
                   >
                     Take again
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      props.setRedirect(`/review/test/${score.fields.ID}`)
+                    }
+                    color="primary"
+                    variant="text"
+                    style={{ marginLeft: '0.2rem', marginBottom: '0.2rem' }}
+                  >
+                    Review Test
                   </Button>
                   <div
                     style={{
@@ -68,12 +78,14 @@ export default (props: any) => {
                       style={{
                         padding: '0.2rem',
                         background:
-                          JSON.parse(score.fields.score.replace('%', '')) < 50
+                          JSON.parse(
+                            (score.fields.score || '').replace('%', '')
+                          ) < 50
                             ? theme.palette.error.light
                             : theme.palette.success.light,
                         minWidth: 30,
                         width: `${JSON.parse(
-                          score.fields.score.replace('%', '')
+                          (score.fields.score || '').replace('%', '')
                         )}%`
                       }}
                     >
@@ -83,7 +95,10 @@ export default (props: any) => {
                 </Paper>
               </Grid>
             </Grid>
-          ))}
+          ))
+        ) : (
+          <em>You have not taken any tests.</em>
+        )}
       </Page>
     </>
   )

@@ -1,29 +1,26 @@
 import React from 'react'
 import Question from './Question'
-import { Typography, useTheme } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 
 import { AirDBContext } from '../../context/AirDBContext'
 
 export default ({
   test,
-  setScore
+  setScore,
+  scoreID
 }: {
   test: { title: string; questions: string }
   setScore: any
+  scoreID?: number
 }) => {
-  const { questions } = React.useContext(AirDBContext)
+  const { questions, postAirDB } = React.useContext(AirDBContext)
   const myQuestions = questions.filter(question =>
-    test.questions.split(', ').includes(question.id)
+    test.questions.split(', ').includes(JSON.stringify(question.fields.ID))
   )
-  const [score, setCorrectProblems] = React.useState<(boolean | undefined)[]>([
-    undefined,
-    undefined,
-    undefined,
-    undefined
-  ])
-
-  const theme = useTheme()
+  const [score, setCorrectProblems] = React.useState<(boolean | undefined)[]>(
+    []
+  )
 
   const handleSubmit = (value: string, question: any, index: number) => {
     setCorrectProblems(prev => {
@@ -46,6 +43,7 @@ export default ({
       {myQuestions.map((question, index) => {
         return (
           <div
+            key={index}
             style={{
               border: '0.1rem solid gray',
               padding: '0.5rem',
@@ -57,9 +55,17 @@ export default ({
               question={question.fields}
               submitted={score[index] !== undefined}
               correct={score[index]}
-              handleSubmit={(value: string) =>
+              handleSubmit={(value: string) => {
                 handleSubmit(value, question, index)
-              }
+
+                postAirDB('Testy - Test Instances', {
+                  answer: value,
+                  'correct answer': question.fields.answer,
+                  correct: JSON.stringify(question.fields.answer === value),
+                  scoreid: scoreID,
+                  question: question.fields.question
+                })
+              }}
             />
           </div>
         )

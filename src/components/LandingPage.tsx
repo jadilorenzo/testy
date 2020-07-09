@@ -5,7 +5,8 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel
+  InputLabel,
+  Grid
 } from '@material-ui/core'
 import Paper from './Paper'
 import TestDisplay from './add-test/TestDisplay'
@@ -44,29 +45,29 @@ export default (props: any) => {
         >
           Scores
         </Button>
-        <div style={{ marginBottom: '0.2rem' }}>
+        <Grid item xs={12} sm={6} style={{ marginBottom: '0.2rem' }}>
           <TextField
             label="Search"
             onChange={handleSearchChange}
             value={search.search}
             variant="outlined"
             style={{
-              width: '40%',
               margin: 'auto',
               borderRadius: '0.4em'
             }}
           />
-        </div>
-        <div>
+        </Grid>
+        <Grid item xs={12} sm={7}>
           <FormControl
             variant="outlined"
-            style={{ width: '50%', marginTop: -15, marginBottom: 10 }}
+            style={{ marginTop: -15, marginBottom: 10 }}
           >
             <InputLabel style={{ position: 'relative', top: 25 }}>
               Tags
             </InputLabel>
             <Select
               multiple
+              classes={{ outlined: 'select' }}
               label="Tags"
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
@@ -74,24 +75,30 @@ export default (props: any) => {
               onChange={handleTagChange}
             >
               {tests
-                .flatMap((test: any) => test.fields.tags.split(', '))
+                .flatMap((test: any) => (test.fields.tags || '').split(', '))
                 .sort()
-                .map((tag: any) => (
+                .filter((tag: string) => tag !== '')
+                .map((tag: string) => (
                   <MenuItem key={tag} value={tag}>
                     {tag}
                   </MenuItem>
                 ))}
             </Select>
           </FormControl>
-        </div>
+        </Grid>
         <div style={{ maxHeight: '30rem', overflow: 'scroll' }}>
           {tests
-            .filter((test: any) => filterTests(test.fields, search))
+            .filter((test: any) =>
+              filterTests(
+                { ...test.fields, tags: test.fields.tags || '' },
+                search
+              )
+            )
             .map((row: any) => (
               <div
                 key={row.fields.ID}
                 style={{ width: '100%' }}
-                onClick={() => props.setRedirect(`/test/${row.id}`)}
+                onClick={() => props.setRedirect(`/test/${row.fields.ID}`)}
               >
                 <TestDisplay
                   test={{

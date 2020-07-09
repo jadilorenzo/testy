@@ -14,10 +14,10 @@ export default () => {
 
   const handleChange = useCallback((question: any) => {
     setQuestions(prev => {
-      if (!prev.includes(question.id)) {
-        return [...prev, question.id]
+      if (!prev.includes(question.fields.ID)) {
+        return [...prev, question.fields.ID]
       } else {
-        return prev.filter((id: string) => id !== question.id)
+        return prev.filter((id: string) => id !== question.fields.ID)
       }
     })
   }, [])
@@ -26,8 +26,8 @@ export default () => {
     const userid = (
       db.users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
-      )[0] || { id: '' }
-    ).id
+      )[0] || { fields: { ID: '' } }
+    ).fields.ID
 
     await db
       .postAirDB('Testy - Tests', {
@@ -47,12 +47,12 @@ export default () => {
           return (
             <FormControlLabel
               onChange={() => handleChange(question)}
-              checked={questionIDs.includes(question.id)}
+              checked={questionIDs.includes(question.fields.ID)}
               control={
                 <Checkbox
                   checkedIcon={<Check />}
                   icon={<Close />}
-                  name={question.id}
+                  name={question.fields.ID}
                 />
               }
               label={question.fields.question}

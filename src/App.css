@@ -1,14 +1,22 @@
+html {
+  cursor: default;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
 .title {
   display: inline-block;
   padding-left: 0.2rem;
+  font-size: 2rem;
+  font-family: Avenir;
+  font-weight: 200;
 }
 
 .options-text-field {
   width: 90%;
-}
-
-.form-groups > * {
-  margin-bottom: 1rem;
 }
 
 .select {
@@ -16,34 +24,36 @@
   margin-top: 0.5rem;
 }
 
-.form-group {
+.menu {
+  background-color: blue;
+}
+
+.form-group > * {
   width: 100%;
-  margin-bottom: 1rem;
-}
-
-html, p {
-  cursor: default;
-}
-
-a {
-  text-decoration: none;
-}
-
-::selection {
-  background-color: #81c784;
-  opacity: 0.2;
-}
-
-.icon-btn:hover {
-  color: #006bcd;
 }
 
 .MuiSelect-select:focus {
   background-color: none;
   background: none;
 }
-@media (min-width:600px) {
-  .score-paper: {
-    margin-top: -10;
-  }
+
+.form-control {
+  width: 100%;
+}
+
+.text-field {
+  width: 100%;
+}
+
+.btn-label {
+  text-transform: none;
+}
+
+.paper-container {
+  border-radius: 1rem 0 0 0;
+  width: 100%;
+  border: none;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }

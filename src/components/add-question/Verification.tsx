@@ -14,8 +14,8 @@ const Verification = () => {
     const userid = (
       db.users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
-      )[0] || { id: '' }
-    ).id
+      )[0] || { fields: { ID: '' } }
+    ).fields.ID
 
     await db
       .postAirDB('Testy - Questions', {

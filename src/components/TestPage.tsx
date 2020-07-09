@@ -25,8 +25,8 @@ export default (props: {
         <Typography variant="h5">
           <em>{(props.user || { fields: {} }).fields.username}</em>
         </Typography>
-        {props.test.tags.split(', ').length > 0 ? (
-          props.test.tags
+        {props.test.tags ? (
+          (props.test.tags || '')
             .split(', ')
             .map((x: string, index: number) => (
               <Chip
@@ -43,11 +43,14 @@ export default (props: {
         {props.test.questions !== undefined ? (
           props.questions
             .filter((question: any) =>
-              (props.test.questions || '').split(', ').includes(question.id)
+              (props.test.questions || '')
+                .split(', ')
+                .includes(JSON.stringify(question.fields.ID))
             )
             .map((question: any) => (
               <Card
                 elevation={0}
+                key={question.fields.ID}
                 style={{
                   padding: '0.5em',
                   marginBottom: '0.5em',

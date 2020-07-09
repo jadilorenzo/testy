@@ -37,7 +37,7 @@ export default () => {
   }
 
   return (
-    <div className="QuestionFormContainer">
+    <div>
       <div>
         <TextField
           variant="outlined"
@@ -47,38 +47,38 @@ export default () => {
           onChange={handleTitleChange}
         />
       </div>
-      <>
+      <div>
         <Checkbox disabled />
         <TextField
           className="options-text-field"
           value={question.options[0]}
           onChange={(e: any) => handleOptionChange(e, 0)}
         />
-      </>
-      <>
+      </div>
+      <div>
         <Checkbox disabled />
         <TextField
           className="options-text-field"
           value={question.options[1]}
           onChange={(e: any) => handleOptionChange(e, 1)}
         />
-      </>
-      <>
+      </div>
+      <div>
         <Checkbox disabled />
         <TextField
           className="options-text-field"
           value={question.options[2]}
           onChange={(e: any) => handleOptionChange(e, 2)}
         />
-      </>
-      <>
+      </div>
+      <div>
         <Checkbox disabled />
         <TextField
           className="options-text-field"
           value={question.options[3]}
           onChange={(e: any) => handleOptionChange(e, 3)}
         />
-      </>
+      </div>
       <FormControl variant="standard" fullWidth>
         <div className="FormGroup">
           <InputLabel id="select">Answer</InputLabel>

@@ -10,6 +10,7 @@ export const AirDBContext = createContext<{
   loading: boolean
   scores: any[]
   users: any[]
+  testInstances: any[]
 }>({
   postAirDB: () => {},
   updateAirDB: () => {},
@@ -18,7 +19,8 @@ export const AirDBContext = createContext<{
   scores: [],
   questions: [],
   loading: false,
-  users: []
+  users: [],
+  testInstances: []
 })
 
 export const AirDBProvider = React.memo((props: any) => {
@@ -27,6 +29,7 @@ export const AirDBProvider = React.memo((props: any) => {
   const [scores, setScores] = React.useState([])
   const [loading, setLoading] = React.useState(true)
   const [users, setUsers] = React.useState([])
+  const [testInstances, setTestInstances] = React.useState([])
 
   const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
     'appeQvvPNhaPvYi0s'
@@ -42,24 +45,30 @@ export const AirDBProvider = React.memo((props: any) => {
   }
 
   const postAirDB = async (table: string, newRow: any) => {
-    return base(table).create([
-      {
-        fields: {
-          ...newRow
+    return base(table).create(
+      [
+        {
+          fields: {
+            ...newRow
+          }
         }
-      }
-    ])
+      ],
+      { typecast: true }
+    )
   }
 
   const updateAirDB = (table: string, id: string, fields: any) => {
-    return base(table).update([
-      {
-        id,
-        fields: {
-          ...fields
+    return base(table).update(
+      [
+        {
+          id,
+          fields: {
+            ...fields
+          }
         }
-      }
-    ])
+      ],
+      { typecast: true }
+    )
   }
 
   React.useEffect(() => {
@@ -69,7 +78,8 @@ export const AirDBProvider = React.memo((props: any) => {
         .then((r: any) => setUsers(r))
         .then(() => setLoading(false))
       getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
-      getAirDB('Testy - Test Instances').then((r: any) => setScores(r))
+      getAirDB('Testy - Test Scores').then((r: any) => setScores(r))
+      getAirDB('Testy - Test Instances').then((r: any) => setTestInstances(r))
     }, 1500)
   }, [])
 
@@ -83,7 +93,8 @@ export const AirDBProvider = React.memo((props: any) => {
         tests,
         questions,
         loading,
-        users
+        users,
+        testInstances
       }}
     >
       {props.children}

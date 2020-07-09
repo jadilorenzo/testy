@@ -13,7 +13,6 @@ import {
   useTheme
 } from '@material-ui/core'
 import { ExitToApp, Edit } from '@material-ui/icons'
-import Question from './take-test/Question'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default React.memo((props: any) => {
@@ -25,11 +24,6 @@ export default React.memo((props: any) => {
 
   const theme = useTheme()
 
-  const handleSubmitionClick = (newUsername: string, newPassword: string) => {
-    setSubmitted(true)
-    // TODO: more stuff
-  }
-
   const handleClose = () => {
     setToggled(false)
   }
@@ -40,7 +34,11 @@ export default React.memo((props: any) => {
         user =>
           user.fields.password === password && user.fields.username === username
       ).length > 0
-    const userId = users.filter(user => user.fields.username === username)[0].id
+    const userId = (
+      users.filter(user => user.fields.username === username)[0] || {
+        id: ''
+      }
+    ).id
 
     if (isMatching) {
       setToggled(false)

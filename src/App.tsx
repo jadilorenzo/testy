@@ -9,7 +9,8 @@ import {
   TuiAddQuestionTo,
   TuiAddPage,
   TuiLogin,
-  TuiSampleTest
+  TuiSampleTest,
+  TuiScorePage
 } from './components'
 import { AirDBContext } from './context/AirDBContext'
 import { SearchProvider } from './context/SearchContext'
@@ -38,6 +39,9 @@ const App = () => {
                 <SearchProvider>
                   <Route exact path="/">
                     <TuiMain setRedirect={setRedirect} />
+                  </Route>
+                  <Route exact path="/scores">
+                    <TuiScorePage setRedirect={setRedirect} />
                   </Route>
                   <Route exact path="/add">
                     <TuiAddPage setRedirect={setRedirect} />

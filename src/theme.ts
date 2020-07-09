@@ -58,7 +58,7 @@ let theme = createMuiTheme({
     },
     MuiPaper: {
       elevation: 0,
-      style: { padding: '1em', background: '#EEE' }
+      style: { padding: '0.75rem', background: '#EEE' }
     },
     MuiCard: {
       elevation: 0

@@ -8,12 +8,14 @@ export const AirDBContext = createContext<{
   tests: any[]
   questions: any[]
   loading: boolean
+  scores: any[]
   users: any[]
 }>({
   postAirDB: () => {},
   updateAirDB: () => {},
   getAirDB: () => {},
   tests: [],
+  scores: [],
   questions: [],
   loading: false,
   users: []
@@ -22,6 +24,7 @@ export const AirDBContext = createContext<{
 export const AirDBProvider = React.memo((props: any) => {
   const [tests, setTests] = React.useState([])
   const [questions, setQuestions] = React.useState([])
+  const [scores, setScores] = React.useState([])
   const [loading, setLoading] = React.useState(true)
   const [users, setUsers] = React.useState([])
 
@@ -66,12 +69,14 @@ export const AirDBProvider = React.memo((props: any) => {
         .then((r: any) => setUsers(r))
         .then(() => setLoading(false))
       getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
+      getAirDB('Testy - Test Instances').then((r: any) => setScores(r))
     }, 1500)
   }, [])
 
   return (
     <AirDBContext.Provider
       value={{
+        scores,
         postAirDB,
         getAirDB,
         updateAirDB,

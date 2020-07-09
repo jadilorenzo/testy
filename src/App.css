@@ -31,6 +31,7 @@ a {
 
 ::selection {
   background-color: #81c784;
+  opacity: 0.2;
 }
 
 .icon-btn:hover {
@@ -40,4 +41,9 @@ a {
 .MuiSelect-select:focus {
   background-color: none;
   background: none;
+}
+@media (min-width:600px) {
+  .score-paper: {
+    margin-top: -10;
+  }
 }

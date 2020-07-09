@@ -8,6 +8,7 @@ import TestPage from './TestPage'
 import AddQuestionTo from './AddQuestionTo'
 import AddPage from './AddPage'
 import Login from './Login'
+import ScorePage from './ScorePage'
 
 export const TuiCreateQuestion = CreateQuestion
 export const TuiHeader = Header
@@ -19,3 +20,4 @@ export const TuiAddPage = AddPage
 export const TuiLogin = Login
 export const TuiSampleTest = SampleTest
 export const TuiTakeTest = TakeTest
+export const TuiScorePage = ScorePage

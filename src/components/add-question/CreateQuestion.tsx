@@ -1,5 +1,7 @@
 import React from 'react'
-import { Tab, Tabs, Typography } from '@material-ui/core'
+import { Tabs, Tab, Typography } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles'
+import { primary } from '../../colors'
 import QuestionForm from './QuestionForm'
 import OptionsForm from './OptionsForm'
 import Verification from './Verification'
@@ -33,6 +35,33 @@ function TabPanel(props: any) {
   )
 }
 
+const StyledTabs = withStyles({
+  indicator: {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    '& > span': {
+      maxWidth: '5rem',
+      width: '100%',
+      background: primary
+    }
+  }
+})((props: any) => (
+  <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />
+))
+
+const StyledTab = withStyles(theme => ({
+  root: {
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    marginRight: theme.spacing(1),
+    '&:focus': {
+      opacity: 1,
+      color: primary
+    }
+  }
+}))((props: any) => <Tab disableRipple {...props} />)
+
 export default () => {
   const [value, setValue] = React.useState(0)
 
@@ -45,24 +74,22 @@ export default () => {
     <OptionsContextProvider>
       {(options: any) => (
         <CurrentQuestionContextProvider>
-          <Tabs value={value} onChange={handleChange} centered>
-            <Tab label="1. Options" />
-            <Tab label="2. Question" />
-            <Tab label="3. Verification" />
-          </Tabs>
-          <div>
-            <Paper className="QuestionForm">
-              <TabPanel value={value} index={0} title="Options">
-                <OptionsForm />
-              </TabPanel>
-              <TabPanel value={value} index={1} title="Question">
-                <QuestionForm type={options.type} />
-              </TabPanel>
-              <TabPanel value={value} index={2} title="Verification">
-                <Verification />
-              </TabPanel>
-            </Paper>
-          </div>
+          <StyledTabs value={value} onChange={handleChange} centered>
+            <StyledTab label="1. Options" />
+            <StyledTab label="2. Question" />
+            <StyledTab label="3. Verification" />
+          </StyledTabs>
+          <Paper>
+            <TabPanel value={value} index={0} title="Options">
+              <OptionsForm />
+            </TabPanel>
+            <TabPanel value={value} index={1} title="Question">
+              <QuestionForm type={options.type} />
+            </TabPanel>
+            <TabPanel value={value} index={2} title="Verification">
+              <Verification />
+            </TabPanel>
+          </Paper>
         </CurrentQuestionContextProvider>
       )}
     </OptionsContextProvider>

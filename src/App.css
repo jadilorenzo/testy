@@ -20,7 +20,7 @@ a {
 }
 
 .select {
-  width: calc(100%);
+  width: 100%;
   margin-top: 0.5rem;
 }
 
@@ -32,9 +32,8 @@ a {
   width: 100%;
 }
 
-.MuiSelect-select:focus {
-  background-color: none;
-  background: none;
+.select:focus {
+  /* opacity: 0; */
 }
 
 .form-control {

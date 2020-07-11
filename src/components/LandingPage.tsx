@@ -1,118 +1,87 @@
 import React from 'react'
+import { Button, Zoom, Avatar, Typography } from '@material-ui/core'
 import {
-  Typography,
-  TextField,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Grid
-} from '@material-ui/core'
-import Paper from './Paper'
-import TestDisplay from './add-test/TestDisplay'
-import { AirDBContext } from '../context/AirDBContext'
-import { SearchContext } from '../context/SearchContext'
-import filterTests from '../methods/filterTests'
-import Button from './Button'
+  Face,
+  AddRounded,
+  SearchRounded,
+  HomeRounded
+} from '@material-ui/icons'
 
 export default (props: any) => {
-  const { tests } = React.useContext(AirDBContext)
-  const [search, setSearch] = React.useContext(SearchContext)
-
-  const handleSearchChange = (e: any) => {
-    e.persist()
-    setSearch((prev: any) => ({ ...prev, search: e.target.value }))
-  }
-
-  const handleTagChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    event.persist()
-    setSearch((prev: any) => {
-      let tags: string[] = event.target.value as string[]
-      return { ...prev, tags }
-    })
-  }
+  const [clicked, setClicked] = React.useState<boolean>(false)
 
   return (
-    <>
-      <br />
-      <Paper>
-        <Typography variant="h5">Search Tests</Typography>
-        <Button
-          variant="text"
-          color="primary"
-          style={{ float: 'right', position: 'relative', top: '-2.5rem' }}
-          onClick={() => props.setRedirect('/scores')}
-        >
-          Scores
-        </Button>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            label="Search"
-            onChange={handleSearchChange}
-            value={search.search}
-            variant="outlined"
-            style={{
-              margin: 'auto',
-              borderRadius: '0.4em'
-            }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={7}>
-          <FormControl
-            variant="outlined"
-            style={{ marginTop: -15, marginBottom: 10 }}
-          >
-            <InputLabel style={{ position: 'relative', top: 25 }}>
-              Tags
-            </InputLabel>
-            <Select
-              multiple
-              classes={{ outlined: 'select' }}
-              label="Tags"
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={search.tags}
-              onChange={handleTagChange}
-            >
-              {tests
-                .flatMap((test: any) => (test.fields.tags || '').split(', '))
-                .sort()
-                .filter((tag: string) => tag !== '')
-                .map((tag: string) => (
-                  <MenuItem key={tag} value={tag}>
-                    {tag}
-                  </MenuItem>
-                ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <div style={{ maxHeight: '30rem', overflow: 'scroll' }}>
-          {tests
-            .filter((test: any) =>
-              filterTests(
-                { ...test.fields, tags: test.fields.tags || '' },
-                search
-              )
-            )
-            .map((row: any) => (
+    <div className="landing-page-container">
+      <div>
+        {!clicked && (
+          <Zoom in={!clicked}>
+            <>
               <div
-                key={row.fields.ID}
-                style={{ width: '100%' }}
-                onClick={() => props.setRedirect(`/test/${row.fields.ID}`)}
+                style={{
+                  display: 'flex',
+                  justifyItems: 'center',
+                  alignItems: 'center'
+                }}
               >
-                <TestDisplay
-                  test={{
-                    ...row.fields,
-                    tags: row.fields.tags ? row.fields.tags.split(', ') : [],
-                    questions: row.fields.questions
-                      ? row.fields.questions.split(', ')
-                      : []
-                  }}
+                <HomeRounded
+                  color="primary"
+                  style={{ margin: 'auto', fontSize: '4rem' }}
                 />
               </div>
-            ))}
-        </div>
-      </Paper>
-    </>
+              <Button
+                variant="outlined"
+                color="primary"
+                style={{ width: '9rem', height: '4.5rem', fontSize: '1.5rem' }}
+                onClick={() => setClicked(true)}
+              >
+                GO
+              </Button>
+            </>
+          </Zoom>
+        )}
+      </div>
+      <div className="landing-page-avatar-group">
+        {clicked && (
+          <>
+            <Zoom in={clicked}>
+              <div className="avatar-group">
+                <Avatar
+                  onClick={() => (window.location.href = '/chat')}
+                  className="avatar"
+                  style={{ width: '4rem', height: '4rem' }}
+                >
+                  <Face fontSize="large" />
+                </Avatar>
+                <Typography variant="h6">Chat</Typography>
+              </div>
+            </Zoom>
+            <Zoom in={clicked}>
+              <div className="avatar-group">
+                <Avatar
+                  onClick={() => (window.location.href = '/add')}
+                  className="avatar"
+                  style={{ width: '4rem', height: '4rem' }}
+                >
+                  <AddRounded fontSize="large" />
+                </Avatar>
+                <Typography variant="h6">Add</Typography>
+              </div>
+            </Zoom>
+            <Zoom in={clicked}>
+              <div className="avatar-group">
+                <Avatar
+                  onClick={() => (window.location.href = '/search')}
+                  className="avatar"
+                  style={{ width: '4rem', height: '4rem' }}
+                >
+                  <SearchRounded fontSize="large" />
+                </Avatar>
+                <Typography variant="h6">Search</Typography>
+              </div>
+            </Zoom>
+          </>
+        )}
+      </div>
+    </div>
   )
 }

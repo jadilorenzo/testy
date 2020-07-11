@@ -26,7 +26,7 @@ export default () => {
                 />
               ))}
               <div className="add-group-container">
-                <IconButton>
+                <IconButton disabled>
                   <AddRounded />
                 </IconButton>
               </div>

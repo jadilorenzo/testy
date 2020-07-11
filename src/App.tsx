@@ -9,7 +9,8 @@ import {
   TuiAddPage,
   TuiLogin,
   TuiScorePage,
-  TuiChat
+  TuiChat,
+  TuiSearchPage
 } from './components'
 import { AirDBContext } from './context/AirDBContext'
 import { SearchProvider } from './context/SearchContext'
@@ -52,6 +53,9 @@ const App = () => {
                     <TestProvider>
                       <TuiCreateTest />
                     </TestProvider>
+                  </Route>
+                  <Route exact path="/search">
+                    <TuiSearchPage />
                   </Route>
                   <Route exact path="/chat">
                     <TuiChat />

@@ -9,6 +9,7 @@ import AddQuestionTo from './AddQuestionTo'
 import AddPage from './AddPage'
 import Login from './Login'
 import ScorePage from './ScorePage'
+import SearchPage from './SearchPage'
 import Chat from './chat/Chat'
 
 export const TuiCreateQuestion = CreateQuestion
@@ -22,4 +23,5 @@ export const TuiLogin = Login
 export const TuiTakeTest = TakeTest
 export const TuiScorePage = ScorePage
 export const TuiReviewTest = ReviewTest
+export const TuiSearchPage = SearchPage
 export const TuiChat = Chat

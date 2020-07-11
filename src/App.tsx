@@ -55,7 +55,7 @@ const App = () => {
                     </TestProvider>
                   </Route>
                   <Route exact path="/search">
-                    <TuiSearchPage />
+                    <TuiSearchPage setRedirect={setRedirect} />
                   </Route>
                   <Route exact path="/chat">
                     <TuiChat />

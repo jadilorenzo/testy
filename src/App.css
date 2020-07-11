@@ -120,7 +120,7 @@ a {
 
 .chat-section {
   width: 100%;
-  margin: 0 0.5rem 0 0.5rem;
+  /* margin: 0.5rem; */
   overflow: scroll;
   max-height: 50vh;
 }
@@ -152,7 +152,6 @@ a {
 
 .landing-page-container {
   display: flex;
-  background-image: url('./background.png');
   flex-direction: column;
   align-items: center;
   justify-content: center;

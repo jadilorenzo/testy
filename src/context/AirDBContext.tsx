@@ -8,6 +8,7 @@ export const AirDBContext = createContext<{
   updateTestQuestions: Function
   handleQuestionAnswer: Function
   createInitialScore: Function
+  handleSendMessage: Function
   handleLogout: Function
   handleSetScore: Function
   tests: any[]
@@ -15,6 +16,8 @@ export const AirDBContext = createContext<{
   loading: boolean
   scores: any[]
   users: any[]
+  groups: any[]
+  messages: any[]
   testInstances: any[]
 }>({
   handleLogin: () => {},
@@ -22,13 +25,16 @@ export const AirDBContext = createContext<{
   handleAddTest: () => {},
   updateTestQuestions: () => {},
   handleQuestionAnswer: () => {},
+  handleSendMessage: () => {},
   createInitialScore: () => {},
   handleLogout: () => {},
   handleSetScore: () => {},
   tests: [],
   scores: [],
   questions: [],
+  messages: [],
   loading: false,
+  groups: [],
   users: [],
   testInstances: []
 })
@@ -40,6 +46,8 @@ export const AirDBProvider = React.memo((props: any) => {
   const [loading, setLoading] = React.useState(true)
   const [users, setUsers] = React.useState<any[]>([])
   const [testInstances, setTestInstances] = React.useState<any[]>([])
+  const [groups, setGroups] = React.useState<any[]>([])
+  const [messages, setMessages] = React.useState<any[]>([])
 
   const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
     'appeQvvPNhaPvYi0s'
@@ -99,7 +107,7 @@ export const AirDBProvider = React.memo((props: any) => {
     if (isMatching) {
       setToggled(false)
       window.localStorage.setItem('username', username)
-      return updateAirDB('Testy - Users', userId, {
+      return updateAirDB('Users', userId, {
         active: 'true'
       })
     } else {
@@ -115,7 +123,7 @@ export const AirDBProvider = React.memo((props: any) => {
       )[0] || { fields: { ID: '' } }
     ).fields.ID
 
-    return postAirDB('Testy - Questions', {
+    return postAirDB('Questions', {
       ...question,
       userid,
       options: question.options
@@ -135,7 +143,7 @@ export const AirDBProvider = React.memo((props: any) => {
       )[0] || { fields: { ID: '' } }
     ).fields.ID
 
-    await postAirDB('Testy - Tests', {
+    await postAirDB('Tests', {
       ...test,
       userid,
       tags: test.tags.join(', '),
@@ -144,7 +152,7 @@ export const AirDBProvider = React.memo((props: any) => {
   }
 
   const updateTestQuestions = ({ test, questionIDs }: any) => {
-    updateAirDB('Testy - Tests', test.id, {
+    updateAirDB('Tests', test.id, {
       questions: questionIDs.join(', ')
     }).then(() => {
       props.setRedirect('/')
@@ -157,7 +165,7 @@ export const AirDBProvider = React.memo((props: any) => {
         user.fields.username === window.localStorage.getItem('username')
     )[0].id
 
-    return updateAirDB('Testy - Users', userId, {
+    return updateAirDB('Users', userId, {
       active: false
     })
   }
@@ -169,7 +177,7 @@ export const AirDBProvider = React.memo((props: any) => {
       }
     ).id
 
-    return updateAirDB('Testy - Test Scores', scorid, { score })
+    return updateAirDB('Test Scores', scorid, { score })
   }
 
   const createInitialScore = ({ id, setScoreID }: any) => {
@@ -178,7 +186,7 @@ export const AirDBProvider = React.memo((props: any) => {
         user => user.fields.username === window.localStorage.getItem('username')
       )[0] || { fields: { ID: 0 } }
     ).fields.ID
-    postAirDB('Testy - Test Scores', {
+    postAirDB('Test Scores', {
       userid,
       test: id
     }).then((r: any) => {
@@ -195,7 +203,7 @@ export const AirDBProvider = React.memo((props: any) => {
   }: any) => {
     handleSubmit(value, question, index)
 
-    postAirDB('Testy - Test Instances', {
+    postAirDB('Test Instances', {
       answer: value,
       'correct answer': question.fields.answer,
       correct: JSON.stringify(question.fields.answer === value),
@@ -204,15 +212,31 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
+  const handleSendMessage = ({ groupid, text }: any) => {
+    const userid = (
+      users.filter(
+        user => user.fields.username === window.localStorage.getItem('username')
+      )[0] || { fields: { ID: 0 } }
+    ).fields.ID
+
+    return postAirDB('Messages', {
+      groupid: JSON.stringify(groupid),
+      userid: JSON.stringify(userid),
+      text
+    })
+  }
+
   React.useEffect(() => {
     setInterval(() => {
-      getAirDB('Testy - Tests').then((r: any) => setTests(r))
-      getAirDB('Testy - Users')
+      getAirDB('Tests').then((r: any) => setTests(r))
+      getAirDB('Users')
         .then((r: any) => setUsers(r))
         .then(() => setLoading(false))
-      getAirDB('Testy - Questions').then((r: any) => setQuestions(r))
-      getAirDB('Testy - Test Scores').then((r: any) => setScores(r))
-      getAirDB('Testy - Test Instances').then((r: any) => setTestInstances(r))
+      getAirDB('Questions').then((r: any) => setQuestions(r))
+      getAirDB('Test Scores').then((r: any) => setScores(r))
+      getAirDB('Test Instances').then((r: any) => setTestInstances(r))
+      getAirDB('Groups').then((r: any) => setGroups(r))
+      getAirDB('Messages').then((r: any) => setMessages(r))
     }, 1500)
   }, [])
 
@@ -220,8 +244,10 @@ export const AirDBProvider = React.memo((props: any) => {
     <AirDBContext.Provider
       value={{
         scores,
+        messages,
         handleQuestionAnswer,
         updateTestQuestions,
+        handleSendMessage,
         createInitialScore,
         handleAddQuestion,
         handleSetScore,
@@ -229,6 +255,7 @@ export const AirDBProvider = React.memo((props: any) => {
         handleLogin,
         handleLogout,
         tests,
+        groups,
         questions,
         loading,
         users,

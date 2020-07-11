@@ -7,7 +7,8 @@ export default (props: any) => {
 
   const { username, active } = (
     users.filter(
-      (user: { fields: { ID: number } }) => user.fields.ID === props.userid
+      (user: { fields: { ID: number } }) =>
+        user.fields.ID === JSON.parse(props.userid)
     )[0] || { fields: { username: 'xxx' } }
   ).fields
 

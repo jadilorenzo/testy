@@ -82,3 +82,70 @@ a {
   align-items: center;
   margin: 0.5rem;
 }
+
+.text-input-group {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.text-send-button {
+  width: 5.5rem;
+  margin-left: 0.2rem;
+  display: flex;
+  align-items: stretch;
+}
+
+.group-display {
+  background: #EEE;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.group-display:hover {
+  background: #E6E6E6;
+}
+
+.arrow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  display: flex;
+  align-items: stretch;
+  flex-basis: auto;
+}
+
+.chat-section {
+  width: 100%;
+  margin: 0 0.5rem 0 0.5rem;
+  overflow: scroll;
+  max-height: 50vh;
+}
+
+.chat-group-section {
+  min-width: 10rem;
+  border-radius: inherit;
+  width: 30%;
+  overflow: scroll;
+  max-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat-group-section > * {
+  width: 100%;
+}
+
+.add-group-container {
+  margin: 0.5rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.group-display-selected {
+  background: #DADADA;
+}

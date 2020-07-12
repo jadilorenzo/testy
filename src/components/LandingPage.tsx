@@ -44,7 +44,7 @@ export default (props: any) => {
                 className="avatar"
                 style={{ width: '4rem', height: '4rem' }}
               >
-                <Face fontSize="large" />
+                <Face fontSize="large" color="inherit" />
               </Avatar>
               <Typography variant="h6">Chat</Typography>
             </div>
@@ -56,7 +56,7 @@ export default (props: any) => {
                 className="avatar"
                 style={{ width: '4rem', height: '4rem' }}
               >
-                <HomeRounded fontSize="large" />
+                <HomeRounded fontSize="large" color="inherit" />
               </Avatar>
               <Typography variant="h6">Home</Typography>
             </div>
@@ -68,7 +68,7 @@ export default (props: any) => {
                 className="avatar"
                 style={{ width: '4rem', height: '4rem' }}
               >
-                <BarChartRounded fontSize="large" />
+                <BarChartRounded fontSize="large" color="inherit" />
               </Avatar>
               <Typography variant="h6">Scores</Typography>
             </div>

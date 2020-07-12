@@ -16,7 +16,7 @@ export default () => {
       <Paper>
         <div className="chat-container">
           <Grid container spacing={2}>
-            <Grid item md={3} xs={12}>
+            <Grid item md={4} xs={12}>
               <div>
                 <div style={{ height: 'min-content' }}>
                   {groups.map((group: any) => (
@@ -35,7 +35,7 @@ export default () => {
                 </div>
               </div>
             </Grid>
-            <Grid item md={9} xs={12}>
+            <Grid item md={8} xs={12}>
               <div className="chat-section">
                 {messages
                   .filter(

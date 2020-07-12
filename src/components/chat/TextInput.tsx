@@ -15,25 +15,36 @@ export default (props: any) => {
   }
 
   return (
-    <div className="text-input-group">
-      <TextField
-        onChange={(e: any) => setMessage(e.target.value)}
-        value={message}
-        placeholder="Message"
-        variant="outlined"
-        id="text"
-        type="text"
-      />
-      <div className="text-send-button">
-        <Button
-          onClick={sendMessage}
-          variant="contained"
-          color="primary"
-          endIcon={<Send />}
-        >
-          Send
-        </Button>
+    <>
+      <div className="text-input-group">
+        <TextField
+          onChange={(e: any) => setMessage(e.target.value)}
+          value={message}
+          placeholder="Message"
+          variant="outlined"
+          id="text"
+          type="text"
+        />
+        <div className="text-send-button">
+          <Button
+            onClick={sendMessage}
+            variant="contained"
+            color="primary"
+            endIcon={<Send />}
+          >
+            Send
+          </Button>
+        </div>
       </div>
-    </div>
+      {/*
+        <Button
+          color="primary"
+          variant="outlined"
+          style={{ marginTop: '0.5rem' }}
+        >
+          Share Test
+        </Button>
+      */}
+    </>
   )
 }

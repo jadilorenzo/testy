@@ -9,7 +9,6 @@ a {
 
 .title {
   display: inline-block;
-  padding-left: 0.2rem;
   font-size: 2rem;
   font-family: Avenir;
   font-weight: 200;
@@ -160,7 +159,6 @@ a {
   margin-top: 0.5rem;
   border-radius: 0.5rem;
   height: 40vh;
-  background: #FFF;
 }
 
 .avatar {

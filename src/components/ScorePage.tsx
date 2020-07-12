@@ -20,7 +20,7 @@ export default (props: any) => {
     <>
       <br />
       <Page>
-        <Typography variant="h5">Your Scores</Typography>
+        <Typography variant="h5">Recent Scores</Typography>
         {yourScores.length !== 0 ? (
           yourScores.map(score => (
             <Grid

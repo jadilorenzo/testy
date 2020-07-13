@@ -45,7 +45,7 @@ export default React.memo((props: any) => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle disableTypography id="alert-dialog-title">
-            <Typography variant="h4">Login to Testy</Typography>
+            <Typography variant="h4">Login to SmartOne</Typography>
           </DialogTitle>
           <DialogContent>
             <FormControl style={{ width: '100%' }}>

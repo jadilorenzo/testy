@@ -61,10 +61,9 @@ const Header = (props: any) => {
             <Zoom in={true}>
               <IconButton
                 onClick={() => {
-                  handleLogout().then(() => {
-                    props.setRedirect('/')
-                    window.localStorage.removeItem('username')
-                  })
+                  handleLogout()
+                  window.localStorage.removeItem('username')
+                  props.setRedirect('/')
                 }}
                 color="inherit"
               >

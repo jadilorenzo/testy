@@ -35,7 +35,7 @@ export const AirDBContext = createContext<{
   messages: [],
   loading: false,
   groups: [],
-  users: [],
+  users: [{ fields: { username: '', password: '' } }],
   testInstances: []
 })
 
@@ -95,6 +95,7 @@ export const AirDBProvider = React.memo((props: any) => {
         (user: { fields: { password: string; username: string } }) =>
           user.fields.password === password && user.fields.username === username
       ).length > 0
+
     const userId = (
       users.filter(
         (user: { fields: { username: string } }) =>
@@ -108,7 +109,7 @@ export const AirDBProvider = React.memo((props: any) => {
       setToggled(false)
       window.localStorage.setItem('username', username)
       return updateAirDB('Users', userId, {
-        active: 'true'
+        active: true
       })
     } else {
       throw new Error('INCORRECT PASSWORD')
@@ -165,9 +166,7 @@ export const AirDBProvider = React.memo((props: any) => {
         user.fields.username === window.localStorage.getItem('username')
     )[0].id
 
-    return updateAirDB('Users', userId, {
-      active: false
-    })
+    return updateAirDB('Users', userId, { active: false })
   }
 
   const handleSetScore = ({ scoreID, score }: any) => {
@@ -262,7 +261,7 @@ export const AirDBProvider = React.memo((props: any) => {
         testInstances
       }}
     >
-      {props.children}
+      {props.children(users)}
     </AirDBContext.Provider>
   )
 })

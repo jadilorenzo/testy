@@ -1,6 +1,13 @@
 import React from 'react'
 import Page from './Paper'
-import { Typography, Grid, Paper, Button, useTheme } from '@material-ui/core'
+import {
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  useTheme,
+  Card
+} from '@material-ui/core'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default (props: any) => {
@@ -13,7 +20,9 @@ export default (props: any) => {
   ).fields.ID
 
   const yourScores = scores
-    .filter(score => score.fields.userid === JSON.stringify(userid))
+    .filter(
+      score => JSON.stringify(score.fields.userid) === JSON.stringify(userid)
+    )
     .reverse()
 
   return (
@@ -30,7 +39,10 @@ export default (props: any) => {
               alignItems="center"
               spacing={2}
             >
-              <Grid item xs={12}>
+              <Grid item xs={1} container direction="row" justify="center">
+                <Typography variant="h5">{score.fields.score}</Typography>
+              </Grid>
+              <Grid item xs={11}>
                 <Paper
                   style={{
                     background: theme.palette.background.default,

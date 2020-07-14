@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import { CssBaseline } from '@material-ui/core'
 import { TestProvider } from './context/TestContext'
 import {
-  TuiCreateQuestion,
   TuiCreateTest,
   TuiMain,
   TuiAddPage,
@@ -12,7 +11,7 @@ import {
   TuiChat,
   TuiSearchPage
 } from './components'
-import { AirDBContext, AirDBProvider } from './context/AirDBContext'
+import { AirDBProvider } from './context/AirDBContext'
 import { SearchProvider } from './context/SearchContext'
 import TestsRoutes from './TestsRoutes'
 import Reroute from './Reroute'
@@ -25,6 +24,7 @@ const App = () => {
         <Reroute
           render={(setRedirect: any) => (
             <AirDBProvider
+              setRedirect={setRedirect}
               children={(users: any[]) => {
                 const user = users.filter(
                   user =>
@@ -48,12 +48,6 @@ const App = () => {
                           <TuiScorePage setRedirect={setRedirect} />
                         </Route>
                         <Route exact path="/add">
-                          <TuiAddPage setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/question">
-                          <TuiCreateQuestion />
-                        </Route>
-                        <Route exact path="/add/test">
                           <TestProvider>
                             <TuiCreateTest />
                           </TestProvider>

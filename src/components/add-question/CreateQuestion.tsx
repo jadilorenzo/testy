@@ -62,7 +62,7 @@ const StyledTab = withStyles(theme => ({
   }
 }))((props: any) => <Tab disableRipple {...props} />)
 
-export default () => {
+export default (props: { id: number; setRedirect: Function }) => {
   const [value, setValue] = React.useState(0)
 
   const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
@@ -87,7 +87,7 @@ export default () => {
               <QuestionForm type={options.type} />
             </TabPanel>
             <TabPanel value={value} index={2} title="Verification">
-              <Verification />
+              <Verification id={props.id} setRedirect={props.setRedirect} />
             </TabPanel>
           </Paper>
         </CurrentQuestionContextProvider>

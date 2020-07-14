@@ -1,4 +1,4 @@
-import Airtable from 'airtable'
+import Airtable, { Record } from 'airtable'
 import React, { createContext } from 'react'
 
 export const AirDBContext = createContext<{
@@ -116,7 +116,7 @@ export const AirDBProvider = React.memo((props: any) => {
     }
   }
 
-  const handleAddQuestion = ({ options, question }: any) => {
+  const handleAddQuestion = async ({ options, question }: any) => {
     const userid = (
       users.filter(
         (user: { fields: { username: string } }) =>
@@ -133,10 +133,10 @@ export const AirDBProvider = React.memo((props: any) => {
         .join(', '),
       type: options.type,
       autocheck: JSON.stringify(options.autocheck)
-    })
+    }).then((r: any) => (r[0] || { fields: { ID: 0 } }).fields.ID)
   }
 
-  const handleAddTest = async ({ questionIDs, test }: any) => {
+  const handleAddTest = async ({ test }: any) => {
     const userid = (
       users.filter(
         (user: { fields: { username: string } }) =>
@@ -147,16 +147,20 @@ export const AirDBProvider = React.memo((props: any) => {
     await postAirDB('Tests', {
       ...test,
       userid,
-      tags: test.tags.join(', '),
-      questions: questionIDs.join(', ')
-    }).then(() => (window.location.pathname = '/'))
+      tags: test.tags.join(', ')
+    }).then((r: any) => {
+      const id = (r[0] || { fields: { ID: 0 } }).fields.ID
+      console.log(id)
+      props.setRedirect(`/add/question/to/${id}`)
+    })
   }
 
-  const updateTestQuestions = ({ test, questionIDs }: any) => {
-    updateAirDB('Tests', test.id, {
-      questions: questionIDs.join(', ')
-    }).then(() => {
-      props.setRedirect('/')
+  const updateTestQuestions = async ({ test, questionIDs }: any) => {
+    return updateAirDB('Tests', test.id, {
+      questions: questionIDs.filter((s: string) => s !== '').join(', ')
+    }).then((r: any) => {
+      const id = r[0].fields.ID
+      props.setRedirect(`/test/${id}`)
     })
   }
 

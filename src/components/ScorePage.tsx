@@ -9,11 +9,11 @@ export default (props: any) => {
   const userid = (
     users.filter(
       user => user.fields.username === window.localStorage.getItem('username')
-    )[0] || { fields: { ID: '' } }
+    )[0] || { fields: { ID: 0 } }
   ).fields.ID
 
   const yourScores = scores
-    .filter(score => score.fields.userid === userid)
+    .filter(score => score.fields.userid === JSON.stringify(userid))
     .reverse()
 
   return (

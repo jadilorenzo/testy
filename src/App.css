@@ -159,6 +159,7 @@ a {
   margin-top: 0.5rem;
   border-radius: 0.5rem;
   height: 40vh;
+  min-height: 15rem;
 }
 
 .avatar {

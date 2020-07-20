@@ -1,88 +1,49 @@
 import React from 'react'
-import { Typography, useTheme, Grid, Button } from '@material-ui/core'
+import {
+  SchoolRounded,
+  InsertDriveFileRounded,
+  AssignmentRounded,
+  AssessmentRounded,
+  BarChartRounded
+} from '@material-ui/icons'
+import { Typography } from '@material-ui/core'
 import Paper from './Paper'
-import BarChartIcon from '@material-ui/icons/BarChart'
-import ShortTextIcon from '@material-ui/icons/ShortText'
 
 export default (props: any) => {
-  const theme = useTheme()
-
   return (
-    <>
-      <br />
-      <Paper>
-        <Typography variant="h4">What would you like to add?</Typography>
-        <br />
-        <Grid
-          container
-          spacing={2}
-          justify="space-between"
-          direction="row"
-          alignItems="stretch"
-        >
-          <Grid
-            container
-            item
-            style={{
-              padding: '1rem',
-              margin: '0.2rem',
-              borderRadius: '0.5rem',
-              background: theme.palette.background.default
-            }}
-            md
-            direction="row"
-            justify="space-evenly"
-            alignItems="stretch"
-            onClick={() => props.setRedirect('/add/question')}
-          >
-            <ShortTextIcon style={{ height: '4.5rem', width: '4.5rem' }} />
-            <div style={{ margin: 1.5, width: 'calc(100% - 10rem)' }}>
-              <Typography variant="h6">Add Question</Typography>
-              <Typography variant="subtitle1">
-                Add a question to your test or to a collection for later.
-              </Typography>
-            </div>
-            <Button
-              style={{ borderRadius: '5px' }}
-              variant="outlined"
-              color="secondary"
-            >
-              Add
-            </Button>
-          </Grid>
-          <Grid
-            container
-            item
-            md
-            style={{
-              padding: '1rem',
-              margin: '0.2rem',
-              borderRadius: '0.5rem',
-              background: theme.palette.background.default
-            }}
-            direction="row"
-            justify="space-evenly"
-            alignItems="stretch"
-            onClick={() => props.setRedirect('/add/test')}
-          >
-            <BarChartIcon style={{ height: '4.5rem', width: '4.5rem' }} />
-            <div style={{ margin: 1.5, width: 'calc(100% - 10rem)' }}>
-              <Typography variant="h6">Add Test</Typography>
-              <Typography variant="subtitle1">
-                Add a test and practice it to your hearts content or share with
-                others.
-              </Typography>
-            </div>
-            <Button
-              style={{ borderRadius: '5px' }}
-              variant="outlined"
-              color="secondary"
-            >
-              Add
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    </>
+    <Paper>
+      <div className="center">
+        <div className="avatar-group">
+          <div className="avatar" style={{ width: '4rem', height: '4rem' }}>
+            <SchoolRounded fontSize="large" />
+          </div>
+          <Typography variant="h6">Add Course</Typography>
+        </div>
+        <div className="avatar-group">
+          <div className="avatar" style={{ width: '4rem', height: '4rem' }}>
+            <InsertDriveFileRounded fontSize="large" />
+          </div>
+          <Typography variant="h6">Add Chapter</Typography>
+        </div>
+        <div className="avatar-group">
+          <div className="avatar" style={{ width: '4rem', height: '4rem' }}>
+            <AssignmentRounded fontSize="large" />
+          </div>
+          <Typography variant="h6">Add Lesson</Typography>
+        </div>
+        <div className="avatar-group">
+          <div className="avatar" style={{ width: '4rem', height: '4rem' }}>
+            <AssessmentRounded fontSize="large" />
+          </div>
+          <Typography variant="h6">Add Assignment</Typography>
+        </div>
+        <div className="avatar-group">
+          <div className="avatar" style={{ width: '4rem', height: '4rem' }}>
+            <BarChartRounded fontSize="large" />
+          </div>
+          <Typography variant="h6">Add Test</Typography>
+        </div>
+      </div>
+    </Paper>
   )
 }

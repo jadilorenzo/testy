@@ -1,4 +1,4 @@
-import Airtable, { Record } from 'airtable'
+import Airtable from 'airtable'
 import React, { createContext } from 'react'
 
 export const AirDBContext = createContext<{
@@ -11,6 +11,11 @@ export const AirDBContext = createContext<{
   handleSendMessage: Function
   handleLogout: Function
   handleSetScore: Function
+  handleAddCourse: Function
+  handleAddChapter: Function
+  handleAddLesson: Function
+  handleAddAssignment: Function
+
   tests: any[]
   questions: any[]
   loading: boolean
@@ -19,6 +24,11 @@ export const AirDBContext = createContext<{
   groups: any[]
   messages: any[]
   testInstances: any[]
+
+  courses: any[]
+  chapters: any[]
+  lessons: any[]
+  assignments: any[]
 }>({
   handleLogin: () => {},
   handleAddQuestion: () => {},
@@ -29,6 +39,10 @@ export const AirDBContext = createContext<{
   createInitialScore: () => {},
   handleLogout: () => {},
   handleSetScore: () => {},
+  handleAddCourse: () => {},
+  handleAddChapter: () => {},
+  handleAddLesson: () => {},
+  handleAddAssignment: () => {},
   tests: [],
   scores: [],
   questions: [],
@@ -36,7 +50,12 @@ export const AirDBContext = createContext<{
   loading: false,
   groups: [],
   users: [{ fields: { username: '', password: '' } }],
-  testInstances: []
+  testInstances: [],
+
+  courses: [],
+  chapters: [],
+  lessons: [],
+  assignments: []
 })
 
 export const AirDBProvider = React.memo((props: any) => {
@@ -48,6 +67,11 @@ export const AirDBProvider = React.memo((props: any) => {
   const [testInstances, setTestInstances] = React.useState<any[]>([])
   const [groups, setGroups] = React.useState<any[]>([])
   const [messages, setMessages] = React.useState<any[]>([])
+
+  const [courses, setCourses] = React.useState<any[]>([])
+  const [chapters, setChapters] = React.useState<any[]>([])
+  const [lessons, setLessons] = React.useState<any[]>([])
+  const [assignments, setAssignments] = React.useState<any[]>([])
 
   const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
     'appeQvvPNhaPvYi0s'
@@ -229,6 +253,72 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
+  const handleAddCourse = ({ name }: any) => {
+    const userid = (
+      users.filter(
+        user => user.fields.username === window.localStorage.getItem('username')
+      )[0] || { id: '' }
+    ).id
+
+    return postAirDB('Courses', {
+      title: name,
+      userid: userid
+    })
+  }
+
+  const handleAddChapter = async ({ name, course }: any) => {
+    const lessonIds: string[] = (
+      courses.filter(course => course.id === course)[0] || {
+        fields: { lessons: '' }
+      }
+    ).fields.lessons.split(', ')
+
+    return postAirDB('Chapters', {
+      title: name
+    }).then((r: any) => {
+      const newId = r[0].fields.ID
+      return updateAirDB('Courses', course, {
+        chapters: [...lessonIds.filter(id => id !== ''), newId].join(', ')
+      })
+    })
+  }
+
+  const handleAddLesson = async ({ name, chapter }: any) => {
+    const chapterIds: string[] = (
+      chapters.filter(chapter => chapter.id === chapter)[0] || {
+        fields: { chapters: '' }
+      }
+    ).fields.chapters.split(', ')
+
+    return postAirDB('Lessons', {
+      title: name
+    }).then((r: any) => {
+      const newId = r[0].fields.ID
+      return updateAirDB('Chapters', chapter, {
+        lessons: [...chapterIds.filter(id => id !== ''), newId].join(', ')
+      })
+    })
+  }
+
+  const handleAddAssignment = async ({ name, lesson, type }: any) => {
+    const lessonIds: string = (
+      lessons.filter(lesson => lesson.id === lesson)[0] || {
+        fields: { lessons: '' }
+      }
+    ).fields.lessons
+
+    return postAirDB('Assignments', {
+      title: name
+    }).then((r: any) => {
+      const newId = r[0].fields.ID
+      return updateAirDB('Lessons', lesson, {
+        assignments:
+          lessonIds !== '' ? [...lessonIds.split(', '), newId].join(', ') : '',
+        type
+      })
+    })
+  }
+
   React.useEffect(() => {
     setInterval(() => {
       getAirDB('Tests').then((r: any) => setTests(r))
@@ -240,14 +330,17 @@ export const AirDBProvider = React.memo((props: any) => {
       getAirDB('Test Instances').then((r: any) => setTestInstances(r))
       getAirDB('Groups').then((r: any) => setGroups(r))
       getAirDB('Messages').then((r: any) => setMessages(r))
+
+      getAirDB('Courses').then((r: any) => setCourses(r))
+      getAirDB('Chapters').then((r: any) => setChapters(r))
+      getAirDB('Lessons').then((r: any) => setLessons(r))
+      getAirDB('Assignments').then((r: any) => setAssignments(r))
     }, 1500)
   }, [])
 
   return (
     <AirDBContext.Provider
       value={{
-        scores,
-        messages,
         handleQuestionAnswer,
         updateTestQuestions,
         handleSendMessage,
@@ -255,14 +348,26 @@ export const AirDBProvider = React.memo((props: any) => {
         handleAddQuestion,
         handleSetScore,
         handleAddTest,
+        handleAddCourse,
+        handleAddChapter,
+        handleAddLesson,
+        handleAddAssignment,
         handleLogin,
         handleLogout,
+
+        scores,
+        messages,
         tests,
         groups,
         questions,
         loading,
         users,
-        testInstances
+        testInstances,
+
+        courses,
+        chapters,
+        lessons,
+        assignments
       }}
     >
       {props.children(users)}

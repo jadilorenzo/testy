@@ -5,11 +5,16 @@ import { TestProvider } from './context/TestContext'
 import {
   TuiCreateTest,
   TuiMain,
-  TuiAddPage,
+  TuiDisplayCoursesTree,
   TuiLogin,
   TuiScorePage,
   TuiChat,
-  TuiSearchPage
+  TuiSearchPage,
+  TuiAddCourse,
+  TuiAddChapter,
+  TuiAddLesson,
+  TuiAddAssignment,
+  TuiAddPage
 } from './components'
 import { AirDBProvider } from './context/AirDBContext'
 import { SearchProvider } from './context/SearchContext'
@@ -57,6 +62,24 @@ const App = () => {
                         </Route>
                         <Route exact path="/chat">
                           <TuiChat />
+                        </Route>
+                        <Route exact path="/courses">
+                          <TuiDisplayCoursesTree setRedirect={setRedirect} />
+                        </Route>
+                        <Route exact path="/add/course">
+                          <TuiAddCourse setRedirect={setRedirect} />
+                        </Route>
+                        <Route exact path="/add/chapter">
+                          <TuiAddChapter setRedirect={setRedirect} />
+                        </Route>
+                        <Route exact path="/add/lesson">
+                          <TuiAddLesson setRedirect={setRedirect} />
+                        </Route>
+                        <Route exact path="/add/assignment">
+                          <TuiAddAssignment setRedirect={setRedirect} />
+                        </Route>
+                        <Route exact path="/add/todo">
+                          <TuiAddPage setRedirect={setRedirect} />
                         </Route>
                       </SearchProvider>
                     )}

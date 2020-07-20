@@ -16,63 +16,55 @@ export default (props: any) => {
       style={{ background: theme.palette.background.paper }}
     >
       <div>
-        <Zoom in={true}>
-          <>
-            <div
-              style={{
-                display: 'flex',
-                justifyItems: 'center',
-                alignItems: 'center',
-                flexDirection: 'column'
-              }}
-            >
-              <BubbleChart color="primary" fontSize="large" />
-              <div className="title">
-                Smart
-                <span style={{ color: theme.palette.primary.main }}>One</span>
-              </div>
+        <>
+          <div
+            style={{
+              display: 'flex',
+              justifyItems: 'center',
+              alignItems: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <BubbleChart color="primary" fontSize="large" />
+            <div className="title">
+              Smart
+              <span style={{ color: theme.palette.primary.main }}>One</span>
             </div>
-          </>
-        </Zoom>
+          </div>
+        </>
       </div>
       <div className="landing-page-avatar-group">
         <>
-          <Zoom in={true}>
-            <div className="avatar-group">
-              <Avatar
-                onClick={() => (window.location.href = '/chat')}
-                className="avatar"
-                style={{ width: '4rem', height: '4rem' }}
-              >
-                <Face fontSize="large" color="inherit" />
-              </Avatar>
-              <Typography variant="h6">Chat</Typography>
+          <div className="avatar-group">
+            <div
+              onClick={() => (window.location.href = '/chat')}
+              className="avatar"
+              style={{ width: '4rem', height: '4rem' }}
+            >
+              <Face fontSize="large" color="inherit" />
             </div>
-          </Zoom>
-          <Zoom in={true}>
-            <div className="avatar-group">
-              <Avatar
-                onClick={() => (window.location.href = '/search')}
-                className="avatar"
-                style={{ width: '4rem', height: '4rem' }}
-              >
-                <HomeRounded fontSize="large" color="inherit" />
-              </Avatar>
-              <Typography variant="h6">Home</Typography>
+            <Typography variant="h6">Chat</Typography>
+          </div>
+          <div className="avatar-group">
+            <div
+              onClick={() => (window.location.href = '/courses')}
+              className="avatar"
+              style={{ width: '4rem', height: '4rem' }}
+            >
+              <HomeRounded fontSize="large" color="inherit" />
             </div>
-          </Zoom>
-          <Zoom in={true}>
-            <div className="avatar-group">
-              <Avatar
-                onClick={() => (window.location.href = '/scores')}
-                className="avatar"
-                style={{ width: '4rem', height: '4rem' }}
-              >
-                <BarChartRounded fontSize="large" color="inherit" />
-              </Avatar>
-              <Typography variant="h6">Scores</Typography>
+            <Typography variant="h6">Home</Typography>
+          </div>
+          <div className="avatar-group">
+            <div
+              onClick={() => (window.location.href = '/scores')}
+              className="avatar"
+              style={{ width: '4rem', height: '4rem' }}
+            >
+              <BarChartRounded fontSize="large" color="inherit" />
             </div>
-          </Zoom>
+            <Typography variant="h6">Scores</Typography>
+          </div>
         </>
       </div>
     </div>

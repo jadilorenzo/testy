@@ -39,9 +39,6 @@ export default (props: any) => {
               alignItems="center"
               spacing={2}
             >
-              <Grid item xs={1} container direction="row" justify="center">
-                <Typography variant="h5">{score.fields.score}</Typography>
-              </Grid>
               <Grid item xs={11}>
                 <Paper
                   style={{
@@ -58,7 +55,8 @@ export default (props: any) => {
                           fields: { title: <em>Test not found</em> }
                         }
                       ).fields.title
-                    }
+                    }{' '}
+                    - {score.fields.score}
                   </Typography>
                   <Button
                     onClick={() =>

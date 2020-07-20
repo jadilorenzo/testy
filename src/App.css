@@ -164,18 +164,19 @@ a {
 
 .avatar {
   margin: 0.5rem;
+  display: flex;
+  background: #CCC;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 50vh;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .avatar:hover {
-  background: #2e7d32;
-  opacity: 0.9;
-  animation: 1s avatar-hover linear;
-}
-
-@keyframes avatar-hover {
-  100% {
-    background: #2e7d32;
-  }
+  background-color: #2e7d32;
+  color: #EEE;
 }
 
 .landing-page-avatar-group {
@@ -183,8 +184,38 @@ a {
   width: 100%;
   align-items: center;
   justify-content: center;
+  flex-basis: 10rem;
 }
 
 .avatar-group {
+  margin: 0.75rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-group:hover {
+}
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 60vh;
+}
+
+@media (max-width: 1300px) {
+  .avatar-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .center {
+    display: block;
+    flex-direction: column;
+  }
 }

@@ -9,7 +9,8 @@ export default (props: any) => {
       <div
         className="paper-container"
         style={{
-          background: theme.palette.background.paper
+          background: theme.palette.background.paper,
+          ...props.style
         }}
       >
         <div>{props.children}</div>

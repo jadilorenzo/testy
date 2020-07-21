@@ -16,7 +16,7 @@ export default ({
 }) => {
   const { questions, answerQuestion } = React.useContext(AirDBContext)
   const myQuestions = questions.filter(question =>
-    test.questions.split(', ').includes(JSON.stringify(question.fields.ID))
+    test.questions.split(', ').includes(`${question.fields.ID}`)
   )
   const [score, setCorrectProblems] = React.useState<(boolean | undefined)[]>(
     []

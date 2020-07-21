@@ -45,7 +45,7 @@ export default (props: {
             .filter((question: any) =>
               (props.test.questions || '')
                 .split(', ')
-                .includes(JSON.stringify(question.fields.ID))
+                .includes(`${question.fields.ID}`)
             )
             .map((question: any) => (
               <Card

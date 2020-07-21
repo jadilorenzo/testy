@@ -169,7 +169,7 @@ export const AirDBProvider = React.memo((props: any) => {
         .map((x: string) => x.trim())
         .join(', '),
       type: options.type,
-      autocheck: JSON.stringify(options.autocheck)
+      autocheck: `${options.autocheck}`
     }).then((r: any) => (r[0] || { fields: { ID: 0 } }).fields.ID)
   }
 
@@ -245,7 +245,7 @@ export const AirDBProvider = React.memo((props: any) => {
     postAirDB('Test Instances', {
       answer: value,
       'correct answer': question.fields.answer,
-      correct: JSON.stringify(question.fields.answer === value),
+      correct: `${question.fields.answer === value}`,
       scoreid: scoreID,
       question: question.fields.question
     })
@@ -259,8 +259,8 @@ export const AirDBProvider = React.memo((props: any) => {
     ).fields.ID
 
     return postAirDB('Messages', {
-      groupid: JSON.stringify(groupid),
-      userid: JSON.stringify(userid),
+      groupid: `${groupid}`,
+      userid: `${userid}`,
       text
     })
   }

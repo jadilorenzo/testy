@@ -24,12 +24,10 @@ export default (props: any) => {
 
   const handleChange = useCallback((question: any) => {
     setQuestions(prev => {
-      if (!prev.includes(JSON.stringify(question.fields.ID))) {
-        return [...prev, JSON.stringify(question.fields.ID)]
+      if (!prev.includes(`${question.fields.ID}`)) {
+        return [...prev, `${question.fields.ID}`]
       } else {
-        return prev.filter(
-          (id: string) => id !== JSON.stringify(question.fields.ID)
-        )
+        return prev.filter((id: string) => id !== `${question.fields.ID}`)
       }
     })
   }, [])
@@ -60,9 +58,7 @@ export default (props: any) => {
               return (
                 <FormControlLabel
                   onChange={() => handleChange(question)}
-                  checked={questionIDs.includes(
-                    JSON.stringify(question.fields.ID)
-                  )}
+                  checked={questionIDs.includes(`${question.fields.ID}`)}
                   control={
                     <Checkbox
                       checkedIcon={<Check />}

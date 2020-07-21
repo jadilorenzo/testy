@@ -15,6 +15,8 @@ import {
   assignment
 } from '../types'
 
+const voidFunction = () => {}
+
 export const AirDBContext = createContext<{
   login: Function
   addTest: Function
@@ -44,19 +46,19 @@ export const AirDBContext = createContext<{
   lessons: any[]
   assignments: any[]
 }>({
-  login: () => {},
-  addTest: () => {},
-  addQuestion: () => {},
-  updateTestQuestions: () => {},
-  answerQuestion: () => {},
-  createInitialScore: () => {},
-  sendMessage: () => {},
-  logout: () => {},
-  setScore: () => {},
-  addCourse: () => {},
-  addChapter: () => {},
-  addLesson: () => {},
-  addAssignment: () => {},
+  login: voidFunction,
+  addTest: voidFunction,
+  addQuestion: voidFunction,
+  updateTestQuestions: voidFunction,
+  answerQuestion: voidFunction,
+  createInitialScore: voidFunction,
+  sendMessage: voidFunction,
+  logout: voidFunction,
+  setScore: voidFunction,
+  addCourse: voidFunction,
+  addChapter: voidFunction,
+  addLesson: voidFunction,
+  addAssignment: voidFunction,
 
   tests: [],
   scores: [],

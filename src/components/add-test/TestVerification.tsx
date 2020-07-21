@@ -7,7 +7,7 @@ import Button from '../Button'
 import TestDisplay from './TestDisplay'
 
 export default () => {
-  const { handleAddTest, questions } = useContext(AirDBContext)
+  const { addTest, questions } = useContext(AirDBContext)
   const [test] = useContext(TestContext)
 
   const [questionIDs, setQuestions] = React.useState<string[]>([])
@@ -22,8 +22,8 @@ export default () => {
     })
   }, [])
 
-  const addTest = () => {
-    handleAddTest({ questionIDs, test })
+  const handleAddTest = () => {
+    addTest({ questionIDs, test })
   }
 
   return (
@@ -49,7 +49,7 @@ export default () => {
         })}
       </FormControl>
       <br />
-      <Button color="primary" onClick={addTest}>
+      <Button color="primary" onClick={handleAddTest}>
         Add
       </Button>
     </div>

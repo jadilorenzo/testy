@@ -14,7 +14,7 @@ import { ExitToApp } from '@material-ui/icons'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default React.memo((props: any) => {
-  const { users, handleLogin } = React.useContext(AirDBContext)
+  const { users, login } = React.useContext(AirDBContext)
   const [toggled, setToggled] = React.useState(false)
   const [username, setUser] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -70,7 +70,7 @@ export default React.memo((props: any) => {
           <DialogActions>
             <Button
               onClick={() => {
-                handleLogin({ password, username, setToggled }).then(() =>
+                login({ password, username, setToggled }).then(() =>
                   props.setRedirect('/')
                 )
               }}

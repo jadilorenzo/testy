@@ -6,12 +6,12 @@ import { AirDBContext } from '../../context/AirDBContext'
 import Button from '../Button'
 
 const Verification = () => {
-  const { handleAddQuestion } = useContext(AirDBContext)
+  const { addQuestion } = useContext(AirDBContext)
   const [question] = useContext(CurrentQuestionContext)
   const [options] = useContext(OptionsContext)
 
-  const addQuestion = async () => {
-    await handleAddQuestion({ question, options }).then(
+  const handleAddQuestion = async () => {
+    await addQuestion({ question, options }).then(
       () => (window.location.pathname = '/')
     )
   }
@@ -21,7 +21,7 @@ const Verification = () => {
       <div className="TestGroup">
         <QuestionDisplay />
       </div>
-      <Button onClick={addQuestion} color="primary">
+      <Button onClick={handleAddQuestion} color="primary">
         Add
       </Button>
     </div>

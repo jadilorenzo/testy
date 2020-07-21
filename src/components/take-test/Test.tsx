@@ -14,7 +14,7 @@ export default ({
   setScore: any
   scoreID?: number
 }) => {
-  const { questions, handleQuestionAnswer } = React.useContext(AirDBContext)
+  const { questions, answerQuestion } = React.useContext(AirDBContext)
   const myQuestions = questions.filter(question =>
     test.questions.split(', ').includes(JSON.stringify(question.fields.ID))
   )
@@ -56,7 +56,7 @@ export default ({
               submitted={score[index] !== undefined}
               correct={score[index]}
               handleSubmit={(value: string) => {
-                handleQuestionAnswer({
+                answerQuestion({
                   handleSubmit,
                   value,
                   question,

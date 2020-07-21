@@ -16,19 +16,19 @@ import {
 } from '../types'
 
 export const AirDBContext = createContext<{
-  handleLogin: Function
-  handleAddTest: Function
-  handleAddQuestion: Function
+  login: Function
+  addTest: Function
+  addQuestion: Function
   updateTestQuestions: Function
-  handleQuestionAnswer: Function
+  answerQuestion: Function
   createInitialScore: Function
-  handleSendMessage: Function
-  handleLogout: Function
-  handleSetScore: Function
-  handleAddCourse: Function
-  handleAddChapter: Function
-  handleAddLesson: Function
-  handleAddAssignment: Function
+  sendMessage: Function
+  logout: Function
+  setScore: Function
+  addCourse: Function
+  addChapter: Function
+  addLesson: Function
+  addAssignment: Function
 
   tests: any[]
   questions: any[]
@@ -44,19 +44,20 @@ export const AirDBContext = createContext<{
   lessons: any[]
   assignments: any[]
 }>({
-  handleLogin: () => {},
-  handleAddQuestion: () => {},
-  handleAddTest: () => {},
+  login: () => {},
+  addTest: () => {},
+  addQuestion: () => {},
   updateTestQuestions: () => {},
-  handleQuestionAnswer: () => {},
-  handleSendMessage: () => {},
+  answerQuestion: () => {},
   createInitialScore: () => {},
-  handleLogout: () => {},
-  handleSetScore: () => {},
-  handleAddCourse: () => {},
-  handleAddChapter: () => {},
-  handleAddLesson: () => {},
-  handleAddAssignment: () => {},
+  sendMessage: () => {},
+  logout: () => {},
+  setScore: () => {},
+  addCourse: () => {},
+  addChapter: () => {},
+  addLesson: () => {},
+  addAssignment: () => {},
+
   tests: [],
   scores: [],
   questions: [],
@@ -129,7 +130,7 @@ export const AirDBProvider = React.memo((props: any) => {
     )
   }
 
-  const handleLogin = ({ password, username, setToggled }: any) => {
+  const login = ({ password, username, setToggled }: any) => {
     const isMatching =
       users.filter(
         user =>
@@ -153,7 +154,7 @@ export const AirDBProvider = React.memo((props: any) => {
     }
   }
 
-  const handleAddQuestion = async ({ options, question }: any) => {
+  const addQuestion = async ({ options, question }: any) => {
     const userid = (
       users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
@@ -172,7 +173,7 @@ export const AirDBProvider = React.memo((props: any) => {
     }).then((r: any) => (r[0] || { fields: { ID: 0 } }).fields.ID)
   }
 
-  const handleAddTest = async ({ test }: any) => {
+  const addTest = async ({ test }: any) => {
     const userid = (
       users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
@@ -199,7 +200,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleLogout = () => {
+  const logout = () => {
     const userId = users.filter(
       user => user.fields.username === window.localStorage.getItem('username')
     )[0].id
@@ -207,7 +208,7 @@ export const AirDBProvider = React.memo((props: any) => {
     return updateAirDB('Users', userId, { active: false })
   }
 
-  const handleSetScore = ({ scoreID, score }: any) => {
+  const setScore = ({ scoreID, score }: any) => {
     const scorid = (
       scores.filter(score => score.fields.ID === scoreID)[0] || {
         id: ''
@@ -232,7 +233,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleQuestionAnswer = ({
+  const answerQuestion = ({
     handleSubmit,
     value,
     question,
@@ -250,7 +251,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleSendMessage = ({ groupid, text }: any) => {
+  const sendMessage = ({ groupid, text }: any) => {
     const userid = (
       users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
@@ -264,7 +265,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleAddCourse = ({ name }: any) => {
+  const addCourse = ({ name }: any) => {
     const userid = (
       users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
@@ -277,7 +278,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleAddChapter = async ({ name, course }: any) => {
+  const addChapter = async ({ name, course }: any) => {
     const lessonIds: string[] = (
       courses.filter(thisCourse => thisCourse.id === course)[0] || {
         fields: { chapters: '' }
@@ -294,7 +295,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleAddLesson = async ({ name, chapter }: any) => {
+  const addLesson = async ({ name, chapter }: any) => {
     const chapterIds: string[] = (
       chapters.filter(thisChapter => thisChapter.id === chapter)[0] || {
         fields: { lessons: '' }
@@ -311,7 +312,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleAddAssignment = async ({ name, lesson, type }: any) => {
+  const addAssignment = async ({ name, lesson, type }: any) => {
     const lessonIds: string = (
       lessons.filter(thisLesson => thisLesson.id === lesson)[0] || {
         fields: { assignments: '' }
@@ -352,19 +353,19 @@ export const AirDBProvider = React.memo((props: any) => {
   return (
     <AirDBContext.Provider
       value={{
-        handleQuestionAnswer,
+        answerQuestion,
         updateTestQuestions,
-        handleSendMessage,
+        sendMessage,
         createInitialScore,
-        handleAddQuestion,
-        handleSetScore,
-        handleAddTest,
-        handleAddCourse,
-        handleAddChapter,
-        handleAddLesson,
-        handleAddAssignment,
-        handleLogin,
-        handleLogout,
+        addQuestion,
+        setScore,
+        addTest,
+        addCourse,
+        addChapter,
+        addLesson,
+        addAssignment,
+        login,
+        logout,
 
         scores,
         messages,

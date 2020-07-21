@@ -13,7 +13,7 @@ import loader from './loader.gif'
 import { Add, ExitToApp, BubbleChart } from '@material-ui/icons'
 
 const Header = (props: any) => {
-  const { loading, handleLogout } = React.useContext(AirDBContext)
+  const { loading, logout } = React.useContext(AirDBContext)
   const theme = useTheme()
 
   return (
@@ -61,7 +61,7 @@ const Header = (props: any) => {
             <Zoom in={true}>
               <IconButton
                 onClick={() => {
-                  handleLogout().then(() => {
+                  logout().then(() => {
                     props.setRedirect('/')
                     window.localStorage.removeItem('username')
                   })

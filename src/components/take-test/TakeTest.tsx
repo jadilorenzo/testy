@@ -5,12 +5,12 @@ import Test from './Test'
 import Paper from '../Paper'
 
 export default ({ test, setRedirect, id }: any) => {
-  const { handleSetScore, createInitialScore } = React.useContext(AirDBContext)
+  const { setScore, createInitialScore } = React.useContext(AirDBContext)
 
   const [scoreID, setScoreID] = React.useState(0)
 
-  const setScore = (score: string) => {
-    handleSetScore({ score, scoreID })
+  const handleSetScore = (score: string) => {
+    setScore({ score, scoreID })
   }
 
   React.useEffect(() => {
@@ -21,7 +21,7 @@ export default ({ test, setRedirect, id }: any) => {
     <>
       <br />
       <Paper>
-        <Test test={test} setScore={setScore} scoreID={scoreID} />
+        <Test test={test} setScore={handleSetScore} scoreID={scoreID} />
         <Button onClick={() => setRedirect('/')}>End</Button>
       </Paper>
     </>

@@ -370,7 +370,7 @@ export const AirDBProvider = React.memo((props: any) => {
         assignments
       }}
     >
-      {props.children(users)}
+      {props.children(users, loading)}
     </AirDBContext.Provider>
   )
 })

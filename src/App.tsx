@@ -13,7 +13,8 @@ import {
   TuiAddCourse,
   TuiAddChapter,
   TuiAddLesson,
-  TuiAddAssignment
+  TuiAddAssignment,
+  TuiLoader
 } from './components'
 import { AirDBProvider } from './context/AirDBContext'
 import { SearchProvider } from './context/SearchContext'
@@ -29,7 +30,7 @@ const App = () => {
           render={(setRedirect: any) => (
             <AirDBProvider
               setRedirect={setRedirect}
-              children={(users: any[]) => {
+              children={(users: any[], loading: boolean) => {
                 const user = users.filter(
                   user =>
                     user.fields.username ===
@@ -39,44 +40,52 @@ const App = () => {
 
                 return (
                   <>
-                    {!loggedIn ? (
+                    {loading ? (
+                      <TuiLoader />
+                    ) : !loggedIn ? (
                       <Route exact path="/">
                         <TuiLogin setRedirect={setRedirect} users={users} />
                       </Route>
                     ) : (
                       <SearchProvider>
-                        <Route exact path="/">
-                          <TuiMain setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/scores">
-                          <TuiScorePage setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/test">
-                          <TestProvider>
-                            <TuiCreateTest />
-                          </TestProvider>
-                        </Route>
-                        <Route exact path="/search">
-                          <TuiSearchPage setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/chat">
-                          <TuiChat />
-                        </Route>
-                        <Route exact path="/courses">
-                          <TuiDisplayCoursesTree setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/course">
-                          <TuiAddCourse setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/chapter">
-                          <TuiAddChapter setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/lesson">
-                          <TuiAddLesson setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/assignment">
-                          <TuiAddAssignment setRedirect={setRedirect} />
-                        </Route>
+                        <>
+                          <div style={{ zIndex: 2 }}>
+                            <Route exact path="/">
+                              <TuiMain setRedirect={setRedirect} />
+                            </Route>
+                            <Route exact path="/scores">
+                              <TuiScorePage setRedirect={setRedirect} />
+                            </Route>
+                            <Route exact path="/add/test">
+                              <TestProvider>
+                                <TuiCreateTest />
+                              </TestProvider>
+                            </Route>
+                            <Route exact path="/search">
+                              <TuiSearchPage setRedirect={setRedirect} />
+                            </Route>
+                            <Route exact path="/chat">
+                              <TuiChat />
+                            </Route>
+                            <Route exact path="/courses">
+                              <TuiDisplayCoursesTree
+                                setRedirect={setRedirect}
+                              />
+                            </Route>
+                            <Route exact path="/add/course">
+                              <TuiAddCourse setRedirect={setRedirect} />
+                            </Route>
+                            <Route exact path="/add/chapter">
+                              <TuiAddChapter setRedirect={setRedirect} />
+                            </Route>
+                            <Route exact path="/add/lesson">
+                              <TuiAddLesson setRedirect={setRedirect} />
+                            </Route>
+                            <Route exact path="/add/assignment">
+                              <TuiAddAssignment setRedirect={setRedirect} />
+                            </Route>
+                          </div>
+                        </>
                       </SearchProvider>
                     )}
                     <TestsRoutes setRedirect={setRedirect} />

@@ -1,20 +1,11 @@
 import React from 'react'
 import { AirDBContext } from '../context/AirDBContext'
-import {
-  AppBar,
-  Fade,
-  Grid,
-  IconButton,
-  Zoom,
-  useTheme
-} from '@material-ui/core'
+import { AppBar, IconButton, Zoom, useTheme } from '@material-ui/core'
 import AppMenu from './AppMenu'
-import loader from './loader.gif'
-
 import { Add, ExitToApp, BubbleChart, MenuRounded } from '@material-ui/icons'
 
 const Header = (props: any) => {
-  const { loading, handleLogout } = React.useContext(AirDBContext)
+  const { handleLogout } = React.useContext(AirDBContext)
   const theme = useTheme()
   const [toggled, setToggled] = React.useState<boolean>(false)
 
@@ -84,32 +75,6 @@ const Header = (props: any) => {
           }}
         />
       </AppBar>
-      {window.location.pathname.includes('add') || (
-        <Fade
-          in={loading}
-          style={{
-            zIndex: 1000,
-            position: 'absolute',
-            height: '100%',
-            background: '#fff'
-          }}
-        >
-          <Grid container direction="row" justify="center" alignItems="center">
-            <img
-              src={loader}
-              alt="loader"
-              style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
-            />
-            {loading && (
-              <audio
-                autoPlay={true}
-                preload="http://localhost:3000/hero_simple-celebration-01.wav"
-                src="http://localhost:3000/hero_simple-celebration-01.wav"
-              ></audio>
-            )}
-          </Grid>
-        </Fade>
-      )}
     </>
   )
 }

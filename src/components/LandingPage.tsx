@@ -1,8 +1,8 @@
 import React from 'react'
-import { Zoom, Avatar, Typography, useTheme } from '@material-ui/core'
+import { Typography, useTheme } from '@material-ui/core'
 import {
   Face,
-  BarChartRounded,
+  TrendingUpRounded,
   HomeRounded,
   BubbleChart
 } from '@material-ui/icons'
@@ -61,7 +61,7 @@ export default (props: any) => {
               className="avatar"
               style={{ width: '4rem', height: '4rem' }}
             >
-              <BarChartRounded fontSize="large" color="inherit" />
+              <TrendingUpRounded fontSize="large" color="inherit" />
             </div>
             <Typography variant="h6">Scores</Typography>
           </div>

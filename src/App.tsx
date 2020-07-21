@@ -13,8 +13,7 @@ import {
   TuiAddCourse,
   TuiAddChapter,
   TuiAddLesson,
-  TuiAddAssignment,
-  TuiAddPage
+  TuiAddAssignment
 } from './components'
 import { AirDBProvider } from './context/AirDBContext'
 import { SearchProvider } from './context/SearchContext'
@@ -52,7 +51,7 @@ const App = () => {
                         <Route exact path="/scores">
                           <TuiScorePage setRedirect={setRedirect} />
                         </Route>
-                        <Route exact path="/add">
+                        <Route exact path="/add/test">
                           <TestProvider>
                             <TuiCreateTest />
                           </TestProvider>
@@ -77,9 +76,6 @@ const App = () => {
                         </Route>
                         <Route exact path="/add/assignment">
                           <TuiAddAssignment setRedirect={setRedirect} />
-                        </Route>
-                        <Route exact path="/add/todo">
-                          <TuiAddPage setRedirect={setRedirect} />
                         </Route>
                       </SearchProvider>
                     )}

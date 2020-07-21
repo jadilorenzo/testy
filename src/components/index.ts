@@ -15,7 +15,6 @@ import TestPage from './TestPage'
 import Login from './Login'
 import ScorePage from './ScorePage'
 import SearchPage from './SearchPage'
-import AddPage from './AddPage'
 import Chat from './chat/Chat'
 
 export const TuiCreateQuestion = CreateQuestion
@@ -34,4 +33,3 @@ export const TuiAddCourse = AddCourse
 export const TuiAddChapter = AddChapter
 export const TuiAddLesson = AddLesson
 export const TuiAddAssignment = AddAssignment
-export const TuiAddPage = AddPage

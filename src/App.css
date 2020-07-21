@@ -51,7 +51,7 @@ a {
   border-radius: 1rem 0 0 0;
   width: 100%;
   border: none;
-  padding: 1rem;
+  padding: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -156,7 +156,7 @@ a {
   justify-content: center;
   width: 85%;
   margin: auto;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   border-radius: 0.5rem;
   height: 40vh;
   min-height: 15rem;
@@ -206,16 +206,4 @@ a {
   align-items: center;
   width: 100%;
   min-height: 60vh;
-}
-
-@media (max-width: 1300px) {
-  .avatar-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-  .center {
-    display: block;
-    flex-direction: column;
-  }
 }

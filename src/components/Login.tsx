@@ -2,17 +2,15 @@ import React from 'react'
 import Paper from './Paper'
 import {
   Typography,
-  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
   Button,
   TextField,
-  FormControl,
-  useTheme
+  FormControl
 } from '@material-ui/core'
-import { ExitToApp, Edit } from '@material-ui/icons'
+import { ExitToApp } from '@material-ui/icons'
 import { AirDBContext } from '../context/AirDBContext'
 
 export default React.memo((props: any) => {

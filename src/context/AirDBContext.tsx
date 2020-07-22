@@ -2,17 +2,17 @@ import Airtable from 'airtable'
 import React, { createContext } from 'react'
 import {
   Record,
-  test,
-  question,
-  score,
-  user,
-  testInstance,
-  group,
-  message,
-  course,
-  chapter,
-  lesson,
-  assignment
+  Test,
+  Question,
+  Score,
+  User,
+  TestInstance,
+  Group,
+  Message,
+  Course,
+  Chapter,
+  Lesson,
+  Assignment
 } from '../types'
 
 const voidFunction = () => {}
@@ -76,21 +76,21 @@ export const AirDBContext = createContext<{
 })
 
 export const AirDBProvider = React.memo((props: any) => {
-  const [tests, setTests] = React.useState<Record<test>[]>([])
-  const [questions, setQuestions] = React.useState<Record<question>[]>([])
-  const [scores, setScores] = React.useState<Record<score>[]>([])
+  const [tests, setTests] = React.useState<Record<Test>[]>([])
+  const [questions, setQuestions] = React.useState<Record<Question>[]>([])
+  const [scores, setScores] = React.useState<Record<Score>[]>([])
   const [loading, setLoading] = React.useState(true)
-  const [users, setUsers] = React.useState<Record<user>[]>([])
+  const [users, setUsers] = React.useState<Record<User>[]>([])
   const [testInstances, setTestInstances] = React.useState<
-    Record<testInstance>[]
+    Record<TestInstance>[]
   >([])
-  const [groups, setGroups] = React.useState<Record<group>[]>([])
-  const [messages, setMessages] = React.useState<Record<message>[]>([])
+  const [groups, setGroups] = React.useState<Record<Group>[]>([])
+  const [messages, setMessages] = React.useState<Record<Message>[]>([])
 
-  const [courses, setCourses] = React.useState<Record<course>[]>([])
-  const [chapters, setChapters] = React.useState<Record<chapter>[]>([])
-  const [lessons, setLessons] = React.useState<Record<lesson>[]>([])
-  const [assignments, setAssignments] = React.useState<Record<assignment>[]>([])
+  const [courses, setCourses] = React.useState<Record<Course>[]>([])
+  const [chapters, setChapters] = React.useState<Record<Chapter>[]>([])
+  const [lessons, setLessons] = React.useState<Record<Lesson>[]>([])
+  const [assignments, setAssignments] = React.useState<Record<Assignment>[]>([])
 
   const base = new Airtable({ apiKey: 'key29JR5FoxxlCqor' }).base(
     'appeQvvPNhaPvYi0s'
@@ -242,15 +242,16 @@ export const AirDBProvider = React.memo((props: any) => {
     index,
     scoreID
   }: any) => {
-    handleSubmit(value, question, index)
-
-    postAirDB('Test Instances', {
-      answer: value,
-      'correct answer': question.fields.answer,
-      correct: `${question.fields.answer === value}`,
-      scoreid: scoreID,
-      question: question.fields.question
-    })
+    Promise.all([
+      handleSubmit(value, question, index),
+      postAirDB('Test Instances', {
+        answer: value,
+        'correct answer': question.fields.answer,
+        correct: `${question.fields.answer === value}`,
+        scoreid: scoreID,
+        question: question.fields.question
+      })
+    ])
   }
 
   const sendMessage = ({ groupid, text }: any) => {

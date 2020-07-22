@@ -1,22 +1,9 @@
-export interface Question {
-  type?: 'multiple-choice' | 'multi-answer' | 'essay'
-  question: string
-  answer: string
-  options?: string[]
-}
-
-export interface Test {
-  questions: Question[]
-  title: string
-  selfGrade?: true | false
-}
-
 export interface Record<T> {
   fields: T
   id: string
 }
 
-export interface test {
+export interface Test {
   ID: number
   title?: string
   tags?: string
@@ -24,7 +11,7 @@ export interface test {
   userid?: number
 }
 
-export interface question {
+export interface Question {
   ID: number
   question?: string
   answer?: string
@@ -34,21 +21,21 @@ export interface question {
   userid?: number
 }
 
-export interface score {
+export interface Score {
   ID: number
   userid?: number
   test?: number
   scores?: string
 }
 
-export interface user {
+export interface User {
   ID: number
   username?: string
   password?: string
   active?: boolean
 }
 
-export interface testInstance {
+export interface TestInstance {
   ID: number
   question?: string
   answer?: string
@@ -57,38 +44,38 @@ export interface testInstance {
   scoreid?: number
 }
 
-export interface group {
+export interface Group {
   ID: number
   name?: string
   users?: string
 }
 
-export interface message {
+export interface Message {
   ID: number
   text: number
   userid: number
 }
 
-export interface course {
+export interface Course {
   ID: number
   title: string
   chapters: string
   userid: number
 }
 
-export interface chapter {
+export interface Chapter {
   ID: number
   title: string
   lessons: string
 }
 
-export interface lesson {
+export interface Lesson {
   ID: number
   title: string
   assignments: string
 }
 
-export interface assignment {
+export interface Assignment {
   ID: number
   type: 'test' | 'reading' | 'chat'
   title: string

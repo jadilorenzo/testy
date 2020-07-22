@@ -18,7 +18,8 @@ import {
   HomeRounded,
   FaceRounded,
   SearchRounded,
-  TrendingUpRounded
+  TrendingUpRounded,
+  AppsRounded
 } from '@material-ui/icons'
 
 export default (props: any) => {
@@ -39,15 +40,23 @@ export default (props: any) => {
           }}
         >
           <div style={{ width: '90%', margin: 'auto' }}>
-            <List component="nav">
+            <List dense component="nav">
               <ListSubheader>Main</ListSubheader>
               <Divider />
+              <ListItem button onClick={() => props.setRedirect('/')}>
+                <ListItemIcon>
+                  <AppsRounded fontSize="large" />
+                </ListItemIcon>
+                <ListItemText
+                  primary={<div style={{ color: '#000' }}>Menu</div>}
+                />
+              </ListItem>
               <ListItem button onClick={() => props.setRedirect('/')}>
                 <ListItemIcon>
                   <HomeRounded fontSize="large" />
                 </ListItemIcon>
                 <ListItemText
-                  primary={<div style={{ color: '#000' }}>Home</div>}
+                  primary={<div style={{ color: '#000' }}>Courses</div>}
                 />
               </ListItem>
               <ListItem button onClick={() => props.setRedirect('/chat')}>
@@ -71,7 +80,7 @@ export default (props: any) => {
                   <SearchRounded fontSize="large" />
                 </ListItemIcon>
                 <ListItemText
-                  primary={<div style={{ color: '#000' }}>Search</div>}
+                  primary={<div style={{ color: '#000' }}>Search Tests</div>}
                 />
               </ListItem>
               <ListSubheader>Add</ListSubheader>

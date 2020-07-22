@@ -53,7 +53,7 @@ export default (props: any) => {
             >
               <HomeRounded fontSize="large" color="inherit" />
             </div>
-            <Typography variant="h6">Home</Typography>
+            <Typography variant="h6">Courses</Typography>
           </div>
           <div className="avatar-group">
             <div

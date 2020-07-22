@@ -253,7 +253,7 @@ export const AirDBProvider = React.memo((props: any) => {
     })
   }
 
-  const handleAddCourse = ({ name }: any) => {
+  const handleAddCourse = ({ name, color, file }: any) => {
     const userid = (
       users.filter(
         user => user.fields.username === window.localStorage.getItem('username')
@@ -262,7 +262,9 @@ export const AirDBProvider = React.memo((props: any) => {
 
     return postAirDB('Courses', {
       title: name,
-      userid: userid
+      userid: userid,
+      color,
+      img: file
     })
   }
 

@@ -73,7 +73,6 @@ const Header = (props: any) => {
             setToggled(false)
             props.setRedirect(string)
           }}
-          student={props.student}
         />
       </AppBar>
     </>

@@ -17,6 +17,7 @@ import ScorePage from './ScorePage'
 import SearchPage from './SearchPage'
 import Chat from './chat/Chat'
 import Loader from './Loader'
+import StudentCourses from './StudentCourses'
 
 export const TuiCreateQuestion = CreateQuestion
 export const TuiHeader = Header
@@ -35,3 +36,4 @@ export const TuiAddChapter = AddChapter
 export const TuiAddLesson = AddLesson
 export const TuiAddAssignment = AddAssignment
 export const TuiLoader = Loader
+export const TuiStudentCourses = StudentCourses

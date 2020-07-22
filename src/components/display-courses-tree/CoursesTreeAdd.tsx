@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Paper from '../Paper'
-import { Typography, TextField, Button } from '@material-ui/core'
+import { Typography, TextField, Button, useTheme } from '@material-ui/core'
 import { TreeView, TreeItem } from '@material-ui/lab'
 import { AirDBContext } from '../../context/AirDBContext'
+import { DropzoneArea } from 'material-ui-dropzone'
+import randomColor from 'randomcolor'
 
 export const AddCourse = (props: any) => {
   const { handleAddCourse } = React.useContext(AirDBContext)
   const [name, setName] = React.useState('')
+  const [color, setColor] = React.useState()
+  const [files, setFiles] = React.useState<any[]>([])
+  const theme = useTheme()
+
+  useEffect(() => {
+    setColor(randomColor())
+  }, [])
 
   return (
     <Paper>
@@ -17,11 +26,31 @@ export const AddCourse = (props: any) => {
         placeholder="Course Name"
         variant="outlined"
       />
+      <div
+        style={{
+          background: color,
+          height: '0.5rem',
+          marginTop: '0.5rem',
+          marginBottom: '0.5rem'
+        }}
+      ></div>
+      <Button variant="text" onClick={() => setColor(randomColor())}>
+        Regenerate Color
+      </Button>
+      <br />
+      {/* <DropzoneArea onChange={files => setFiles(files)} />
+      <br />
+      <div style={{ color: theme.palette.error.main }}>
+        Not operational yet!
+      </div> */}
       <Button
         onClick={() =>
-          handleAddCourse({ name }).then(() => props.setRedirect('/courses'))
+          handleAddCourse({
+            name,
+            color,
+            file: files[0]
+          }).then(() => props.setRedirect('/courses'))
         }
-        style={{ marginTop: '0.5rem' }}
       >
         Add
       </Button>

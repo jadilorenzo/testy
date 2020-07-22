@@ -207,3 +207,32 @@ a {
   width: 100%;
   min-height: 60vh;
 }
+
+.course-items {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 50%;
+}
+
+.course-item {
+  flex-grow: 1;
+  padding: 0.25rem;
+  width: calc(100%/2);
+}
+
+.course-group {
+  padding: 0.75rem;
+  min-height: 7.5rem;
+  background: #f0f0f0;
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://www.schoology.com/sites/default/files/bottom-section-background.png');
+}
+
+.course-item-title {
+  background-color: #EAEAEA;
+  padding: 0.75rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+}

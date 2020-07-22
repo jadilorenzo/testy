@@ -4,7 +4,7 @@ import {
   TuiTestPage,
   TuiTakeTest,
   TuiReviewTest,
-  TuiAddQuestionTo
+  TuiCreateQuestion
 } from './components'
 import { AirDBContext } from './context/AirDBContext'
 
@@ -27,6 +27,9 @@ export default ({ setRedirect }: any) => {
                 }
               />
             </Route>
+            <Route exact path={`/add/question/to/${row.fields.ID}`}>
+              <TuiCreateQuestion setRedirect={setRedirect} id={row.fields.ID} />
+            </Route>
             <Route path={`/take/test/${row.fields.ID}`}>
               <TuiTakeTest
                 setRedirect={setRedirect}
@@ -34,17 +37,16 @@ export default ({ setRedirect }: any) => {
                 id={row.fields.ID}
               />
             </Route>
-            <Route exact path={`/add/question/to/${row.fields.ID}`}>
-              <TuiAddQuestionTo setRedirect={setRedirect} id={row.fields.ID} />
-            </Route>
           </div>
         )
       })}
-      {scores.map((score: any) => {
+      {scores.map((score: any, index) => {
         return (
-          <Route path={`/review/test/${score.fields.ID}`}>
-            <TuiReviewTest setRedirect={setRedirect} id={score.fields.ID} />
-          </Route>
+          <div key={index}>
+            <Route path={`/review/test/${score.fields.ID}`}>
+              <TuiReviewTest setRedirect={setRedirect} id={score.fields.ID} />
+            </Route>
+          </div>
         )
       })}
     </div>

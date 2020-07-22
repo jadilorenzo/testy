@@ -25,7 +25,7 @@ export default ({ render }: { render: any }) => {
   return (
     <>
       <TuiHeader setRedirect={setRedirect} />
-      <div style={{ height: '5em' }} />
+      <div style={{ height: '5rem' }} />
       <Slide direction="up" in={redirect === 'none'} timeout={500}>
         <div>{render(setRedirect)}</div>
       </Slide>

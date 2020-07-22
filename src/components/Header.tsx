@@ -1,34 +1,13 @@
 import React from 'react'
 import { AirDBContext } from '../context/AirDBContext'
-import {
-  AppBar,
-  Typography,
-  Fade,
-  Grid,
-  IconButton,
-  Zoom,
-  useTheme
-} from '@material-ui/core'
-import loader from './loader.gif'
-
-import { Add, ExitToApp, BubbleChart } from '@material-ui/icons'
+import { AppBar, IconButton, Zoom, useTheme } from '@material-ui/core'
+import AppMenu from './AppMenu'
+import { Add, ExitToApp, BubbleChart, MenuRounded } from '@material-ui/icons'
 
 const Header = (props: any) => {
-  const { loading, users, updateAirDB } = React.useContext(AirDBContext)
+  const { handleLogout } = React.useContext(AirDBContext)
   const theme = useTheme()
-
-  const handleLogout = () => {
-    const userId = users.filter(
-      user => user.fields.username === window.localStorage.getItem('username')
-    )[0].id
-
-    updateAirDB('Testy - Users', userId, {
-      active: 'false'
-    }).then(() => {
-      props.setRedirect('/')
-      window.localStorage.removeItem('username')
-    })
-  }
+  const [toggled, setToggled] = React.useState<boolean>(false)
 
   return (
     <>
@@ -52,7 +31,7 @@ const Header = (props: any) => {
             justifyItems: 'left'
           }}
         >
-          <span onClick={() => props.setRedirect('/')}>
+          <span>
             <BubbleChart
               color="inherit"
               fontSize="large"
@@ -64,47 +43,38 @@ const Header = (props: any) => {
             </span>
           </span>
           <div style={{ position: 'absolute', right: 'calc(7.5%)' }}>
-            <Zoom in={true} style={{ transitionDelay: true ? '50ms' : '0ms' }}>
+            <Zoom in={true}>
               <IconButton
+                onClick={() => {
+                  handleLogout()
+                  window.localStorage.removeItem('username')
+                  props.setRedirect('/')
+                }}
                 color="inherit"
-                onClick={() => props.setRedirect('/add')}
               >
-                <Add />
+                <ExitToApp />
               </IconButton>
             </Zoom>
             <Zoom in={true}>
-              <IconButton onClick={handleLogout} color="inherit">
-                <ExitToApp />
+              <IconButton
+                onClick={() => {
+                  setToggled(t => !t)
+                }}
+                color="inherit"
+              >
+                <MenuRounded />
               </IconButton>
             </Zoom>
           </div>
         </div>
-      </AppBar>
-      {window.location.pathname.includes('add') || (
-        <Fade
-          in={loading}
-          style={{
-            zIndex: 1000,
-            position: 'absolute',
-            height: '100%',
-            background: '#fff'
+        <AppMenu
+          in={toggled}
+          setRedirect={(string: string) => {
+            setToggled(false)
+            props.setRedirect(string)
           }}
-        >
-          <Grid container direction="row" justify="center" alignItems="center">
-            <img
-              src={loader}
-              style={{ minWidth: '15rem', maxWidth: '25%', margin: 'auto' }}
-            />
-            {loading && (
-              <audio
-                autoPlay={true}
-                preload="http://localhost:3000/hero_simple-celebration-01.wav"
-                src="http://localhost:3000/hero_simple-celebration-01.wav"
-              ></audio>
-            )}
-          </Grid>
-        </Fade>
-      )}
+        />
+      </AppBar>
     </>
   )
 }

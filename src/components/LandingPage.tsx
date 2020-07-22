@@ -45,7 +45,7 @@ export default (props: any) => {
         >
           Scores
         </Button>
-        <Grid item xs={12} sm={6} style={{ marginBottom: '0.2rem' }}>
+        <Grid item xs={12} sm={6}>
           <TextField
             label="Search"
             onChange={handleSearchChange}

@@ -14,9 +14,9 @@ export default ({
   setScore: any
   scoreID?: number
 }) => {
-  const { questions, postAirDB } = React.useContext(AirDBContext)
+  const { questions, answerQuestion } = React.useContext(AirDBContext)
   const myQuestions = questions.filter(question =>
-    test.questions.split(', ').includes(JSON.stringify(question.fields.ID))
+    test.questions.split(', ').includes(`${question.fields.ID}`)
   )
   const [score, setCorrectProblems] = React.useState<(boolean | undefined)[]>(
     []
@@ -56,14 +56,12 @@ export default ({
               submitted={score[index] !== undefined}
               correct={score[index]}
               handleSubmit={(value: string) => {
-                handleSubmit(value, question, index)
-
-                postAirDB('Testy - Test Instances', {
-                  answer: value,
-                  'correct answer': question.fields.answer,
-                  correct: JSON.stringify(question.fields.answer === value),
-                  scoreid: scoreID,
-                  question: question.fields.question
+                answerQuestion({
+                  handleSubmit,
+                  value,
+                  question,
+                  index,
+                  scoreID
                 })
               }}
             />

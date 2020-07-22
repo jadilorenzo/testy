@@ -1,7 +1,6 @@
 import React, { createContext } from 'react'
-import { Question } from '../types'
 
-const defaultValue: Question = {
+const defaultValue: any = {
   question: '',
   answer: '',
   options: []

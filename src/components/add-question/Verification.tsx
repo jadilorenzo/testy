@@ -6,29 +6,14 @@ import { AirDBContext } from '../../context/AirDBContext'
 import Button from '../Button'
 
 const Verification = () => {
-  const db = useContext(AirDBContext)
+  const { addQuestion } = useContext(AirDBContext)
   const [question] = useContext(CurrentQuestionContext)
   const [options] = useContext(OptionsContext)
 
   const handleAddQuestion = async () => {
-    const userid = (
-      db.users.filter(
-        user => user.fields.username === window.localStorage.getItem('username')
-      )[0] || { fields: { ID: '' } }
-    ).fields.ID
-
-    await db
-      .postAirDB('Testy - Questions', {
-        ...question,
-        userid,
-        options: question.options
-          .sort()
-          .map((x: string) => x.trim())
-          .join(', '),
-        type: options.type,
-        autocheck: JSON.stringify(options.autocheck)
-      })
-      .then(() => (window.location.pathname = '/'))
+    await addQuestion({ question, options }).then(
+      () => (window.location.pathname = '/')
+    )
   }
 
   return (

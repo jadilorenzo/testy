@@ -5,10 +5,13 @@ import { FormControl, TextField, Chip, Button } from '@material-ui/core'
 export default () => {
   const [test, setTest] = useContext(TestContext)
 
-  const handleTitleChange = useCallback((e: any) => {
-    e.persist()
-    setTest((prev: any) => ({ ...prev, title: e.target.value }))
-  }, [])
+  const handleTitleChange = useCallback(
+    (e: any) => {
+      e.persist()
+      setTest((prev: any) => ({ ...prev, title: e.target.value }))
+    },
+    [setTest]
+  )
 
   const [tag, setTag] = React.useState('#')
 

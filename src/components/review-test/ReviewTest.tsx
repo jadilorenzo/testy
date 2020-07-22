@@ -30,7 +30,7 @@ export default (props: { id: string; setRedirect: any }) => {
       <Page>
         <Typography variant="h5">{title}</Typography>
         {questions.map((question, index) => {
-          const correct = JSON.parse(question.fields.correct || 'false')
+          const correct = `${question.fields.correct || 'false'}`
 
           return (
             <div style={{ marginBottom: '0.2rem' }}>

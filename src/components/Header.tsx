@@ -2,7 +2,7 @@ import React from 'react'
 import { AirDBContext } from '../context/AirDBContext'
 import { AppBar, IconButton, Zoom, useTheme } from '@material-ui/core'
 import AppMenu from './AppMenu'
-import { Add, ExitToApp, BubbleChart, MenuRounded } from '@material-ui/icons'
+import { ExitToApp, BubbleChart, MenuRounded } from '@material-ui/icons'
 
 const Header = (props: any) => {
   const { handleLogout } = React.useContext(AirDBContext)
@@ -73,6 +73,7 @@ const Header = (props: any) => {
             setToggled(false)
             props.setRedirect(string)
           }}
+          student={props.student}
         />
       </AppBar>
     </>

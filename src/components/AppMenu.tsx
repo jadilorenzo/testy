@@ -67,7 +67,7 @@ export default (props: any) => {
                   primary={<div style={{ color: '#000' }}>Chat</div>}
                 />
               </ListItem>
-              <ListItem button onClick={() => props.setRedirect('/chat')}>
+              <ListItem button onClick={() => props.setRedirect('/scores')}>
                 <ListItemIcon>
                   <TrendingUpRounded fontSize="large" />
                 </ListItemIcon>
@@ -75,62 +75,79 @@ export default (props: any) => {
                   primary={<div style={{ color: '#000' }}>Scores</div>}
                 />
               </ListItem>
-              <ListItem button onClick={() => props.setRedirect('/search')}>
-                <ListItemIcon>
-                  <SearchRounded fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<div style={{ color: '#000' }}>Search Tests</div>}
-                />
-              </ListItem>
-              <ListSubheader>Add</ListSubheader>
-              <Divider />
-              <ListItem button onClick={() => props.setRedirect('/add/course')}>
-                <ListItemIcon>
-                  <SchoolRounded fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<div style={{ color: '#000' }}>Add Course</div>}
-                />
-              </ListItem>
-              <ListItem
-                button
-                onClick={() => props.setRedirect('/add/chapter')}
-              >
-                <ListItemIcon>
-                  <InsertDriveFileRounded fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<div style={{ color: '#000' }}>Add Chapter</div>}
-                />
-              </ListItem>
-              <ListItem button onClick={() => props.setRedirect('/add/lesson')}>
-                <ListItemIcon>
-                  <AssignmentRounded fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<div style={{ color: '#000' }}>Add Lesson</div>}
-                />
-              </ListItem>
-              <ListItem
-                button
-                onClick={() => props.setRedirect('/add/assignment')}
-              >
-                <ListItemIcon>
-                  <AssessmentRounded fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<div style={{ color: '#000' }}>Add Assignment</div>}
-                />
-              </ListItem>
-              <ListItem button onClick={() => props.setRedirect('/add/test')}>
-                <ListItemIcon>
-                  <BarChartRounded fontSize="large" />
-                </ListItemIcon>
-                <ListItemText
-                  primary={<div style={{ color: '#000' }}>Add Test</div>}
-                />
-              </ListItem>
+              {props.student ? (
+                <>
+                  <ListItem button onClick={() => props.setRedirect('/search')}>
+                    <ListItemIcon>
+                      <SearchRounded fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={
+                        <div style={{ color: '#000' }}>Search Tests</div>
+                      }
+                    />
+                  </ListItem>
+                  <ListSubheader>Add</ListSubheader>
+                  <Divider />
+                  <ListItem
+                    button
+                    onClick={() => props.setRedirect('/add/course')}
+                  >
+                    <ListItemIcon>
+                      <SchoolRounded fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={<div style={{ color: '#000' }}>Add Course</div>}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    onClick={() => props.setRedirect('/add/chapter')}
+                  >
+                    <ListItemIcon>
+                      <InsertDriveFileRounded fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={<div style={{ color: '#000' }}>Add Chapter</div>}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    onClick={() => props.setRedirect('/add/lesson')}
+                  >
+                    <ListItemIcon>
+                      <AssignmentRounded fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={<div style={{ color: '#000' }}>Add Lesson</div>}
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    onClick={() => props.setRedirect('/add/assignment')}
+                  >
+                    <ListItemIcon>
+                      <AssessmentRounded fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={
+                        <div style={{ color: '#000' }}>Add Assignment</div>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem
+                    button
+                    onClick={() => props.setRedirect('/add/test')}
+                  >
+                    <ListItemIcon>
+                      <BarChartRounded fontSize="large" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={<div style={{ color: '#000' }}>Add Test</div>}
+                    />
+                  </ListItem>
+                </>
+              ) : null}
             </List>
           </div>
         </div>

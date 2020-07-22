@@ -1,24 +1,11 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import { CssBaseline } from '@material-ui/core'
-import { TestProvider } from './context/TestContext'
-import {
-  TuiCreateTest,
-  TuiMain,
-  TuiDisplayCoursesTree,
-  TuiLogin,
-  TuiScorePage,
-  TuiChat,
-  TuiSearchPage,
-  TuiAddCourse,
-  TuiAddChapter,
-  TuiAddLesson,
-  TuiAddAssignment,
-  TuiLoader
-} from './components'
+import { TuiLogin, TuiLoader } from './components'
 import { AirDBProvider } from './context/AirDBContext'
-import { SearchProvider } from './context/SearchContext'
 import TestsRoutes from './TestsRoutes'
+import TeacherApp from './TeacherApp'
+import StudentApp from './StudentApp'
 import Reroute from './Reroute'
 
 const App = () => {
@@ -35,8 +22,9 @@ const App = () => {
                   user =>
                     user.fields.username ===
                     window.localStorage.getItem('username')
-                )[0] || { fields: { active: false } }
+                )[0] || { fields: { active: false, type: '' } }
                 const loggedIn = user.fields.active
+                const userType = user.fields.type
 
                 return (
                   <>
@@ -46,48 +34,11 @@ const App = () => {
                       <Route exact path="/">
                         <TuiLogin setRedirect={setRedirect} users={users} />
                       </Route>
-                    ) : (
-                      <SearchProvider>
-                        <>
-                          <div style={{ zIndex: 2 }}>
-                            <Route exact path="/">
-                              <TuiMain setRedirect={setRedirect} />
-                            </Route>
-                            <Route exact path="/scores">
-                              <TuiScorePage setRedirect={setRedirect} />
-                            </Route>
-                            <Route exact path="/add/test">
-                              <TestProvider>
-                                <TuiCreateTest />
-                              </TestProvider>
-                            </Route>
-                            <Route exact path="/search">
-                              <TuiSearchPage setRedirect={setRedirect} />
-                            </Route>
-                            <Route exact path="/chat">
-                              <TuiChat />
-                            </Route>
-                            <Route exact path="/courses">
-                              <TuiDisplayCoursesTree
-                                setRedirect={setRedirect}
-                              />
-                            </Route>
-                            <Route exact path="/add/course">
-                              <TuiAddCourse setRedirect={setRedirect} />
-                            </Route>
-                            <Route exact path="/add/chapter">
-                              <TuiAddChapter setRedirect={setRedirect} />
-                            </Route>
-                            <Route exact path="/add/lesson">
-                              <TuiAddLesson setRedirect={setRedirect} />
-                            </Route>
-                            <Route exact path="/add/assignment">
-                              <TuiAddAssignment setRedirect={setRedirect} />
-                            </Route>
-                          </div>
-                        </>
-                      </SearchProvider>
-                    )}
+                    ) : userType === 'teacher' ? (
+                      <TeacherApp setRedirect={setRedirect} />
+                    ) : userType === 'student' ? (
+                      <StudentApp setRedirect={setRedirect} />
+                    ) : null}
                     <TestsRoutes setRedirect={setRedirect} />
                     <div style={{ height: '6rem' }} />
                   </>

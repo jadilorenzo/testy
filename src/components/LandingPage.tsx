@@ -7,7 +7,7 @@ import {
   BubbleChart
 } from '@material-ui/icons'
 
-export default (props: any) => {
+export default (props: { setRedirect: Function; student?: boolean }) => {
   const theme = useTheme()
 
   return (
@@ -53,7 +53,9 @@ export default (props: any) => {
             >
               <HomeRounded fontSize="large" color="inherit" />
             </div>
-            <Typography variant="h6">Courses</Typography>
+            <Typography variant="h6">
+              {props.student ? 'Your ' : ''}Courses
+            </Typography>
           </div>
           <div className="avatar-group">
             <div
